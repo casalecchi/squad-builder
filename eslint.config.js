@@ -14,6 +14,14 @@ export default [
     {
         rules: {
             "react/react-in-jsx-scope": 0,
+            "react/jsx-sort-props": [
+                2,
+                {
+                    shorthandFirst: true,
+                    multiline: "last",
+                    ignoreCase: true,
+                },
+            ],
         },
     },
 ]
