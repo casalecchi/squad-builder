@@ -1,10 +1,22 @@
-import Field from './Field'
+import { createTheme, colors, CssBaseline, ThemeProvider } from '@mui/material'
+import Field from './components/Field'
+
+const theme = createTheme({
+    palette: {
+        mode: 'dark',
+        secondary: {
+            main: colors.orange[500],
+        },
+    },
+})
 
 function App() {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Field />
-        </div>
+        <ThemeProvider theme={theme}>
+            <CssBaseline enableColorScheme>
+                <Field />
+            </CssBaseline>
+        </ThemeProvider>
     )
 }
 
