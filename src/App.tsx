@@ -1,8 +1,8 @@
-import Field from "./Field"
+import Field from './Field'
 
 function App() {
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Field />
         </div>
     )
