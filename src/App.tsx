@@ -1,20 +1,12 @@
-import { createTheme, colors, CssBaseline, ThemeProvider } from '@mui/material'
-import Field from './components/Field'
-
-const theme = createTheme({
-    palette: {
-        mode: 'dark',
-        secondary: {
-            main: colors.orange[500],
-        },
-    },
-})
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import Header from './components/header'
+import theme from './configurations/theme'
 
 function App() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline enableColorScheme>
-                <Field />
+                <Header />
             </CssBaseline>
         </ThemeProvider>
     )
