@@ -13,8 +13,9 @@ const Header: FC = () => {
             py={2}
             sx={{ backgroundColor: 'primary.dark' }}
         >
-            <Stack direction={'row'} spacing={5}>
+            <Stack alignItems={'center'} direction={'row'} gap={3}>
                 <Link
+                    height={'3rem'}
                     href={'https://ac3lab.github.io'}
                     rel={'noopener noreferrer'}
                     target={'_blank'}
@@ -22,11 +23,11 @@ const Header: FC = () => {
                     <img
                         alt={'ACE Laboratory'}
                         className={'imgCropper'}
-                        height={55}
+                        height={'100%'}
                         src={aceLogo}
                     />
                 </Link>
-                <Typography variant="h3">{'Squad Builder'}</Typography>
+                <Typography fontSize={'2rem'}>{'Squad Builder'}</Typography>
             </Stack>
             <LanguageSwitch />
         </Stack>
