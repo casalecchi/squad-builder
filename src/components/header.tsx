@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/material'
+import { Link, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 import LanguageSwitch from './languageSwitch'
 import aceLogo from '../assets/ace.jpg'
@@ -9,21 +9,26 @@ const Header: FC = () => {
             alignItems={'center'}
             direction={'row'}
             justifyContent={'space-between'}
-            p={2}
-            sx={{ backgroundColor: 'primary.light' }}
+            px={10}
+            py={2}
+            sx={{ backgroundColor: 'primary.dark' }}
         >
-            <Stack direction={'row'} spacing={2}>
-                <a href="https://ac3lab.github.io" rel="noreferrer" target="_blank">
+            <Stack direction={'row'} spacing={5}>
+                <Link
+                    href={'https://ac3lab.github.io'}
+                    rel={'noopener noreferrer'}
+                    target={'_blank'}
+                >
                     <img
                         alt={'ACE Laboratory'}
                         className={'imgCropper'}
                         height={55}
                         src={aceLogo}
                     />
-                </a>
+                </Link>
                 <Typography variant="h3">{'Squad Builder'}</Typography>
             </Stack>
-            <LanguageSwitch />
+            <LanguageSwitch color="warning" />
         </Stack>
     )
 }
