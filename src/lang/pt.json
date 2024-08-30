@@ -1,8 +1,10 @@
 {
     "translation": {
         "app": {
-            "description": "TCC do Felipe",
-            "changeLanguage": "Mudar idioma"
+            "description": "TCC do Felipe"
+        },
+        "footer": {
+            "rights": "Todos os direitos reservados."
         }
     }
 }
