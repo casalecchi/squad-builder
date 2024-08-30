@@ -28,7 +28,7 @@ const Header: FC = () => {
                 </Link>
                 <Typography variant="h3">{'Squad Builder'}</Typography>
             </Stack>
-            <LanguageSwitch color="warning" />
+            <LanguageSwitch />
         </Stack>
     )
 }

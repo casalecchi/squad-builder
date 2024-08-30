@@ -13,7 +13,7 @@ const LanguageSwitch: FC<SwitchProps> = (switchProps) => {
         setCurrentLanguage(newLanguage)
     }
 
-    return <Switch onChange={handleChangeLanguage} {...switchProps} />
+    return <Switch color="warning" onChange={handleChangeLanguage} {...switchProps} />
 }
 
 export default LanguageSwitch
