@@ -1,11 +1,16 @@
-import { Avatar, AvatarProps, colors } from '@mui/material'
+import { Avatar, AvatarProps } from '@mui/material'
 import { FC } from 'react'
+import colors from '../../styles/colors.module.scss'
 
-interface CustomAvatar extends AvatarProps {
+interface CustomAvatarProps extends AvatarProps {
     bgColor?: string
 }
 
-const CustomAvatar: FC<CustomAvatar> = ({ bgColor = colors.blueGrey[800], children, ...props }) => {
+const CustomAvatar: FC<CustomAvatarProps> = ({
+    bgColor = colors.secondary,
+    children,
+    ...props
+}) => {
     return (
         <Avatar sx={{ backgroundColor: bgColor }} {...props}>
             {children}
