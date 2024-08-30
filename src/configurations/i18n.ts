@@ -5,8 +5,8 @@ import pt from '../lang/pt.json'
 
 i18n.use(initReactI18next).init({
     resources: {
-        en: en,
-        pt: pt,
+        en: { translation: en },
+        pt: { translation: pt },
     },
     lng: 'en',
 })

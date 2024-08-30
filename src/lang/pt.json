@@ -1,10 +1,8 @@
 {
-    "translation": {
-        "app": {
-            "description": "TCC do Felipe"
-        },
-        "footer": {
-            "rights": "Todos os direitos reservados."
-        }
+    "app": {
+        "description": "TCC do Felipe"
+    },
+    "footer": {
+        "rights": "Todos os direitos reservados."
     }
 }
