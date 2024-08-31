@@ -1,13 +1,17 @@
-import { colors, createTheme } from '@mui/material'
+import { createTheme } from '@mui/material'
+import colors from '../styles/colors.module.scss'
 
 const theme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
-            main: colors.purple[900],
+            main: colors.primary,
         },
         secondary: {
-            main: colors.orange[500],
+            main: colors.secondary,
+        },
+        text: {
+            primary: colors.secondary,
         },
     },
 })
