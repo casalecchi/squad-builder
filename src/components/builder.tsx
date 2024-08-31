@@ -1,16 +1,24 @@
-import { Box, Card, Typography } from '@mui/material'
+import { Box, Card, Stack } from '@mui/material'
 import { FC } from 'react'
-import colors from '../styles/colors.module.scss'
+import pitch from '../assets/pitch.png'
+import { useTranslation } from 'react-i18next'
+import FormationSelector from './formationSelector'
+// import colors from '../styles/colors.module.scss'
 
 const Builder: FC = () => {
+    const { t } = useTranslation()
+
     return (
-        <Card sx={{ padding: 1 }} variant={'outlined'}>
-            <Box height={'28.5rem'} sx={{ backgroundColor: colors.green }}>
-                <Typography color="primary">
-                    {'Aqui será o campo para a montagem do elenco'}
-                </Typography>
-            </Box>
-        </Card>
+        <Stack alignItems={'center'} p={{ xs: 0, md: 1 }}>
+            <Card sx={{ padding: 1, maxWidth: '1280px', width: '100%' }} variant={'outlined'}>
+                <Stack alignItems={'center'}>
+                    <FormationSelector mb={2} />
+                    <Box height={'85vh'}>
+                        <img alt={t('images.pitch')} height={'100%'} src={pitch} />
+                    </Box>
+                </Stack>
+            </Card>
+        </Stack>
     )
 }
 
