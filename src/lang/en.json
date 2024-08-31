@@ -3,6 +3,7 @@
         "description": "Felipe's TCC"
     },
     "builder": {
+        "lineup": "Lineup",
         "formationGroups": {
             "title": "Formation",
             "three": "Three Defense Players",

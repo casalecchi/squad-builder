@@ -3,6 +3,7 @@
         "description": "TCC do Felipe"
     },
     "builder": {
+        "lineup": "Escalação",
         "formationGroups": {
             "title": "Formação",
             "three": "Três Jogadores Defensivos",
