@@ -2,7 +2,18 @@
     "app": {
         "description": "Felipe's TCC"
     },
+    "builder": {
+        "formationGroups": {
+            "title": "Formation",
+            "three": "Three Defense Players",
+            "four": "Four Defense Players",
+            "five": "Five Defense Players"
+        }
+    },
     "footer": {
         "rights": "All rights reserved."
+    },
+    "images": {
+        "pitch": "Soccer pitch"
     }
 }

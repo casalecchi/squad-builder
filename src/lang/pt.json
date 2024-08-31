@@ -2,7 +2,18 @@
     "app": {
         "description": "TCC do Felipe"
     },
+    "builder": {
+        "formationGroups": {
+            "title": "Formação",
+            "three": "Três Jogadores Defensivos",
+            "four": "Quatro Jogadores Defensivos",
+            "five": "Cinco Jogadores Defensivos"
+        }
+    },
     "footer": {
         "rights": "Todos os direitos reservados."
+    },
+    "images": {
+        "pitch": "Campo de futebol"
     }
 }
