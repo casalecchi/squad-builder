@@ -10,7 +10,7 @@ const Header: FC = () => {
             direction={'row'}
             justifyContent={'space-between'}
             px={10}
-            py={2}
+            py={1}
             sx={{ backgroundColor: 'primary.dark' }}
         >
             <Stack alignItems={'center'} direction={'row'} gap={3}>
