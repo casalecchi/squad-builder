@@ -3,18 +3,25 @@
         "description": "TCC do Felipe"
     },
     "builder": {
-        "lineup": "Escalação",
         "formationGroups": {
             "title": "Formação",
             "three": "Três Jogadores Defensivos",
             "four": "Quatro Jogadores Defensivos",
             "five": "Cinco Jogadores Defensivos"
-        }
+        },
+        "lineup": "Escalação"
     },
     "footer": {
         "rights": "Todos os direitos reservados."
     },
     "images": {
         "pitch": "Campo de futebol"
+    },
+    "position": {
+        "gk": "GOL",
+        "wb": "LAT",
+        "cb": "ZAG",
+        "mid": "MEI",
+        "st": "ATA"
     }
 }
