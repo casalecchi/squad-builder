@@ -1,18 +1,21 @@
 import { Add } from '@mui/icons-material'
-import { Stack, IconButton, Typography } from '@mui/material'
+import { Stack, IconButton, Typography, Avatar } from '@mui/material'
 import { FC } from 'react'
 import colors from '../styles/colors.module.scss'
 import { Position } from '../models'
 import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../@types/i18n'
+import cano from '../assets/player.png'
+import { Player } from '../models/player'
 
 interface PlayerProps {
-    name?: string
+    player?: Player
     position: Position
 }
 
-const Player: FC<PlayerProps> = ({ name, position }) => {
+const PlayerButton: FC<PlayerProps> = ({ player, position }) => {
     const { t } = useTranslation()
+    const avatarSize = { xs: '2rem', md: '3.5rem' }
 
     return (
         <Stack
@@ -27,13 +30,22 @@ const Player: FC<PlayerProps> = ({ name, position }) => {
             <IconButton
                 sx={{
                     backgroundColor: colors.purple,
+                    padding: 0,
                 }}
             >
-                <Add color={'secondary'} />
+                {player?.name ? (
+                    <Avatar sx={{ height: avatarSize, width: avatarSize }}>
+                        <img height={'100%'} src={cano} />
+                    </Avatar>
+                ) : (
+                    <Add color={'secondary'} />
+                )}
             </IconButton>
-            <Typography>{name ?? t(`position.${position.code}` as TranslationKey)}</Typography>
+            <Typography>
+                {player?.name ?? t(`position.${position.code}` as TranslationKey)}
+            </Typography>
         </Stack>
     )
 }
 
-export default Player
+export default PlayerButton

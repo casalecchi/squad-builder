@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Position } from '../models'
-import Player from './player'
+import PlayerButton from './player'
 
 interface TeamProps {
     formation: Position[]
@@ -10,7 +10,11 @@ const Team: FC<TeamProps> = ({ formation }) => {
     return (
         <>
             {formation.map((pos, index) => (
-                <Player key={index} position={pos} />
+                <PlayerButton
+                    key={index}
+                    player={{ name: 'Cano', positionCode: 'st' }}
+                    position={pos}
+                />
             ))}
         </>
     )
