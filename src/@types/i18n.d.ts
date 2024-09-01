@@ -11,3 +11,11 @@ declare module 'i18next' {
         }
     }
 }
+
+type KeyPaths<T> = T extends object
+    ? {
+          [K in keyof T]: T[K] extends string ? K : `${K & string}.${KeyPaths<T[K]> & string}`
+      }[keyof T]
+    : never
+
+export type TranslationKey = KeyPaths<typeof en>
