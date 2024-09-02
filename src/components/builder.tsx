@@ -12,7 +12,7 @@ const Builder: FC = () => {
     return (
         <Stack alignItems={'center'}>
             <Typography mb={2} variant="h3">
-                {t('builder.lineup')}
+                {t('builder.lineup').toUpperCase()}
             </Typography>
             <FormationSelector mb={2} />
             <Box height={'85vh'} position={'relative'}>
