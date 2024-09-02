@@ -1,6 +1,6 @@
-import { Add } from '@mui/icons-material'
-import { Stack, IconButton, Typography, Avatar } from '@mui/material'
-import { FC } from 'react'
+import { Add, Close } from '@mui/icons-material'
+import { Stack, IconButton, Typography, Avatar, Box } from '@mui/material'
+import { FC, useState } from 'react'
 import colors from '../styles/colors.module.scss'
 import { Position } from '../models'
 import { useTranslation } from 'react-i18next'
@@ -15,11 +15,14 @@ interface PlayerProps {
 
 const PlayerButton: FC<PlayerProps> = ({ player, position }) => {
     const { t } = useTranslation()
-    const avatarSize = { xs: '2rem', md: '3.5rem' }
+    const [isHovered, setIsHovered] = useState(false)
+
+    const buttonSize = { xs: '2rem', md: '3.5rem' }
 
     return (
         <Stack
             alignItems={'center'}
+            spacing={0.5}
             sx={{
                 position: 'absolute',
                 bottom: position.bottom,
@@ -28,14 +31,43 @@ const PlayerButton: FC<PlayerProps> = ({ player, position }) => {
             }}
         >
             <IconButton
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
                 sx={{
                     backgroundColor: colors.purple,
                     padding: 0,
+                    height: buttonSize,
+                    width: buttonSize,
+                    '&:hover': {
+                        transform: 'scale(1.15)',
+                    },
                 }}
             >
-                {player?.name ? (
-                    <Avatar sx={{ height: avatarSize, width: avatarSize }}>
-                        <img height={'100%'} src={cano} />
+                {player ? (
+                    <Avatar sx={{ height: '100%', width: '100%' }}>
+                        <img height={'100%'} src={cano} style={{ zIndex: 0 }} />
+                        {isHovered && (
+                            <>
+                                <Box
+                                    sx={{
+                                        position: 'absolute',
+                                        height: '100%',
+                                        width: '100%',
+                                        backgroundColor: 'red',
+                                        opacity: 0.3,
+                                        zIndex: 1,
+                                    }}
+                                ></Box>
+                                <Close
+                                    sx={{
+                                        position: 'absolute',
+                                        color: 'white',
+                                        fontSize: '2rem',
+                                        zIndex: 2,
+                                    }}
+                                />
+                            </>
+                        )}
                     </Avatar>
                 ) : (
                     <Add color={'secondary'} />
