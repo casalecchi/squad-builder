@@ -12,7 +12,7 @@ const Team: FC<TeamProps> = ({ formation }) => {
             {formation.map((pos, index) => (
                 <PlayerButton
                     key={index}
-                    player={{ name: 'Cano', positionCode: 'st' }}
+                    player={{ id: index + 1, name: 'cano', positionCode: 'st' }}
                     position={pos}
                 />
             ))}
