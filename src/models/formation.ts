@@ -1,6 +1,6 @@
 export interface Formation {
-    id: number
-    defenseQuantity: number
+    id: string
+    defendersQuantity: number
     playersPositions: Position[]
 }
 
