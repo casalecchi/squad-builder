@@ -41,7 +41,7 @@ const FormationSelector: FC<FormationSelectorProps> = ({
 
     return (
         <Stack alignItems={'center'} direction={'row'} gap={2} {...props}>
-            <Typography>{t('builder.formationGroups.title')}</Typography>
+            <Typography>{t('builder.formationGroups.title').toUpperCase()}</Typography>
             <Select color="secondary" onChange={handleFormationChange} value={formationSelected.id}>
                 <ListSubheader>{t('builder.formationGroups.three')}</ListSubheader>
                 <MenuItem value={threeFourThree.id}>3-4-3</MenuItem>
