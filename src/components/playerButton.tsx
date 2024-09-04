@@ -7,13 +7,14 @@ import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../@types/i18n'
 import cano from '../assets/player.png'
 import { Player, Team } from '../models/player'
+import { TeamStateManager } from '../hooks/useTeamStateManager'
 
 interface PlayerProps extends IconButtonProps {
     player?: Player
     position: Position
     positionIndex: number
     positionKey: keyof Team
-    removePlayer: (keyPosition: keyof Team, index: number) => void
+    teamStateManager: TeamStateManager
 }
 
 const PlayerButton: FC<PlayerProps> = ({
@@ -21,14 +22,19 @@ const PlayerButton: FC<PlayerProps> = ({
     position,
     positionIndex,
     positionKey,
-    removePlayer,
+    teamStateManager,
     ...props
 }) => {
     const { t } = useTranslation()
     const [isHovered, setIsHovered] = useState(false)
+    const { addPlayer, removePlayer } = teamStateManager
+
+    const handleAdd = () => {
+        console.log('add')
+        addPlayer(positionKey, positionIndex)
+    }
 
     const handleRemove = () => {
-        console.log(0)
         removePlayer(positionKey, positionIndex)
     }
     const buttonSize = { xs: '2rem', md: '3.5rem' }
@@ -46,7 +52,7 @@ const PlayerButton: FC<PlayerProps> = ({
         >
             <IconButton
                 disableRipple
-                onClick={() => (player ? handleRemove() : console.log('FOI'))}
+                onClick={() => (player?.name ? handleRemove() : handleAdd())}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 sx={{
@@ -62,7 +68,7 @@ const PlayerButton: FC<PlayerProps> = ({
                 }}
                 {...props}
             >
-                {player?.id ? (
+                {player?.name ? (
                     <Avatar sx={{ height: '100%', width: '100%' }}>
                         <img height={'100%'} src={cano} style={{ zIndex: 0 }} />
                         {isHovered && (
