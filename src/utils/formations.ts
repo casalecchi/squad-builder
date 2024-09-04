@@ -14,43 +14,57 @@ import {
 
 export const threeFourThree: Formation = {
     id: '343',
-    defendersQuantity: 3,
-    playersPositions: [goalkeeperPosition, ...threeDefenders, ...fourMidfielders, ...threeStrikers],
+    goalkeeperPosition: goalkeeperPosition,
+    defendersPositions: threeDefenders,
+    midfieldersPositions: fourMidfielders,
+    strikersPositions: threeStrikers,
 }
 
 export const threeFiveTwo: Formation = {
     id: '352',
-    defendersQuantity: 3,
-    playersPositions: [goalkeeperPosition, ...threeDefenders, ...fiveMidfielders, ...twoStrikers],
+    goalkeeperPosition: goalkeeperPosition,
+    defendersPositions: threeDefenders,
+    midfieldersPositions: fiveMidfielders,
+    strikersPositions: twoStrikers,
 }
 
 export const fourThreeThree: Formation = {
     id: '433',
-    defendersQuantity: 4,
-    playersPositions: [goalkeeperPosition, ...fourDefenders, ...threeMidfielders, ...threeStrikers],
+    goalkeeperPosition: goalkeeperPosition,
+    defendersPositions: fourDefenders,
+    midfieldersPositions: threeMidfielders,
+    strikersPositions: threeStrikers,
 }
 
 export const fourFourTwo: Formation = {
     id: '442',
-    defendersQuantity: 4,
-    playersPositions: [goalkeeperPosition, ...fourDefenders, ...fourMidfielders, ...twoStrikers],
+    goalkeeperPosition: goalkeeperPosition,
+    defendersPositions: fourDefenders,
+    midfieldersPositions: fourMidfielders,
+    strikersPositions: twoStrikers,
 }
 export const fourFiveOne: Formation = {
     id: '451',
-    defendersQuantity: 4,
-    playersPositions: [goalkeeperPosition, ...fourDefenders, ...fiveMidfielders, oneStriker],
+    goalkeeperPosition: goalkeeperPosition,
+    defendersPositions: fourDefenders,
+    midfieldersPositions: fiveMidfielders,
+    strikersPositions: [oneStriker],
 }
 
 export const fiveThreeTwo: Formation = {
     id: '532',
-    defendersQuantity: 5,
-    playersPositions: [goalkeeperPosition, ...fiveDefenders, ...threeMidfielders, ...twoStrikers],
+    goalkeeperPosition: goalkeeperPosition,
+    defendersPositions: fiveDefenders,
+    midfieldersPositions: threeMidfielders,
+    strikersPositions: twoStrikers,
 }
 
 export const fiveFourOne: Formation = {
     id: '541',
-    defendersQuantity: 5,
-    playersPositions: [goalkeeperPosition, ...fiveDefenders, ...fourMidfielders, oneStriker],
+    goalkeeperPosition: goalkeeperPosition,
+    defendersPositions: fiveDefenders,
+    midfieldersPositions: fourMidfielders,
+    strikersPositions: [oneStriker],
 }
 
 export const ALL_FORMATIONS = [
