@@ -2,10 +2,14 @@ $primary: #424242;
 $secondary: #cccccc;
 $green: #37ff8b;
 $purple: #b14aed;
+$white: #fff;
+$lightGreen: #39ff14;
 
 :export {
     primary: $primary;
     secondary: $secondary;
     green: $green;
     purple: $purple;
+    white: $white;
+    lightGreen: $lightGreen;
 }
