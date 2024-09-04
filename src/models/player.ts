@@ -1,7 +1,12 @@
 export interface Player {
     id: number
+    teamId: number
+    positionId: number
+    statusId: number
     name: string
-    positionCode: string
+    price: number
+    priceVariation?: number
+    photo: string
 }
 
 export interface Team {
