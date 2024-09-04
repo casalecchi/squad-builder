@@ -1,18 +1,15 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import pitch from '../assets/campinho.svg'
 import { useTranslation } from 'react-i18next'
 import FormationSelector from './formationSelector'
-import { fourThreeThree } from '../utils/formations'
-import { Formation } from '../models'
-import PlayerButton from './player'
-import { Player } from '../models/player'
+import Team from './team'
+import { useTeamStateManager } from '../hooks/useTeamStateManager'
 
 const Builder: FC = () => {
     const { t } = useTranslation()
-    const [formation, setFormation] = useState<Formation>(fourThreeThree)
-    const mockPlayer = { id: 1, name: 'Cano', positionCode: 'st' }
-    const [player, setPlayer] = useState<Player | undefined>(mockPlayer)
+    const teamStateManager = useTeamStateManager()
+    const { formation, setFormation } = teamStateManager
 
     return (
         <Stack alignItems={'center'}>
@@ -22,11 +19,7 @@ const Builder: FC = () => {
             <FormationSelector formationSelected={formation} mb={2} setFormation={setFormation} />
             <Box height={'85vh'} position={'relative'}>
                 <img alt={t('images.pitch')} height={'100%'} src={pitch} />
-                <PlayerButton
-                    player={player}
-                    position={formation.playersPositions[0]}
-                    setPlayer={setPlayer}
-                />
+                <Team teamStateManager={teamStateManager} />
             </Box>
         </Stack>
     )

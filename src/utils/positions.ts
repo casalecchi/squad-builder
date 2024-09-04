@@ -15,9 +15,9 @@ export const fourLeftCenterback: Position = { code: 'cb', bottom: '27%', left: '
 export const fourLeftWingBack: Position = { code: 'wb', bottom: '35%', left: '20%' }
 export const fourDefenders = [
     fourRightWingBack,
+    fourLeftWingBack,
     fourRightCenterback,
     fourLeftCenterback,
-    fourLeftWingBack,
 ]
 
 export const fiveRightWingBack: Position = { code: 'wb', bottom: '33%', left: '80%' }
@@ -27,10 +27,10 @@ export const fiveLeftCenterback: Position = { code: 'cb', bottom: '25%', left: '
 export const fiveLeftWingBack: Position = { code: 'wb', bottom: '33%', left: '20%' }
 export const fiveDefenders = [
     fiveRightWingBack,
+    fiveLeftWingBack,
     fiveRightCenterback,
     fiveCenterCenterback,
     fiveLeftCenterback,
-    fiveLeftWingBack,
 ]
 
 // --------------------------------- MIDFIELDERS ---------------------------------------

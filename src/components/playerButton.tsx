@@ -1,28 +1,37 @@
 import { Add, Close } from '@mui/icons-material'
 import { Stack, IconButton, Typography, Avatar, Box, IconButtonProps } from '@mui/material'
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import colors from '../styles/colors.module.scss'
 import { Position } from '../models'
 import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../@types/i18n'
 import cano from '../assets/player.png'
-import { Player } from '../models/player'
+import { Player, Team } from '../models/player'
 
 interface PlayerProps extends IconButtonProps {
     player?: Player
     position: Position
-    setPlayer: Dispatch<SetStateAction<Player | undefined>>
+    positionIndex: number
+    positionKey: keyof Team
+    removePlayer: (keyPosition: keyof Team, index: number) => void
 }
 
-const PlayerButton: FC<PlayerProps> = ({ player, position, setPlayer, ...props }) => {
+const PlayerButton: FC<PlayerProps> = ({
+    player,
+    position,
+    positionIndex,
+    positionKey,
+    removePlayer,
+    ...props
+}) => {
     const { t } = useTranslation()
     const [isHovered, setIsHovered] = useState(false)
 
+    const handleRemove = () => {
+        console.log(0)
+        removePlayer(positionKey, positionIndex)
+    }
     const buttonSize = { xs: '2rem', md: '3.5rem' }
-
-    useEffect(() => {
-        console.log(player)
-    }, [player])
 
     return (
         <Stack
@@ -37,7 +46,7 @@ const PlayerButton: FC<PlayerProps> = ({ player, position, setPlayer, ...props }
         >
             <IconButton
                 disableRipple
-                onClick={() => setPlayer(player ? undefined : player)}
+                onClick={() => (player ? handleRemove() : console.log('FOI'))}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 sx={{
@@ -53,7 +62,7 @@ const PlayerButton: FC<PlayerProps> = ({ player, position, setPlayer, ...props }
                 }}
                 {...props}
             >
-                {player ? (
+                {player?.id ? (
                     <Avatar sx={{ height: '100%', width: '100%' }}>
                         <img height={'100%'} src={cano} style={{ zIndex: 0 }} />
                         {isHovered && (
