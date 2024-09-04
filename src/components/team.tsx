@@ -7,7 +7,7 @@ interface TeamProps {
 }
 
 const Team: FC<TeamProps> = ({ teamStateManager }) => {
-    const { team, formation, removePlayer } = teamStateManager
+    const { team, formation } = teamStateManager
 
     return (
         <>
@@ -18,7 +18,7 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     position={pos}
                     positionIndex={index}
                     positionKey={'goalkeeper'}
-                    removePlayer={removePlayer}
+                    teamStateManager={teamStateManager}
                 />
             ))}
             {formation.wingersPositions.map((pos, index) => (
@@ -28,7 +28,7 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     position={pos}
                     positionIndex={index}
                     positionKey={'wingers'}
-                    removePlayer={removePlayer}
+                    teamStateManager={teamStateManager}
                 />
             ))}
             {formation.defendersPositions.map((pos, index) => (
@@ -38,7 +38,7 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     position={pos}
                     positionIndex={index}
                     positionKey={'defenders'}
-                    removePlayer={removePlayer}
+                    teamStateManager={teamStateManager}
                 />
             ))}
             {formation.midfieldersPositions.map((pos, index) => (
@@ -48,7 +48,7 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     position={pos}
                     positionIndex={index}
                     positionKey={'midfielders'}
-                    removePlayer={removePlayer}
+                    teamStateManager={teamStateManager}
                 />
             ))}
             {formation.strikersPositions.map((pos, index) => (
@@ -58,7 +58,7 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     position={pos}
                     positionIndex={index}
                     positionKey={'strikers'}
-                    removePlayer={removePlayer}
+                    teamStateManager={teamStateManager}
                 />
             ))}
         </>
