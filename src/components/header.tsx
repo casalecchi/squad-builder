@@ -1,6 +1,6 @@
 import { Link, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
-import LanguageSwitch from './languageSwitcher'
+import LanguageSwitch from './languageSwitch'
 import aceLogo from '../assets/ace.jpg'
 
 const Header: FC = () => {
