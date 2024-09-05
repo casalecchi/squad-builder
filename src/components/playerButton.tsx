@@ -1,19 +1,6 @@
 import { Add, Close } from '@mui/icons-material'
-import {
-    Stack,
-    IconButton,
-    Typography,
-    Avatar,
-    Box,
-    IconButtonProps,
-    Dialog,
-    DialogTitle,
-    List,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-} from '@mui/material'
-import { FC, useState } from 'react'
+import { Stack, IconButton, Typography, Avatar, Box, IconButtonProps } from '@mui/material'
+import { Dispatch, FC, SetStateAction, useState } from 'react'
 import colors from '../styles/colors.module.scss'
 import { Position } from '../models'
 import { useTranslation } from 'react-i18next'
@@ -27,6 +14,7 @@ interface PlayerProps extends IconButtonProps {
     positionIndex: number
     positionKey: keyof Team
     teamStateManager: TeamStateManager
+    setOpenDialog?: Dispatch<SetStateAction<boolean>>
 }
 
 const PlayerButton: FC<PlayerProps> = ({
@@ -35,17 +23,12 @@ const PlayerButton: FC<PlayerProps> = ({
     positionIndex,
     positionKey,
     teamStateManager,
+    setOpenDialog = () => {},
     ...props
 }) => {
     const { t } = useTranslation()
     const [isHovered, setIsHovered] = useState(false)
-    const [openDialog, setOpenDialog] = useState<boolean>(false)
-    const { players, addPlayer, removePlayer } = teamStateManager
-
-    const handleAdd = () => {
-        setOpenDialog(true)
-        addPlayer(positionKey, positionIndex)
-    }
+    const { removePlayer } = teamStateManager
 
     const handleRemove = () => {
         removePlayer(positionKey, positionIndex)
@@ -65,7 +48,7 @@ const PlayerButton: FC<PlayerProps> = ({
         >
             <IconButton
                 disableRipple
-                onClick={() => (player?.name ? handleRemove() : handleAdd())}
+                onClick={() => (player?.name ? handleRemove() : setOpenDialog(true))}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 sx={{
@@ -111,19 +94,6 @@ const PlayerButton: FC<PlayerProps> = ({
                     <Add sx={{ color: 'text.primary', fontSize: '2rem' }} />
                 )}
             </IconButton>
-            <Dialog onClose={() => setOpenDialog(false)} open={openDialog}>
-                <DialogTitle>Choose player</DialogTitle>
-                <List sx={{ overflow: 'scroll' }}>
-                    {players.map((player, index) => (
-                        <ListItem key={index}>
-                            <ListItemAvatar>
-                                <Avatar alt={player.name} src={player.photo} />
-                            </ListItemAvatar>
-                            <ListItemText>{player.name}</ListItemText>
-                        </ListItem>
-                    ))}
-                </List>
-            </Dialog>
             <Typography sx={{ fontWeight: 700, textShadow: '0px 2px 2px black' }}>
                 {player?.name ?? t(`position.${position.code}` as TranslationKey)}
             </Typography>

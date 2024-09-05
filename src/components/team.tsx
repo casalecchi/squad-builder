@@ -1,25 +1,61 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import PlayerButton from './playerButton'
 import { TeamStateManager } from '../hooks/useTeamStateManager'
+import {
+    Dialog,
+    DialogTitle,
+    List,
+    ListItem,
+    ListItemAvatar,
+    Avatar,
+    ListItemText,
+} from '@mui/material'
 
 interface TeamProps {
     teamStateManager: TeamStateManager
 }
 
 const Team: FC<TeamProps> = ({ teamStateManager }) => {
-    const { team, formation } = teamStateManager
+    const [openDialog, setOpenDialog] = useState<boolean>(false)
+    const { team, players, formation, addPlayer } = teamStateManager
+
+    useEffect(() => {
+        console.log(team.goalkeeper)
+    }, [team])
 
     return (
         <>
             {formation.goalkeeperPositions.map((pos, index) => (
-                <PlayerButton
-                    key={index}
-                    player={team.goalkeeper[index] ?? undefined}
-                    position={pos}
-                    positionIndex={index}
-                    positionKey={'goalkeeper'}
-                    teamStateManager={teamStateManager}
-                />
+                <>
+                    <Dialog onClose={() => setOpenDialog(false)} open={openDialog}>
+                        <DialogTitle>Choose player</DialogTitle>
+                        <List sx={{ overflowX: 'scroll' }}>
+                            {players.map((player, key) => (
+                                <ListItem
+                                    key={key}
+                                    onClick={() => {
+                                        addPlayer('goalkeeper', index, player)
+                                        setOpenDialog(false)
+                                    }}
+                                >
+                                    <ListItemAvatar>
+                                        <Avatar alt={player.name} src={player.photo} />
+                                    </ListItemAvatar>
+                                    <ListItemText>{player.name}</ListItemText>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Dialog>
+                    <PlayerButton
+                        key={index}
+                        player={team.goalkeeper[index] ?? undefined}
+                        position={pos}
+                        positionIndex={index}
+                        positionKey={'goalkeeper'}
+                        setOpenDialog={setOpenDialog}
+                        teamStateManager={teamStateManager}
+                    />
+                </>
             ))}
             {formation.wingersPositions.map((pos, index) => (
                 <PlayerButton

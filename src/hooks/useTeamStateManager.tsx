@@ -8,7 +8,7 @@ export interface TeamStateManager {
     team: Team
     formation: Formation
     players: Player[]
-    addPlayer: (keyPosition: keyof Team, index: number) => void
+    addPlayer: (keyPosition: keyof Team, index: number, player: Player) => void
     removePlayer: (keyPosition: keyof Team, index: number) => void
     setFormation: Dispatch<SetStateAction<Formation>>
 }
@@ -30,9 +30,9 @@ export const useTeamStateManager = (): TeamStateManager => {
         setTeam(newTeam)
     }
 
-    const addPlayer = (keyPosition: keyof Team, index: number) => {
+    const addPlayer = (keyPosition: keyof Team, index: number, player: Player) => {
         const newTeam = { ...team }
-        newTeam[keyPosition][index] = players[300 + index]
+        newTeam[keyPosition][index] = player
         setTeam(newTeam)
     }
 
