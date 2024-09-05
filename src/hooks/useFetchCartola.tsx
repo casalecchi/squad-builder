@@ -6,7 +6,6 @@ const useFetchCartola = () => {
     const [players, setPlayers] = useState<Player[]>([])
 
     const fetchData = async () => {
-        console.log('CARREGANDO...')
         try {
             await fetch(URL)
                 .then((response) => response.json())

@@ -1,11 +1,23 @@
 import { Add, Close } from '@mui/icons-material'
-import { Stack, IconButton, Typography, Avatar, Box, IconButtonProps } from '@mui/material'
+import {
+    Stack,
+    IconButton,
+    Typography,
+    Avatar,
+    Box,
+    IconButtonProps,
+    Dialog,
+    DialogTitle,
+    List,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+} from '@mui/material'
 import { FC, useState } from 'react'
 import colors from '../styles/colors.module.scss'
 import { Position } from '../models'
 import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../@types/i18n'
-import cano from '../assets/player.png'
 import { Player, Team } from '../models/player'
 import { TeamStateManager } from '../hooks/useTeamStateManager'
 
@@ -27,10 +39,11 @@ const PlayerButton: FC<PlayerProps> = ({
 }) => {
     const { t } = useTranslation()
     const [isHovered, setIsHovered] = useState(false)
-    const { addPlayer, removePlayer } = teamStateManager
+    const [openDialog, setOpenDialog] = useState<boolean>(false)
+    const { players, addPlayer, removePlayer } = teamStateManager
 
     const handleAdd = () => {
-        console.log('add')
+        setOpenDialog(true)
         addPlayer(positionKey, positionIndex)
     }
 
@@ -69,8 +82,8 @@ const PlayerButton: FC<PlayerProps> = ({
                 {...props}
             >
                 {player?.name ? (
-                    <Avatar sx={{ height: '100%', width: '100%' }}>
-                        <img height={'100%'} src={cano} style={{ zIndex: 0 }} />
+                    <Avatar sx={{ height: '100%', width: '100%', backgroundColor: 'white' }}>
+                        <img height={'100%'} src={player.photo} style={{ zIndex: 0 }} />
                         {isHovered && (
                             <>
                                 <Box
@@ -98,6 +111,19 @@ const PlayerButton: FC<PlayerProps> = ({
                     <Add sx={{ color: 'text.primary', fontSize: '2rem' }} />
                 )}
             </IconButton>
+            <Dialog onClose={() => setOpenDialog(false)} open={openDialog}>
+                <DialogTitle>Choose player</DialogTitle>
+                <List sx={{ overflow: 'scroll' }}>
+                    {players.map((player, index) => (
+                        <ListItem key={index}>
+                            <ListItemAvatar>
+                                <Avatar alt={player.name} src={player.photo} />
+                            </ListItemAvatar>
+                            <ListItemText>{player.name}</ListItemText>
+                        </ListItem>
+                    ))}
+                </List>
+            </Dialog>
             <Typography sx={{ fontWeight: 700, textShadow: '0px 2px 2px black' }}>
                 {player?.name ?? t(`position.${position.code}` as TranslationKey)}
             </Typography>
