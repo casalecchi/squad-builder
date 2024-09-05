@@ -17,8 +17,8 @@ const Builder: FC = () => {
                 {t('builder.lineup').toUpperCase()}
             </Typography>
             <FormationSelector formationSelected={formation} mb={2} setFormation={setFormation} />
-            <Box height={'85vh'} position={'relative'}>
-                <img alt={t('images.pitch')} height={'100%'} src={pitch} />
+            <Box position={'relative'} sx={{ xs: { width: '100%' }, md: { height: '85vh' } }}>
+                <img alt={t('images.pitch')} src={pitch} width={'100%'} />
                 <Team teamStateManager={teamStateManager} />
             </Box>
         </Stack>
