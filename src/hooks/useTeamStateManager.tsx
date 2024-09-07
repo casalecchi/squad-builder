@@ -38,6 +38,30 @@ export const useTeamStateManager = (): TeamStateManager => {
     }
 
     const changeFormation = (newFormation: Formation) => {
+        // TODO - REFACTOR THIS LOGIC
+        const newTeam = { ...team }
+        if (formation.wingersPositions.length > newFormation.wingersPositions.length) {
+            newTeam.wingers = [{}, {}] as Player[]
+        }
+        if (formation.defendersPositions.length > newFormation.defendersPositions.length) {
+            newTeam.defenders[2] = {} as Player
+        }
+        const prevMidLength = formation.midfieldersPositions.length
+        const newMidLength = newFormation.midfieldersPositions.length
+        if (prevMidLength > newMidLength) {
+            const diff = prevMidLength - newMidLength
+            for (let index = prevMidLength - diff; index < prevMidLength; index++) {
+                newTeam.midfielders[index] = {} as Player
+            }
+        }
+        const prevStLength = formation.strikersPositions.length
+        const newStLength = newFormation.strikersPositions.length
+        if (prevStLength > newStLength) {
+            const diff = prevStLength - newStLength
+            for (let index = prevStLength - diff; index < prevStLength; index++) {
+                newTeam.midfielders[index] = {} as Player
+            }
+        }
         setFormation(newFormation)
     }
 
