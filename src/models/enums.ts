@@ -1,4 +1,4 @@
-export enum PlayerStatus {
+export enum PlayerStatusEnum {
     doubt = 2,
     suspended = 3,
     injured = 5,
@@ -6,10 +6,11 @@ export enum PlayerStatus {
     probable = 7,
 }
 
-export enum CartolaPosition {
+export enum CartolaPositionEnum {
     goalkeeper = 1,
     wingback = 2,
     centerback = 3,
     midfielder = 4,
     striker = 5,
+    manager = 6,
 }

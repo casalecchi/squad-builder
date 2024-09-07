@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CartolaResponse, Player, Club } from '../models'
+import { CartolaResponse, Player, Club, CartolaPositionEnum } from '../models'
 import axios from 'axios'
 
 const useFetchCartola = () => {
@@ -13,15 +13,17 @@ const useFetchCartola = () => {
             const data = response.data
 
             setPlayers(
-                data.atletas.map((atleta) => ({
-                    id: atleta.atleta_id,
-                    clubId: atleta.clube_id,
-                    positionId: atleta.posicao_id,
-                    statusId: atleta.status_id,
-                    name: atleta.apelido,
-                    price: atleta.preco_num,
-                    photo: atleta.foto?.replace('FORMATO', '220x220') ?? '',
-                }))
+                data.atletas
+                    .map((atleta) => ({
+                        id: atleta.atleta_id,
+                        clubId: atleta.clube_id,
+                        positionId: atleta.posicao_id,
+                        statusId: atleta.status_id,
+                        name: atleta.apelido,
+                        price: atleta.preco_num,
+                        photo: atleta.foto?.replace('FORMATO', '220x220') ?? '',
+                    }))
+                    .filter((player) => player.positionId != CartolaPositionEnum.manager)
             )
             setClubs(
                 Object.values(data.clubes).map((club) => ({
