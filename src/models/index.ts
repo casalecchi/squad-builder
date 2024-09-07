@@ -1,3 +1,5 @@
 export * from './formation'
 export * from './player'
 export * from './cartola'
+export * from './club'
+export * from './enums'

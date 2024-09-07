@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Player, Team } from '../models/player'
-import { Formation } from '../models'
+import { Club, Formation } from '../models'
 import { fourThreeThree } from '../utils/formations'
 import useFetchCartola from './useFetchCartola'
 
@@ -8,6 +8,7 @@ export interface TeamStateManager {
     team: Team
     formation: Formation
     players: Player[]
+    clubs: Club[]
     addPlayer: (keyPosition: keyof Team, index: number, player: Player) => void
     removePlayer: (keyPosition: keyof Team, index: number) => void
     setFormation: Dispatch<SetStateAction<Formation>>
@@ -22,7 +23,7 @@ export const useTeamStateManager = (): TeamStateManager => {
         strikers: [{}, {}, {}] as Player[],
     })
     const [formation, setFormation] = useState<Formation>(fourThreeThree)
-    const { players, fetchData } = useFetchCartola()
+    const { clubs, players, fetchData } = useFetchCartola()
 
     const removePlayer = (keyPosition: keyof Team, index: number) => {
         const newTeam = { ...team }
@@ -40,5 +41,5 @@ export const useTeamStateManager = (): TeamStateManager => {
         fetchData()
     }, [])
 
-    return { team, players, formation, addPlayer, removePlayer, setFormation }
+    return { team, clubs, players, formation, addPlayer, removePlayer, setFormation }
 }
