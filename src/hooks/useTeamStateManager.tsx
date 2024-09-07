@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Player, Team } from '../models/player'
 import { Club, Formation } from '../models'
 import { fourThreeThree } from '../utils/formations'
@@ -10,8 +10,8 @@ export interface TeamStateManager {
     players: Player[]
     clubs: Club[]
     addPlayer: (keyPosition: keyof Team, index: number, player: Player) => void
+    changeFormation: (newFormation: Formation) => void
     removePlayer: (keyPosition: keyof Team, index: number) => void
-    setFormation: Dispatch<SetStateAction<Formation>>
 }
 
 export const useTeamStateManager = (): TeamStateManager => {
@@ -25,21 +25,25 @@ export const useTeamStateManager = (): TeamStateManager => {
     const [formation, setFormation] = useState<Formation>(fourThreeThree)
     const { clubs, players, fetchData } = useFetchCartola()
 
-    const removePlayer = (keyPosition: keyof Team, index: number) => {
-        const newTeam = { ...team }
-        newTeam[keyPosition][index] = {} as Player
-        setTeam(newTeam)
-    }
-
     const addPlayer = (keyPosition: keyof Team, index: number, player: Player) => {
         const newTeam = { ...team }
         newTeam[keyPosition][index] = player
         setTeam(newTeam)
     }
 
+    const removePlayer = (keyPosition: keyof Team, index: number) => {
+        const newTeam = { ...team }
+        newTeam[keyPosition][index] = {} as Player
+        setTeam(newTeam)
+    }
+
+    const changeFormation = (newFormation: Formation) => {
+        setFormation(newFormation)
+    }
+
     useEffect(() => {
         fetchData()
     }, [])
 
-    return { team, clubs, players, formation, addPlayer, removePlayer, setFormation }
+    return { team, clubs, players, formation, addPlayer, changeFormation, removePlayer }
 }

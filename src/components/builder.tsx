@@ -9,14 +9,18 @@ import { useTeamStateManager } from '../hooks/useTeamStateManager'
 const Builder: FC = () => {
     const { t } = useTranslation()
     const teamStateManager = useTeamStateManager()
-    const { formation, setFormation } = teamStateManager
+    const { formation, changeFormation } = teamStateManager
 
     return (
         <Stack alignItems={'center'}>
             <Typography mb={2} variant="h3">
                 {t('builder.lineup').toUpperCase()}
             </Typography>
-            <FormationSelector formationSelected={formation} mb={2} setFormation={setFormation} />
+            <FormationSelector
+                changeFormation={changeFormation}
+                formationSelected={formation}
+                mb={2}
+            />
             <Box position={'relative'} sx={{ xs: { width: '100%' }, md: { height: '85vh' } }}>
                 <img alt={t('images.pitch')} src={pitch} width={'100%'} />
                 <Team teamStateManager={teamStateManager} />

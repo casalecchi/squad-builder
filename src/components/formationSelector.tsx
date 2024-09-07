@@ -7,7 +7,7 @@ import {
     StackProps,
     SelectChangeEvent,
 } from '@mui/material'
-import { Dispatch, FC, SetStateAction } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
     findFormation,
@@ -23,12 +23,12 @@ import { Formation } from '../models'
 
 interface FormationSelectorProps extends StackProps {
     formationSelected: Formation
-    setFormation: Dispatch<SetStateAction<Formation>>
+    changeFormation: (newFormation: Formation) => void
 }
 
 const FormationSelector: FC<FormationSelectorProps> = ({
     formationSelected,
-    setFormation,
+    changeFormation,
     ...props
 }) => {
     const { t } = useTranslation()
@@ -36,7 +36,7 @@ const FormationSelector: FC<FormationSelectorProps> = ({
     const handleFormationChange = (event: SelectChangeEvent) => {
         const newId = event.target.value as string
         const newFormation = findFormation(newId) ?? fourThreeThree
-        setFormation(newFormation)
+        changeFormation(newFormation)
     }
 
     return (
