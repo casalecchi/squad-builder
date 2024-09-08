@@ -17,8 +17,8 @@ import { useTeamStateManager } from '../hooks/useTeamStateManager'
 import colors from '../styles/colors.module.scss'
 
 const Page: FC = () => {
-    const { players } = useTeamStateManager()
-    console.log(players.length)
+    const { players, clubs } = useTeamStateManager()
+    console.log(clubs)
 
     return (
         <Stack display={'flex'}>

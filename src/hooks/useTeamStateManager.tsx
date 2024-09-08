@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Club, Formation, Player, Team } from '../models'
-import { fourThreeThree } from '../utils/formations'
+import { Clubs, Formation, Player, Team } from '../models'
+import { fourThreeThree } from '../constants'
 import useFetchCartola from './useFetchCartola'
 
 export interface TeamStateManager {
     team: Team
     formation: Formation
     players: Player[]
-    clubs: Club[]
+    clubs: Clubs
     addPlayer: (keyPosition: keyof Team, index: number, player: Player) => void
     changeFormation: (newFormation: Formation) => void
     removePlayer: (keyPosition: keyof Team, index: number) => void

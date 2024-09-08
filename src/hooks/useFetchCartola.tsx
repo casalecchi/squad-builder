@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { CartolaResponse, Player, Club, CartolaPositionEnum } from '../models'
+import { CartolaResponse, Player, Clubs, CartolaPositionEnum } from '../models'
 import axios from 'axios'
 
 const useFetchCartola = () => {
     const URL = 'https://api.cartola.globo.com/atletas/mercado'
     const [players, setPlayers] = useState<Player[]>([])
-    const [clubs, setClubs] = useState<Club[]>([])
+    const [clubs, setClubs] = useState<Clubs>({})
 
     const fetchData = async () => {
         try {
@@ -25,14 +25,17 @@ const useFetchCartola = () => {
                     }))
                     .filter((player) => player.positionId != CartolaPositionEnum.manager)
             )
-            setClubs(
-                Object.values(data.clubes).map((club) => ({
+
+            const clubsToAdd = {} as Clubs
+            Object.values(data.clubes).forEach((club) => {
+                clubsToAdd[club.id] = {
                     id: club.id,
                     name: club.nome,
                     abbreviation: club.abreviacao,
                     photo: club.escudos['60x60'],
-                }))
-            )
+                }
+            })
+            setClubs(clubsToAdd)
         } catch (error) {
             console.error('Error fetching Cartola players', error)
         }

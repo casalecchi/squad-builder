@@ -1,5 +1,5 @@
 export * from './cartola'
-export * from './club'
+export * from './clubs'
 export * from './enums'
 export * from './formation'
 export * from './player'
