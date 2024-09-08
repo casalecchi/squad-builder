@@ -1,13 +1,13 @@
 export interface Formation {
     id: string
-    goalkeeperPositions: Position[]
-    wingersPositions: Position[]
-    defendersPositions: Position[]
-    midfieldersPositions: Position[]
-    strikersPositions: Position[]
+    goalkeeperPositions: PlayerArea[]
+    wingersPositions: PlayerArea[]
+    defendersPositions: PlayerArea[]
+    midfieldersPositions: PlayerArea[]
+    strikersPositions: PlayerArea[]
 }
 
-export interface Position {
+export interface PlayerArea {
     code: string
     bottom: string
     left: string

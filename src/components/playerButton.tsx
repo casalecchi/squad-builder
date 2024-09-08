@@ -2,7 +2,7 @@ import { Add, Close } from '@mui/icons-material'
 import { Stack, IconButton, Typography, Avatar, Box, IconButtonProps } from '@mui/material'
 import { Dispatch, FC, SetStateAction, useState } from 'react'
 import colors from '../styles/colors.module.scss'
-import { Position } from '../models'
+import { PlayerArea } from '../models'
 import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../@types/i18n'
 import { Player, Team } from '../models/player'
@@ -10,7 +10,7 @@ import { TeamStateManager } from '../hooks/useTeamStateManager'
 
 interface PlayerProps extends IconButtonProps {
     player?: Player
-    position: Position
+    position: PlayerArea
     positionIndex: number
     positionKey: keyof Team
     teamStateManager: TeamStateManager
