@@ -4,7 +4,7 @@ export interface Player {
     id: number
     clubId: number
     position: Position
-    statusId: number
+    statusCode: string
     name: string
     price: number
     priceVariation?: number
