@@ -9,10 +9,16 @@ export interface Player {
     photo: string
 }
 
-export interface Team {
-    goalkeeper: Player[]
-    wingers: Player[]
-    defenders: Player[]
-    midfielders: Player[]
-    strikers: Player[]
+export interface PlayerStatus {
+    [key: number]: {
+        id: number
+        name: string
+        abbreviation: string
+    }
+}
+
+export interface PlayerArea {
+    code: string
+    bottom: string
+    left: string
 }
