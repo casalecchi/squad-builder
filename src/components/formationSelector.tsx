@@ -18,7 +18,7 @@ import {
     fourThreeThree,
     threeFiveTwo,
     threeFourThree,
-} from '../utils/formations'
+} from '../utils'
 import { Formation } from '../models'
 
 interface FormationSelectorProps extends StackProps {

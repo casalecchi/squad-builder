@@ -1,3 +1,5 @@
+import { PlayerArea } from '.'
+
 export interface Formation {
     id: string
     goalkeeperPositions: PlayerArea[]
@@ -5,10 +7,4 @@ export interface Formation {
     defendersPositions: PlayerArea[]
     midfieldersPositions: PlayerArea[]
     strikersPositions: PlayerArea[]
-}
-
-export interface PlayerArea {
-    code: string
-    bottom: string
-    left: string
 }

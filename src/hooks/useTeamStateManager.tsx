@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Player, Team } from '../models/player'
-import { Club, Formation } from '../models'
+import { Club, Formation, Player, Team } from '../models'
 import { fourThreeThree } from '../utils/formations'
 import useFetchCartola from './useFetchCartola'
 

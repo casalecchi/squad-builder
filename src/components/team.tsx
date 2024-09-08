@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import PlayerButton from './playerButton'
 import { TeamStateManager } from '../hooks/useTeamStateManager'
 import {
@@ -19,18 +19,14 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
     const [openDialog, setOpenDialog] = useState<boolean>(false)
     const { team, players, formation, addPlayer } = teamStateManager
 
-    useEffect(() => {
-        console.log(team.goalkeeper)
-    }, [team])
-
     return (
         <>
             {formation.goalkeeperPositions.map((pos, index) => (
                 <>
                     <Dialog onClose={() => setOpenDialog(false)} open={openDialog}>
                         <DialogTitle>Choose player</DialogTitle>
-                        <List sx={{ overflowX: 'scroll' }}>
-                            {players.map((player, key) => (
+                        <List>
+                            {players.slice(0, 20).map((player, key) => (
                                 <ListItem
                                     key={key}
                                     onClick={() => {
