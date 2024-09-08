@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { CartolaResponse, Player, Clubs, CartolaPositionEnum } from '../models'
+import { CartolaResponse, Player, Clubs } from '../models'
 import axios from 'axios'
+import { positionIdMap } from '../constants'
 
 const useFetchCartola = () => {
     const URL = 'https://api.cartola.globo.com/atletas/mercado'
@@ -17,13 +18,13 @@ const useFetchCartola = () => {
                     .map((atleta) => ({
                         id: atleta.atleta_id,
                         clubId: atleta.clube_id,
-                        positionId: atleta.posicao_id,
+                        position: positionIdMap[atleta.posicao_id],
                         statusId: atleta.status_id,
                         name: atleta.apelido,
                         price: atleta.preco_num,
                         photo: atleta.foto?.replace('FORMATO', '220x220') ?? '',
                     }))
-                    .filter((player) => player.positionId != CartolaPositionEnum.manager)
+                    .filter((player) => player.position.name != 'manager')
             )
 
             const clubsToAdd = {} as Clubs

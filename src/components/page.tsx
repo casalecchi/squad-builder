@@ -18,7 +18,6 @@ import colors from '../styles/colors.module.scss'
 
 const Page: FC = () => {
     const { players, clubs } = useTeamStateManager()
-    console.log(clubs)
 
     return (
         <Stack display={'flex'}>
@@ -29,7 +28,7 @@ const Page: FC = () => {
                     <List sx={{ backgroundColor: colors.snow }}>
                         {players.slice(0, 10).map((player, index) => (
                             <>
-                                <ListItem key={index}>
+                                <ListItem key={player.id}>
                                     <ListItemAvatar>
                                         <Avatar
                                             alt={player.name}
@@ -38,13 +37,13 @@ const Page: FC = () => {
                                         />
                                     </ListItemAvatar>
                                     <ListItemText sx={{ color: colors.primary, fontWeight: 600 }}>
-                                        {player.positionId}
+                                        {player.name.toUpperCase()}
                                     </ListItemText>
                                     <ListItemText sx={{ color: colors.primary, fontWeight: 600 }}>
-                                        {player.name}
+                                        {clubs[player.clubId].name}
                                     </ListItemText>
                                     <ListItemAvatar sx={{ color: colors.primary, fontWeight: 600 }}>
-                                        {player.name}
+                                        {player.position.name}
                                     </ListItemAvatar>
                                 </ListItem>
                                 {index != 9 && (

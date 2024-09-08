@@ -26,9 +26,9 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     <Dialog onClose={() => setOpenDialog(false)} open={openDialog}>
                         <DialogTitle>Choose player</DialogTitle>
                         <List>
-                            {players.slice(0, 20).map((player, key) => (
+                            {players.slice(0, 20).map((player) => (
                                 <ListItem
-                                    key={key}
+                                    key={player.id}
                                     onClick={() => {
                                         addPlayer('goalkeeper', index, player)
                                         setOpenDialog(false)
