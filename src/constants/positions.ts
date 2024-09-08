@@ -1,10 +1,8 @@
-import { Position } from '../models'
-
-export const positionIdMap: { [key: number]: Position } = {
-    1: { code: 'gk', name: 'Goalkeeper' },
-    2: { code: 'wb', name: 'Wingback' },
-    3: { code: 'cb', name: 'Centerback' },
-    4: { code: 'mid', name: 'Midfielder' },
-    5: { code: 'st', name: 'Striker' },
-    6: { code: 'man', name: 'Manager' },
+export const positionIdMap: { [key: number]: string } = {
+    1: 'gk',
+    2: 'wb',
+    3: 'cb',
+    4: 'mid',
+    5: 'st',
+    6: 'man',
 }

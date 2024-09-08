@@ -18,10 +18,26 @@
         "pitch": "Soccer pitch"
     },
     "position": {
-        "gk": "GK",
-        "wb": "WB",
-        "cb": "CB",
-        "mid": "MID",
-        "st": "ST"
+        "abbreviations": {
+            "gk": "GK",
+            "wb": "WB",
+            "cb": "CB",
+            "mid": "MID",
+            "st": "ST"
+        },
+        "fullName": {
+            "gk": "Goalkeeper",
+            "wb": "Wingback",
+            "cb": "Centerback",
+            "mid": "Midfielder",
+            "st": "Striker"
+        }
+    },
+    "status": {
+        "doubt": "Doubt",
+        "suspended": "Suspended",
+        "injured": "Injured",
+        "noStatus": "No Status",
+        "probable": "Probable"
     }
 }

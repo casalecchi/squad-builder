@@ -18,10 +18,26 @@
         "pitch": "Campo de futebol"
     },
     "position": {
-        "gk": "GOL",
-        "wb": "LAT",
-        "cb": "ZAG",
-        "mid": "MEI",
-        "st": "ATA"
+        "abbreviations": {
+            "gk": "GOL",
+            "wb": "LAT",
+            "cb": "ZAG",
+            "mid": "MEI",
+            "st": "ATA"
+        },
+        "fullName": {
+            "gk": "Goleiro",
+            "wb": "Lateral",
+            "cb": "Zagueiro",
+            "mid": "Meio Campo",
+            "st": "Atacante"
+        }
+    },
+    "status": {
+        "doubt": "Dúvida",
+        "suspended": "Suspenso",
+        "injured": "Lesionado",
+        "noStatus": "Sem status",
+        "probable": "Probable"
     }
 }

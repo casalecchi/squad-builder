@@ -1,9 +1,7 @@
-import { Position } from '.'
-
 export interface Player {
     id: number
     clubId: number
-    position: Position
+    positionCode: string
     statusCode: string
     name: string
     price: number

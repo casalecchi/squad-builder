@@ -1,6 +1,5 @@
 export * from './cartola'
 export * from './club'
 export * from './formation'
-export * from './position'
 export * from './player'
 export * from './team'

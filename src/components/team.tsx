@@ -9,6 +9,7 @@ import {
     ListItemAvatar,
     Avatar,
     ListItemText,
+    ListItemIcon,
 } from '@mui/material'
 
 interface TeamProps {
@@ -25,21 +26,24 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                 <>
                     <Dialog onClose={() => setOpenDialog(false)} open={openDialog}>
                         <DialogTitle>Choose player</DialogTitle>
-                        <List>
-                            {players.slice(0, 20).map((player) => (
-                                <ListItem
-                                    key={player.id}
-                                    onClick={() => {
-                                        addPlayer('goalkeeper', index, player)
-                                        setOpenDialog(false)
-                                    }}
-                                >
-                                    <ListItemAvatar>
-                                        <Avatar alt={player.name} src={player.photo} />
-                                    </ListItemAvatar>
-                                    <ListItemText>{player.name}</ListItemText>
-                                </ListItem>
-                            ))}
+                        <List sx={{ overflowY: 'scroll' }}>
+                            {players
+                                .filter((p) => p.positionCode == 'gk')
+                                .map((player) => (
+                                    <ListItem
+                                        key={player.id}
+                                        onClick={() => {
+                                            addPlayer('goalkeeper', index, player)
+                                            setOpenDialog(false)
+                                        }}
+                                    >
+                                        <ListItemAvatar>
+                                            <Avatar alt={player.name} src={player.photo} />
+                                        </ListItemAvatar>
+                                        <ListItemIcon></ListItemIcon>
+                                        <ListItemText>{player.name}</ListItemText>
+                                    </ListItem>
+                                ))}
                         </List>
                     </Dialog>
                     <PlayerButton
