@@ -94,7 +94,7 @@ const PlayerButton: FC<PlayerProps> = ({
                 )}
             </IconButton>
             <Typography sx={{ fontWeight: 700, textShadow: '0px 2px 2px black' }}>
-                {player?.name ?? t(`position.${position.code}` as TranslationKey)}
+                {player?.name ?? t(`position.abbreviations.${position.code}` as TranslationKey)}
             </Typography>
         </Stack>
     )
