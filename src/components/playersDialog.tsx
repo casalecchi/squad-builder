@@ -1,5 +1,4 @@
 import { Dispatch, FC, SetStateAction } from 'react'
-import { Check } from '@mui/icons-material'
 import {
     Dialog,
     DialogTitle,
@@ -13,6 +12,7 @@ import {
 } from '@mui/material'
 import { TeamStateManager } from '../hooks/useTeamStateManager'
 import colors from '../styles/colors.module.scss'
+import StatusIcon from './ui/statusIcon'
 
 interface PlayersDialogProps {
     open: boolean
@@ -29,23 +29,34 @@ const PlayersDialog: FC<PlayersDialogProps> = ({ open, teamStateManager, setOpen
             <List sx={{ overflowY: 'scroll' }}>
                 {players
                     .filter((p) => p.positionCode == 'gk')
+                    .sort((a, b) => b.price - a.price)
                     .map((player) => (
-                        <ListItem divider key={player.id}>
-                            <ListItemAvatar sx={{ height: '2rem', border: '1px solid red' }}>
-                                <img height={'100%'} src={clubs[player.clubId].photo} />
+                        <ListItem divider key={player.id} sx={{ display: 'flex' }}>
+                            <ListItemAvatar sx={{ minWidth: '2rem', marginRight: 1 }}>
+                                <Avatar
+                                    alt={player.name}
+                                    src={clubs[player.clubId].photo}
+                                    sx={{ height: '2rem', width: '2rem' }}
+                                    variant={'square'}
+                                />
                             </ListItemAvatar>
-                            <ListItemAvatar key={player.id}>
-                                <Avatar alt={player.name} src={player.photo} />
+                            <ListItemAvatar sx={{ width: '4rem', height: '4rem', marginRight: 2 }}>
+                                <Avatar
+                                    alt={player.name}
+                                    src={player.photo}
+                                    sx={{ height: '100%', width: '100%' }}
+                                    variant="square"
+                                />
                             </ListItemAvatar>
                             <ListItemText
-                                key={player.id}
                                 primary={player.name}
                                 secondary={clubs[player.clubId].name}
+                                sx={{ flex: 1 }}
                             />
-                            <ListItemIcon>
-                                <Check sx={{ color: colors.lightGreen }} />
+                            <ListItemIcon sx={{ flex: 1 }}>
+                                <StatusIcon status={player.status} />
                             </ListItemIcon>
-                            <ListItemText key={player.id} primary={`C$${player.price}`} />
+                            <ListItemText primary={`C$${player.price}`} sx={{ flex: 1 }} />
                             <ListItemButton
                                 onClick={() => {
                                     addPlayer('goalkeeper', 0, player)
@@ -55,6 +66,7 @@ const PlayersDialog: FC<PlayersDialogProps> = ({ open, teamStateManager, setOpen
                                     backgroundColor: colors.lightGreen,
                                     borderRadius: 8,
                                     justifyContent: 'center',
+                                    flex: 1,
                                 }}
                             >
                                 {'BUY'}
