@@ -13,14 +13,16 @@ import {
 import { TeamStateManager } from '../hooks/useTeamStateManager'
 import colors from '../styles/colors.module.scss'
 import StatusIcon from './ui/statusIcon'
+import { Position } from '../models'
 
 interface PlayersDialogProps {
     open: boolean
+    position: Position
     teamStateManager: TeamStateManager
     setOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const PlayersDialog: FC<PlayersDialogProps> = ({ open, teamStateManager, setOpen }) => {
+const PlayersDialog: FC<PlayersDialogProps> = ({ open, position, teamStateManager, setOpen }) => {
     const { players, clubs, addPlayer } = teamStateManager
 
     return (
@@ -28,7 +30,7 @@ const PlayersDialog: FC<PlayersDialogProps> = ({ open, teamStateManager, setOpen
             <DialogTitle>Choose player</DialogTitle>
             <List sx={{ overflowY: 'scroll' }}>
                 {players
-                    .filter((p) => p.positionCode == 'gk')
+                    .filter((p) => p.position == position)
                     .sort((a, b) => b.price - a.price)
                     .map((player) => (
                         <ListItem divider key={player.id} sx={{ display: 'flex' }}>

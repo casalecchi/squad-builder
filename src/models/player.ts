@@ -1,9 +1,10 @@
+import { Position } from './position'
 import { Status } from './status'
 
 export interface Player {
     id: number
     clubId: number
-    positionCode: string
+    position: Position
     status: Status
     name: string
     price: number

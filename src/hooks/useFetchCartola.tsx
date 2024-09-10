@@ -18,13 +18,13 @@ const useFetchCartola = () => {
                     .map((atleta) => ({
                         id: atleta.atleta_id,
                         clubId: atleta.clube_id,
-                        positionCode: positionIdMap[atleta.posicao_id],
+                        position: positionIdMap[atleta.posicao_id],
                         status: statusIdMap[atleta.status_id],
                         name: atleta.apelido,
                         price: atleta.preco_num,
                         photo: atleta.foto?.replace('FORMATO', '220x220') ?? '',
                     }))
-                    .filter((player) => player.positionCode != 'man')
+                    .filter((player) => player.position != 'man')
             )
 
             const clubsToAdd = {} as Clubs
