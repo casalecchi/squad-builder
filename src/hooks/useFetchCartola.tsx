@@ -19,7 +19,7 @@ const useFetchCartola = () => {
                         id: atleta.atleta_id,
                         clubId: atleta.clube_id,
                         positionCode: positionIdMap[atleta.posicao_id],
-                        statusCode: statusIdMap[atleta.status_id],
+                        status: statusIdMap[atleta.status_id],
                         name: atleta.apelido,
                         price: atleta.preco_num,
                         photo: atleta.foto?.replace('FORMATO', '220x220') ?? '',

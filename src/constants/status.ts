@@ -1,4 +1,6 @@
-export const statusIdMap: { [key: number]: string } = {
+import { Status } from '../models'
+
+export const statusIdMap: { [key: number]: Status } = {
     2: 'doubt',
     3: 'suspended',
     5: 'injured',
