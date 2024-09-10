@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Status } from '../../models'
-import { Add, Check, QuestionMark } from '@mui/icons-material'
+import { Check, Healing, QuestionMark } from '@mui/icons-material'
 import redCard from '../../assets/red-card.svg'
 import colors from '../../styles/colors.module.scss'
 
@@ -15,7 +15,7 @@ const StatusIcon: FC<StatusIconProps> = ({ status }) => {
         case 'suspended':
             return <img src={redCard} />
         case 'injured':
-            return <Add sx={{ color: 'red' }} />
+            return <Healing sx={{ color: 'red' }} />
         case 'noStatus':
             return <></>
         case 'probable':
