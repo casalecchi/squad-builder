@@ -6,7 +6,6 @@ import { Player, PlayerArea, Team } from '../models'
 import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../@types/i18n'
 import { TeamStateManager } from '../hooks/useTeamStateManager'
-import { teamPositionMap } from '../constants'
 import PlayersDialog from './playersDialog'
 
 interface PlayerProps extends IconButtonProps {
@@ -44,7 +43,8 @@ const PlayerButton: FC<PlayerProps> = ({
         <>
             <PlayersDialog
                 open={openDialog}
-                position={teamPositionMap[positionKey]}
+                positionIndex={positionIndex}
+                positionKey={positionKey}
                 setOpen={setOpenDialog}
                 teamStateManager={teamStateManager}
             />

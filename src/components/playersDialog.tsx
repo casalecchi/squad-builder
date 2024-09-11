@@ -13,24 +13,37 @@ import {
 import { TeamStateManager } from '../hooks/useTeamStateManager'
 import colors from '../styles/colors.module.scss'
 import StatusIcon from './ui/statusIcon'
-import { Position } from '../models'
+import { Player, Team } from '../models'
+import { teamPositionMap } from '../constants'
 
 interface PlayersDialogProps {
     open: boolean
-    position: Position
+    positionKey: keyof Team
+    positionIndex: number
     teamStateManager: TeamStateManager
     setOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const PlayersDialog: FC<PlayersDialogProps> = ({ open, position, teamStateManager, setOpen }) => {
+const PlayersDialog: FC<PlayersDialogProps> = ({
+    open,
+    positionKey,
+    positionIndex,
+    teamStateManager,
+    setOpen,
+}) => {
     const { players, clubs, addPlayer } = teamStateManager
+
+    const handleBuy = (player: Player) => {
+        addPlayer(positionKey, positionIndex, player)
+        setOpen(false)
+    }
 
     return (
         <Dialog fullWidth maxWidth={'lg'} onClose={() => setOpen(false)} open={open}>
             <DialogTitle>Choose player</DialogTitle>
             <List sx={{ overflowY: 'scroll' }}>
                 {players
-                    .filter((p) => p.position == position)
+                    .filter((p) => p.position == teamPositionMap[positionKey])
                     .sort((a, b) => b.price - a.price)
                     .map((player) => (
                         <ListItem divider key={player.id} sx={{ display: 'flex' }}>
@@ -60,10 +73,7 @@ const PlayersDialog: FC<PlayersDialogProps> = ({ open, position, teamStateManage
                             </ListItemIcon>
                             <ListItemText primary={`C$${player.price}`} sx={{ flex: 1 }} />
                             <ListItemButton
-                                onClick={() => {
-                                    addPlayer('goalkeeper', 0, player)
-                                    setOpen(false)
-                                }}
+                                onClick={() => handleBuy(player)}
                                 sx={{
                                     backgroundColor: colors.lightGreen,
                                     borderRadius: 8,
