@@ -11,7 +11,6 @@ import PlayersDialog from './playersDialog'
 interface PlayerProps extends IconButtonProps {
     player?: Player
     playerArea: PlayerArea
-    positionIndex: number
     positionKey: keyof Team
     teamStateManager: TeamStateManager
 }
@@ -19,7 +18,6 @@ interface PlayerProps extends IconButtonProps {
 const PlayerButton: FC<PlayerProps> = ({
     player,
     playerArea,
-    positionIndex,
     positionKey,
     teamStateManager,
     ...props
@@ -33,8 +31,8 @@ const PlayerButton: FC<PlayerProps> = ({
         setOpenDialog(true)
     }
 
-    const handleRemove = () => {
-        removePlayer(positionKey, positionIndex)
+    const handleRemove = (player: Player) => {
+        removePlayer(positionKey, player)
     }
 
     const buttonSize = { xs: '2rem', md: '3.5rem' }
@@ -43,7 +41,6 @@ const PlayerButton: FC<PlayerProps> = ({
         <>
             <PlayersDialog
                 open={openDialog}
-                positionIndex={positionIndex}
                 positionKey={positionKey}
                 setOpen={setOpenDialog}
                 teamStateManager={teamStateManager}
@@ -60,7 +57,7 @@ const PlayerButton: FC<PlayerProps> = ({
             >
                 <IconButton
                     disableRipple
-                    onClick={() => (player?.name ? handleRemove() : handleAdd())}
+                    onClick={() => (player?.name ? handleRemove(player) : handleAdd())}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                     sx={{

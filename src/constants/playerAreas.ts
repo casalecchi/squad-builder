@@ -58,9 +58,9 @@ export const fiveCenterMidfielder: PlayerArea = { code: 'mid', bottom: '42%', le
 export const fiveMidfielders = [
     fiveLeftMidfielder,
     fiveLeftCenterMidfielder,
+    fiveCenterMidfielder,
     fiveRightCenterMidfielder,
     fiveRightMidfielder,
-    fiveCenterMidfielder,
 ]
 
 // --------------------------------- STRIKERS -----------------------------------------
@@ -73,4 +73,4 @@ export const twoStrikers = [twoLeftStriker, twoRightStriker]
 export const threeRightStriker: PlayerArea = { code: 'st', bottom: '75%', left: '75%' }
 export const threeCenterStriker: PlayerArea = { code: 'st', bottom: '80%', left: '50%' }
 export const threeLeftStriker: PlayerArea = { code: 'st', bottom: '75%', left: '25%' }
-export const threeStrikers = [threeCenterStriker, threeLeftStriker, threeRightStriker]
+export const threeStrikers = [threeLeftStriker, threeCenterStriker, threeRightStriker]

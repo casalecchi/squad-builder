@@ -16,7 +16,6 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     key={index}
                     player={team.goalkeeper[index] ?? undefined}
                     playerArea={pos}
-                    positionIndex={index}
                     positionKey={'goalkeeper'}
                     teamStateManager={teamStateManager}
                 />
@@ -26,7 +25,6 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     key={index}
                     player={team.wingers[index]}
                     playerArea={pos}
-                    positionIndex={index}
                     positionKey={'wingers'}
                     teamStateManager={teamStateManager}
                 />
@@ -36,7 +34,6 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     key={index}
                     player={team.defenders[index]}
                     playerArea={pos}
-                    positionIndex={index}
                     positionKey={'defenders'}
                     teamStateManager={teamStateManager}
                 />
@@ -46,7 +43,6 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     key={index}
                     player={team.midfielders[index]}
                     playerArea={pos}
-                    positionIndex={index}
                     positionKey={'midfielders'}
                     teamStateManager={teamStateManager}
                 />
@@ -56,7 +52,6 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     key={index}
                     player={team.strikers[index]}
                     playerArea={pos}
-                    positionIndex={index}
                     positionKey={'strikers'}
                     teamStateManager={teamStateManager}
                 />

@@ -19,7 +19,6 @@ import { teamPositionMap } from '../constants'
 interface PlayersDialogProps {
     open: boolean
     positionKey: keyof Team
-    positionIndex: number
     teamStateManager: TeamStateManager
     setOpen: Dispatch<SetStateAction<boolean>>
 }
@@ -27,14 +26,13 @@ interface PlayersDialogProps {
 const PlayersDialog: FC<PlayersDialogProps> = ({
     open,
     positionKey,
-    positionIndex,
     teamStateManager,
     setOpen,
 }) => {
     const { players, clubs, addPlayer } = teamStateManager
 
     const handleBuy = (player: Player) => {
-        addPlayer(positionKey, positionIndex, player)
+        addPlayer(positionKey, player)
         setOpen(false)
     }
 
