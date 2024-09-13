@@ -8,6 +8,7 @@ export interface TeamStateManager {
     formation: Formation
     players: Player[]
     clubs: Clubs
+    openSellPlayers: boolean
     addPlayer: (keyPosition: keyof Team, player: Player) => void
     changeFormation: (newFormation: Formation) => void
     removePlayer: (keyPosition: keyof Team, player: Player) => void
@@ -15,10 +16,6 @@ export interface TeamStateManager {
 
 export const useTeamStateManager = (): TeamStateManager => {
     const [team, setTeam] = useState<Team>({
-        // tentar fazer algo com o Team em vez da formation
-        // quando mudar a formação abrir um Dialog para vender X jogadores e "concluir" a mudança
-        // vender == remover do array -> array vai ficar com número certo de jogadores para a posição
-        // comprar == push no array da posição
         goalkeeper: [],
         wingers: [],
         defenders: [],
@@ -26,6 +23,7 @@ export const useTeamStateManager = (): TeamStateManager => {
         strikers: [],
     })
     const [formation, setFormation] = useState<Formation>(fourThreeThree)
+    const [openSellPlayers, setOpenSellPlayers] = useState<boolean>(false)
     const { clubs, players, fetchData } = useFetchCartola()
 
     const addPlayer = (keyPosition: keyof Team, player: Player) => {
@@ -42,17 +40,29 @@ export const useTeamStateManager = (): TeamStateManager => {
     }
 
     const changeFormation = (newFormation: Formation) => {
-        // TODO - REFACTOR THIS LOGIC
-        setFormation(newFormation)
+        // TODO - OPEN DIALOG TO SELL PLAYERS
+        Object.keys(team).forEach((positionKey) => {
+            const formationLength =
+                newFormation[`${positionKey}Positions` as keyof Formation].length
+            if (formationLength < team[positionKey as keyof Team].length) {
+                setOpenSellPlayers(true)
+            }
+        })
+        if (!openSellPlayers) setFormation(newFormation)
     }
-
-    useEffect(() => {
-        console.log(team.midfielders)
-    }, [team])
 
     useEffect(() => {
         fetchData()
     }, [])
 
-    return { team, clubs, players, formation, addPlayer, changeFormation, removePlayer }
+    return {
+        team,
+        clubs,
+        players,
+        formation,
+        openSellPlayers,
+        addPlayer,
+        changeFormation,
+        removePlayer,
+    }
 }

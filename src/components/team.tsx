@@ -1,16 +1,20 @@
 import { FC } from 'react'
 import PlayerButton from './playerButton'
 import { TeamStateManager } from '../hooks/useTeamStateManager'
+import { Dialog, DialogTitle } from '@mui/material'
 
 interface TeamProps {
     teamStateManager: TeamStateManager
 }
 
 const Team: FC<TeamProps> = ({ teamStateManager }) => {
-    const { team, formation } = teamStateManager
+    const { team, formation, openSellPlayers } = teamStateManager
 
     return (
         <>
+            <Dialog open={openSellPlayers}>
+                <DialogTitle>SELL PLAYERS</DialogTitle>
+            </Dialog>
             {formation.goalkeeperPositions.map((pos, index) => (
                 <PlayerButton
                     key={index}
