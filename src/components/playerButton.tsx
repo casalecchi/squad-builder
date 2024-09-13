@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../@types/i18n'
 import { TeamStateManager } from '../hooks/useTeamStateManager'
 import PlayersDialog from './playersDialog'
+import { formatPlayerName } from '../utils/formatters'
 
 interface PlayerProps extends IconButtonProps {
     player?: Player
@@ -104,7 +105,7 @@ const PlayerButton: FC<PlayerProps> = ({
                     )}
                 </IconButton>
                 <Typography sx={{ fontWeight: 700, textShadow: '0px 2px 2px black' }}>
-                    {player?.name ??
+                    {formatPlayerName(player?.name) ??
                         t(`position.abbreviations.${playerArea.code}` as TranslationKey)}
                 </Typography>
             </Stack>
