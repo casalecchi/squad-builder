@@ -10,26 +10,21 @@ import {
     ListItemIcon,
     ListItemButton,
 } from '@mui/material'
-import { TeamStateManager } from '../hooks/useTeamStateManager'
 import colors from '../styles/colors.module.scss'
 import StatusIcon from './ui/statusIcon'
 import { Player, Team } from '../models'
 import { teamPositionMap } from '../constants'
 import { useTranslation } from 'react-i18next'
+import { useDataContext } from '../contexts/DataContext'
 
 interface PlayersDialogProps {
     open: boolean
     positionKey: keyof Team
-    teamStateManager: TeamStateManager
     setOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const PlayersDialog: FC<PlayersDialogProps> = ({
-    open,
-    positionKey,
-    teamStateManager,
-    setOpen,
-}) => {
+const PlayersDialog: FC<PlayersDialogProps> = ({ open, positionKey, setOpen }) => {
+    const { teamStateManager } = useDataContext()
     const { players, clubs, addPlayer } = teamStateManager
     const { t } = useTranslation()
 

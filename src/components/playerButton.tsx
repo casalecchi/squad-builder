@@ -5,27 +5,21 @@ import colors from '../styles/colors.module.scss'
 import { Player, PlayerArea, Team } from '../models'
 import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../@types/i18n'
-import { TeamStateManager } from '../hooks/useTeamStateManager'
 import PlayersDialog from './playersDialog'
 import { formatPlayerName } from '../utils/formatters'
+import { useDataContext } from '../contexts/DataContext'
 
 interface PlayerProps extends IconButtonProps {
     player?: Player
     playerArea: PlayerArea
     positionKey: keyof Team
-    teamStateManager: TeamStateManager
 }
 
-const PlayerButton: FC<PlayerProps> = ({
-    player,
-    playerArea,
-    positionKey,
-    teamStateManager,
-    ...props
-}) => {
+const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...props }) => {
     const { t } = useTranslation()
     const [isHovered, setIsHovered] = useState(false)
     const [openDialog, setOpenDialog] = useState<boolean>(false)
+    const { teamStateManager } = useDataContext()
     const { removePlayer } = teamStateManager
 
     const handleAdd = () => {
@@ -40,12 +34,7 @@ const PlayerButton: FC<PlayerProps> = ({
 
     return (
         <>
-            <PlayersDialog
-                open={openDialog}
-                positionKey={positionKey}
-                setOpen={setOpenDialog}
-                teamStateManager={teamStateManager}
-            />
+            <PlayersDialog open={openDialog} positionKey={positionKey} setOpen={setOpenDialog} />
             <Stack
                 alignItems={'center'}
                 spacing={0.5}

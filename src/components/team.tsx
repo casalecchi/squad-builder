@@ -1,13 +1,10 @@
 import { FC } from 'react'
 import PlayerButton from './playerButton'
-import { TeamStateManager } from '../hooks/useTeamStateManager'
 import { Dialog, DialogTitle } from '@mui/material'
+import { useDataContext } from '../contexts/DataContext'
 
-interface TeamProps {
-    teamStateManager: TeamStateManager
-}
-
-const Team: FC<TeamProps> = ({ teamStateManager }) => {
+const Team: FC = () => {
+    const { teamStateManager } = useDataContext()
     const { team, formation, openSellPlayers } = teamStateManager
 
     return (
@@ -21,7 +18,6 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     player={team.goalkeeper[index] ?? undefined}
                     playerArea={pos}
                     positionKey={'goalkeeper'}
-                    teamStateManager={teamStateManager}
                 />
             ))}
             {formation.wingersPositions.map((pos, index) => (
@@ -30,7 +26,6 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     player={team.wingers[index]}
                     playerArea={pos}
                     positionKey={'wingers'}
-                    teamStateManager={teamStateManager}
                 />
             ))}
             {formation.defendersPositions.map((pos, index) => (
@@ -39,7 +34,6 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     player={team.defenders[index]}
                     playerArea={pos}
                     positionKey={'defenders'}
-                    teamStateManager={teamStateManager}
                 />
             ))}
             {formation.midfieldersPositions.map((pos, index) => (
@@ -48,7 +42,6 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     player={team.midfielders[index]}
                     playerArea={pos}
                     positionKey={'midfielders'}
-                    teamStateManager={teamStateManager}
                 />
             ))}
             {formation.strikersPositions.map((pos, index) => (
@@ -57,7 +50,6 @@ const Team: FC<TeamProps> = ({ teamStateManager }) => {
                     player={team.strikers[index]}
                     playerArea={pos}
                     positionKey={'strikers'}
-                    teamStateManager={teamStateManager}
                 />
             ))}
         </>

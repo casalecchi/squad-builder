@@ -4,11 +4,11 @@ import pitch from '../assets/campinho.svg'
 import { useTranslation } from 'react-i18next'
 import FormationSelector from './formationSelector'
 import Team from './team'
-import { useTeamStateManager } from '../hooks/useTeamStateManager'
+import { useDataContext } from '../contexts/DataContext'
 
 const Builder: FC = () => {
     const { t } = useTranslation()
-    const teamStateManager = useTeamStateManager()
+    const { teamStateManager } = useDataContext()
     const { formation, changeFormation } = teamStateManager
 
     return (
@@ -23,7 +23,7 @@ const Builder: FC = () => {
             />
             <Box position={'relative'} sx={{ xs: { width: '100%' }, md: { height: '85vh' } }}>
                 <img alt={t('images.pitch')} src={pitch} width={'100%'} />
-                <Team teamStateManager={teamStateManager} />
+                <Team />
             </Box>
         </Stack>
     )
