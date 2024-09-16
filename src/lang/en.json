@@ -3,6 +3,8 @@
         "description": "Felipe's TCC"
     },
     "builder": {
+        "buy": "Buy",
+        "sell": "Sell",
         "formationGroups": {
             "title": "Formation",
             "three": "Three Defense Players",

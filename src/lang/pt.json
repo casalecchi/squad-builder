@@ -3,6 +3,8 @@
         "description": "TCC do Felipe"
     },
     "builder": {
+        "buy": "Comprar",
+        "sell": "Vender",
         "formationGroups": {
             "title": "Formação",
             "three": "Três Jogadores Defensivos",

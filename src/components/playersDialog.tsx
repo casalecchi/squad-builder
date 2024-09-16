@@ -15,6 +15,7 @@ import colors from '../styles/colors.module.scss'
 import StatusIcon from './ui/statusIcon'
 import { Player, Team } from '../models'
 import { teamPositionMap } from '../constants'
+import { useTranslation } from 'react-i18next'
 
 interface PlayersDialogProps {
     open: boolean
@@ -30,6 +31,7 @@ const PlayersDialog: FC<PlayersDialogProps> = ({
     setOpen,
 }) => {
     const { players, clubs, addPlayer } = teamStateManager
+    const { t } = useTranslation()
 
     const handleBuy = (player: Player) => {
         addPlayer(positionKey, player)
@@ -79,7 +81,7 @@ const PlayersDialog: FC<PlayersDialogProps> = ({
                                     flex: 1,
                                 }}
                             >
-                                {'BUY'}
+                                {t('builder.buy').toUpperCase()}
                             </ListItemButton>
                         </ListItem>
                     ))}
