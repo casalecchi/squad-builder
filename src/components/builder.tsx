@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import FormationSelector from './formationSelector'
 import Team from './team'
 import { useDataContext } from '../contexts/DataContext'
+import PlayersDialog from './playersDialog'
 
 const Builder: FC = () => {
     const { t } = useTranslation()
@@ -25,6 +26,7 @@ const Builder: FC = () => {
                 <img alt={t('images.pitch')} src={pitch} width={'100%'} />
                 <Team />
             </Box>
+            <PlayersDialog />
         </Stack>
     )
 }

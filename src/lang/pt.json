@@ -19,6 +19,9 @@
     "images": {
         "pitch": "Campo de futebol"
     },
+    "market": {
+        "title": "Mercado"
+    },
     "position": {
         "abbreviations": {
             "gk": "GOL",

@@ -19,6 +19,9 @@
     "images": {
         "pitch": "Soccer pitch"
     },
+    "market": {
+        "title": "Market"
+    },
     "position": {
         "abbreviations": {
             "gk": "GK",

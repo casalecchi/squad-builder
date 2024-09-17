@@ -5,7 +5,6 @@ import colors from '../styles/colors.module.scss'
 import { Player, PlayerArea, Team } from '../models'
 import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../@types/i18n'
-import PlayersDialog from './playersDialog'
 import { formatPlayerName } from '../utils/formatters'
 import { useDataContext } from '../contexts/DataContext'
 
@@ -18,13 +17,8 @@ interface PlayerProps extends IconButtonProps {
 const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...props }) => {
     const { t } = useTranslation()
     const [isHovered, setIsHovered] = useState(false)
-    const [openDialog, setOpenDialog] = useState<boolean>(false)
-    const { teamStateManager } = useDataContext()
+    const { teamStateManager, openMarket } = useDataContext()
     const { removePlayer } = teamStateManager
-
-    const handleAdd = () => {
-        setOpenDialog(true)
-    }
 
     const handleRemove = (player: Player) => {
         removePlayer(positionKey, player)
@@ -34,7 +28,6 @@ const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...pro
 
     return (
         <>
-            <PlayersDialog open={openDialog} positionKey={positionKey} setOpen={setOpenDialog} />
             <Stack
                 alignItems={'center'}
                 spacing={0.5}
@@ -47,7 +40,7 @@ const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...pro
             >
                 <IconButton
                     disableRipple
-                    onClick={() => (player?.name ? handleRemove(player) : handleAdd())}
+                    onClick={() => (player?.name ? handleRemove(player) : openMarket(positionKey))}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                     sx={{

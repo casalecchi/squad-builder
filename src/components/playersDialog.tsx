@@ -1,7 +1,5 @@
-import { Dispatch, FC, SetStateAction } from 'react'
+import { FC } from 'react'
 import {
-    Dialog,
-    DialogTitle,
     List,
     ListItem,
     ListItemAvatar,
@@ -12,33 +10,26 @@ import {
 } from '@mui/material'
 import colors from '../styles/colors.module.scss'
 import StatusIcon from './ui/statusIcon'
-import { Player, Team } from '../models'
+import { Player } from '../models'
 import { teamPositionMap } from '../constants'
 import { useTranslation } from 'react-i18next'
 import { useDataContext } from '../contexts/DataContext'
+import MarketDialog from './ui/marketDialog'
 
-interface PlayersDialogProps {
-    open: boolean
-    positionKey: keyof Team
-    setOpen: Dispatch<SetStateAction<boolean>>
-}
-
-const PlayersDialog: FC<PlayersDialogProps> = ({ open, positionKey, setOpen }) => {
-    const { teamStateManager } = useDataContext()
+const PlayersDialog: FC = () => {
+    const { teamStateManager, positionToShow } = useDataContext()
     const { players, clubs, addPlayer } = teamStateManager
     const { t } = useTranslation()
 
     const handleBuy = (player: Player) => {
-        addPlayer(positionKey, player)
-        setOpen(false)
+        addPlayer(positionToShow, player)
     }
 
     return (
-        <Dialog fullWidth maxWidth={'lg'} onClose={() => setOpen(false)} open={open}>
-            <DialogTitle>Choose player</DialogTitle>
+        <MarketDialog>
             <List sx={{ overflowY: 'scroll' }}>
                 {players
-                    .filter((p) => p.position == teamPositionMap[positionKey])
+                    .filter((p) => p.position == teamPositionMap[positionToShow])
                     .sort((a, b) => b.price - a.price)
                     .map((player) => (
                         <ListItem divider key={player.id} sx={{ display: 'flex' }}>
@@ -81,7 +72,7 @@ const PlayersDialog: FC<PlayersDialogProps> = ({ open, positionKey, setOpen }) =
                         </ListItem>
                     ))}
             </List>
-        </Dialog>
+        </MarketDialog>
     )
 }
 
