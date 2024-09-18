@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next'
 import { useDataContext } from '../contexts/DataContext'
 import MarketDialog from './ui/marketDialog'
 
-const PlayersDialog: FC = () => {
+const CartolaMarket: FC = () => {
     const { t } = useTranslation()
     const { teamStateManager, positionToShow, closeMarket } = useDataContext()
     const { team, formation, players, clubs, addPlayer, removePlayer } = teamStateManager
@@ -97,4 +97,4 @@ const PlayersDialog: FC = () => {
     )
 }
 
-export default PlayersDialog
+export default CartolaMarket
