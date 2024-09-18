@@ -14,64 +14,64 @@ import {
 
 export const threeFourThree: Formation = {
     id: '343',
-    goalkeeperPositions: [goalkeeperPosition],
-    wingersPositions: [],
-    defendersPositions: threeDefenders,
-    midfieldersPositions: fourMidfielders,
-    strikersPositions: threeStrikers,
+    goalkeeper: [goalkeeperPosition],
+    wingers: [],
+    defenders: threeDefenders,
+    midfielders: fourMidfielders,
+    strikers: threeStrikers,
 }
 
 export const threeFiveTwo: Formation = {
     id: '352',
-    goalkeeperPositions: [goalkeeperPosition],
-    wingersPositions: [],
-    defendersPositions: threeDefenders,
-    midfieldersPositions: fiveMidfielders,
-    strikersPositions: twoStrikers,
+    goalkeeper: [goalkeeperPosition],
+    wingers: [],
+    defenders: threeDefenders,
+    midfielders: fiveMidfielders,
+    strikers: twoStrikers,
 }
 
 export const fourThreeThree: Formation = {
     id: '433',
-    goalkeeperPositions: [goalkeeperPosition],
-    wingersPositions: fourDefenders.slice(0, 2),
-    defendersPositions: fourDefenders.slice(2),
-    midfieldersPositions: threeMidfielders,
-    strikersPositions: threeStrikers,
+    goalkeeper: [goalkeeperPosition],
+    wingers: fourDefenders.slice(0, 2),
+    defenders: fourDefenders.slice(2),
+    midfielders: threeMidfielders,
+    strikers: threeStrikers,
 }
 
 export const fourFourTwo: Formation = {
     id: '442',
-    goalkeeperPositions: [goalkeeperPosition],
-    wingersPositions: fourDefenders.slice(0, 2),
-    defendersPositions: fourDefenders.slice(2),
-    midfieldersPositions: fourMidfielders,
-    strikersPositions: twoStrikers,
+    goalkeeper: [goalkeeperPosition],
+    wingers: fourDefenders.slice(0, 2),
+    defenders: fourDefenders.slice(2),
+    midfielders: fourMidfielders,
+    strikers: twoStrikers,
 }
 export const fourFiveOne: Formation = {
     id: '451',
-    goalkeeperPositions: [goalkeeperPosition],
-    wingersPositions: fourDefenders.slice(0, 2),
-    defendersPositions: fourDefenders.slice(2),
-    midfieldersPositions: fiveMidfielders,
-    strikersPositions: [oneStriker],
+    goalkeeper: [goalkeeperPosition],
+    wingers: fourDefenders.slice(0, 2),
+    defenders: fourDefenders.slice(2),
+    midfielders: fiveMidfielders,
+    strikers: [oneStriker],
 }
 
 export const fiveThreeTwo: Formation = {
     id: '532',
-    goalkeeperPositions: [goalkeeperPosition],
-    wingersPositions: fiveDefenders.slice(0, 2),
-    defendersPositions: fiveDefenders.slice(2),
-    midfieldersPositions: threeMidfielders,
-    strikersPositions: twoStrikers,
+    goalkeeper: [goalkeeperPosition],
+    wingers: fiveDefenders.slice(0, 2),
+    defenders: fiveDefenders.slice(2),
+    midfielders: threeMidfielders,
+    strikers: twoStrikers,
 }
 
 export const fiveFourOne: Formation = {
     id: '541',
-    goalkeeperPositions: [goalkeeperPosition],
-    wingersPositions: fiveDefenders.slice(0, 2),
-    defendersPositions: fiveDefenders.slice(2),
-    midfieldersPositions: fourMidfielders,
-    strikersPositions: [oneStriker],
+    goalkeeper: [goalkeeperPosition],
+    wingers: fiveDefenders.slice(0, 2),
+    defenders: fiveDefenders.slice(2),
+    midfielders: fourMidfielders,
+    strikers: [oneStriker],
 }
 
 export const ALL_FORMATIONS = [

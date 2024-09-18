@@ -42,8 +42,7 @@ export const useTeamStateManager = (): TeamStateManager => {
     const changeFormation = (newFormation: Formation) => {
         // TODO - OPEN DIALOG TO SELL PLAYERS
         Object.keys(team).forEach((positionKey) => {
-            const formationLength =
-                newFormation[`${positionKey}Positions` as keyof Formation].length
+            const formationLength = newFormation[`${positionKey}` as keyof Formation].length
             if (formationLength < team[positionKey as keyof Team].length) {
                 setOpenSellPlayers(true)
             }

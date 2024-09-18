@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import {
     List,
     ListItem,
@@ -17,13 +17,26 @@ import { useDataContext } from '../contexts/DataContext'
 import MarketDialog from './ui/marketDialog'
 
 const PlayersDialog: FC = () => {
-    const { teamStateManager, positionToShow } = useDataContext()
-    const { players, clubs, addPlayer } = teamStateManager
     const { t } = useTranslation()
+    const { teamStateManager, positionToShow, closeMarket } = useDataContext()
+    const { team, formation, players, clubs, addPlayer, removePlayer } = teamStateManager
+    const [isFull, setIsFull] = useState<boolean>(false)
 
     const handleBuy = (player: Player) => {
         addPlayer(positionToShow, player)
     }
+
+    const handleSell = (player: Player) => {
+        removePlayer(positionToShow, player)
+    }
+
+    useEffect(() => {
+        setIsFull(formation[positionToShow].length == team[positionToShow].length)
+    }, [positionToShow, team])
+
+    useEffect(() => {
+        if (isFull) closeMarket()
+    }, [isFull])
 
     return (
         <MarketDialog>
@@ -31,46 +44,54 @@ const PlayersDialog: FC = () => {
                 {players
                     .filter((p) => p.position == teamPositionMap[positionToShow])
                     .sort((a, b) => b.price - a.price)
-                    .map((player) => (
-                        <ListItem divider key={player.id} sx={{ display: 'flex' }}>
-                            <ListItemAvatar sx={{ minWidth: '2rem', marginRight: 1 }}>
-                                <Avatar
-                                    alt={player.name}
-                                    src={clubs[player.clubId].photo}
-                                    sx={{ height: '2rem', width: '2rem' }}
-                                    variant={'square'}
+                    .map((player) => {
+                        const isOnTeam = team[positionToShow].find((p) => p.id == player.id)
+
+                        return (
+                            <ListItem divider key={player.id} sx={{ display: 'flex' }}>
+                                <ListItemAvatar sx={{ minWidth: '2rem', marginRight: 1 }}>
+                                    <Avatar
+                                        alt={player.name}
+                                        src={clubs[player.clubId].photo}
+                                        sx={{ height: '2rem', width: '2rem' }}
+                                        variant={'square'}
+                                    />
+                                </ListItemAvatar>
+                                <ListItemAvatar
+                                    sx={{ width: '4rem', height: '4rem', marginRight: 2 }}
+                                >
+                                    <Avatar
+                                        alt={player.name}
+                                        src={player.photo}
+                                        sx={{ height: '100%', width: '100%' }}
+                                        variant="square"
+                                    />
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={player.name}
+                                    secondary={clubs[player.clubId].name}
+                                    sx={{ flex: 1 }}
                                 />
-                            </ListItemAvatar>
-                            <ListItemAvatar sx={{ width: '4rem', height: '4rem', marginRight: 2 }}>
-                                <Avatar
-                                    alt={player.name}
-                                    src={player.photo}
-                                    sx={{ height: '100%', width: '100%' }}
-                                    variant="square"
-                                />
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={player.name}
-                                secondary={clubs[player.clubId].name}
-                                sx={{ flex: 1 }}
-                            />
-                            <ListItemIcon sx={{ flex: 1 }}>
-                                <StatusIcon status={player.status} />
-                            </ListItemIcon>
-                            <ListItemText primary={`C$${player.price}`} sx={{ flex: 1 }} />
-                            <ListItemButton
-                                onClick={() => handleBuy(player)}
-                                sx={{
-                                    backgroundColor: colors.lightGreen,
-                                    borderRadius: 8,
-                                    justifyContent: 'center',
-                                    flex: 1,
-                                }}
-                            >
-                                {t('builder.buy').toUpperCase()}
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
+                                <ListItemIcon sx={{ flex: 1 }}>
+                                    <StatusIcon status={player.status} />
+                                </ListItemIcon>
+                                <ListItemText primary={`C$${player.price}`} sx={{ flex: 1 }} />
+                                <ListItemButton
+                                    onClick={() =>
+                                        isOnTeam ? handleSell(player) : handleBuy(player)
+                                    }
+                                    sx={{
+                                        backgroundColor: isOnTeam ? 'red' : colors.lightGreen,
+                                        borderRadius: 8,
+                                        justifyContent: 'center',
+                                        flex: 1,
+                                    }}
+                                >
+                                    {t(isOnTeam ? 'builder.sell' : 'builder.buy').toUpperCase()}
+                                </ListItemButton>
+                            </ListItem>
+                        )
+                    })}
             </List>
         </MarketDialog>
     )
