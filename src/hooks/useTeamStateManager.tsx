@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Clubs, Formation, Player, Team } from '../models'
+import { Adjustment, Clubs, Formation, Player, Team } from '../models'
 import { fourThreeThree } from '../constants'
 import useFetchCartola from './useFetchCartola'
 
@@ -8,10 +8,11 @@ export interface TeamStateManager {
     formation: Formation
     players: Player[]
     clubs: Clubs
-    openSellPlayers: boolean
+    adjustment: Adjustment
     addPlayer: (keyPosition: keyof Team, player: Player) => void
     changeFormation: (newFormation: Formation) => void
     removePlayer: (keyPosition: keyof Team, player: Player) => void
+    resetAdjustment: () => void
 }
 
 export const useTeamStateManager = (): TeamStateManager => {
@@ -23,7 +24,7 @@ export const useTeamStateManager = (): TeamStateManager => {
         strikers: [],
     })
     const [formation, setFormation] = useState<Formation>(fourThreeThree)
-    const [openSellPlayers, setOpenSellPlayers] = useState<boolean>(false)
+    const [adjustment, setAdjustment] = useState<Adjustment>({} as Adjustment)
     const { clubs, players, fetchData } = useFetchCartola()
 
     const addPlayer = (keyPosition: keyof Team, player: Player) => {
@@ -40,14 +41,18 @@ export const useTeamStateManager = (): TeamStateManager => {
     }
 
     const changeFormation = (newFormation: Formation) => {
-        // TODO - OPEN DIALOG TO SELL PLAYERS
         Object.keys(team).forEach((positionKey) => {
             const formationLength = newFormation[`${positionKey}` as keyof Formation].length
             if (formationLength < team[positionKey as keyof Team].length) {
-                setOpenSellPlayers(true)
+                setAdjustment({ needAdjust: true, newFormation: newFormation })
+                return
             }
         })
-        if (!openSellPlayers) setFormation(newFormation)
+        setFormation(newFormation)
+    }
+
+    const resetAdjustment = () => {
+        setAdjustment({} as Adjustment)
     }
 
     useEffect(() => {
@@ -59,9 +64,10 @@ export const useTeamStateManager = (): TeamStateManager => {
         clubs,
         players,
         formation,
-        openSellPlayers,
+        adjustment,
         addPlayer,
         changeFormation,
         removePlayer,
+        resetAdjustment,
     }
 }

@@ -6,6 +6,7 @@ import FormationSelector from './formationSelector'
 import Team from './team'
 import { useDataContext } from '../contexts/DataContext'
 import CartolaMarket from './cartolaMarket'
+import FormationAdjustment from './formationAdjustment'
 
 const Builder: FC = () => {
     const { t } = useTranslation()
@@ -27,6 +28,7 @@ const Builder: FC = () => {
                 <Team />
             </Box>
             <CartolaMarket />
+            <FormationAdjustment />
         </Stack>
     )
 }
