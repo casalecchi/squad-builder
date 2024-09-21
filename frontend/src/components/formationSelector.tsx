@@ -34,7 +34,7 @@ const FormationSelector: FC<FormationSelectorProps> = ({
     const { t } = useTranslation()
 
     const handleFormationChange = (event: SelectChangeEvent) => {
-        const newId = event.target.value as string
+        const newId = event.target.value
         const newFormation = findFormation(newId) ?? fourThreeThree
         changeFormation(newFormation)
     }
