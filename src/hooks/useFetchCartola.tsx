@@ -10,7 +10,7 @@ const useFetchCartola = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get<CartolaResponse>('http://localhost:3004/api/mercado')
+            const response = await axios.get<CartolaResponse>('/api/mercado')
             const data = response.data
 
             setPlayers(
