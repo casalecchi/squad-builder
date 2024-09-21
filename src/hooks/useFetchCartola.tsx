@@ -4,13 +4,13 @@ import axios from 'axios'
 import { positionIdMap, statusIdMap } from '../constants'
 
 const useFetchCartola = () => {
-    const URL = 'https://api.cartola.globo.com/atletas/mercado'
+    // const URL = 'https://api.cartola.globo.com/atletas/mercado'
     const [players, setPlayers] = useState<Player[]>([])
     const [clubs, setClubs] = useState<Clubs>({})
 
     const fetchData = async () => {
         try {
-            const response = await axios.get<CartolaResponse>(URL)
+            const response = await axios.get<CartolaResponse>('http://localhost:3004/api/mercado')
             const data = response.data
 
             setPlayers(
