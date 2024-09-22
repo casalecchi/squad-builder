@@ -16,6 +16,9 @@ app.get('/api/mercado', async (req, res) => {
     }
 })
 
-app.listen(3004, () => {
-    console.log(`Servidor rodando na porta ${3004}`)
+// eslint-disable-next-line no-undef
+const PORT = process.env.PORT || 3004
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`)
 })
