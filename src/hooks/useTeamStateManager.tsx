@@ -36,7 +36,6 @@ export const useTeamStateManager = (): TeamStateManager => {
     const removePlayer = (keyPosition: keyof Team, player: Player) => {
         const newTeam = { ...team }
         newTeam[keyPosition] = newTeam[keyPosition].filter((p) => p.id != player.id)
-        console.log(newTeam[keyPosition])
         setTeam(newTeam)
     }
 
