@@ -4,7 +4,9 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite --port 3003",
+        "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+        "dev:frontend": "vite --port 3003",
+        "dev:backend": "npm --prefix server run dev",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
         "lint:fix": "eslint ./src --fix",
@@ -29,6 +31,7 @@
         "@types/react": "^18.3.3",
         "@types/react-dom": "^18.3.0",
         "@vitejs/plugin-react": "^4.3.1",
+        "concurrently": "^9.0.1",
         "eslint": "^9.9.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-react": "^7.35.0",
