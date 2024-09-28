@@ -19,7 +19,7 @@ import MarketDialog from './ui/marketDialog'
 const CartolaMarket: FC = () => {
     const { t } = useTranslation()
     const { teamStateManager, positionToShow, closeMarket } = useDataContext()
-    const { team, formation, players, clubs, addPlayer, removePlayer } = teamStateManager
+    const { team, formation, players, clubs, matches, addPlayer, removePlayer } = teamStateManager
     const [isFull, setIsFull] = useState<boolean>(false)
 
     const handleBuy = (player: Player) => {
@@ -52,7 +52,7 @@ const CartolaMarket: FC = () => {
                                 <ListItemAvatar sx={{ minWidth: '2rem', marginRight: 1 }}>
                                     <Avatar
                                         alt={player.name}
-                                        src={clubs[player.clubId].photo}
+                                        src={clubs[player.clubId]?.photo}
                                         sx={{ height: '2rem', width: '2rem' }}
                                         variant={'square'}
                                     />
@@ -69,13 +69,16 @@ const CartolaMarket: FC = () => {
                                 </ListItemAvatar>
                                 <ListItemText
                                     primary={player.name}
-                                    secondary={clubs[player.clubId].name}
+                                    secondary={clubs[player.clubId]?.name}
                                     sx={{ flex: 1 }}
                                 />
                                 <ListItemIcon sx={{ flex: 1 }}>
                                     <StatusIcon status={player.status} />
                                 </ListItemIcon>
                                 <ListItemText primary={`C$${player.price}`} sx={{ flex: 1 }} />
+                                <ListItemAvatar sx={{ flex: 1, minWidth: '1rem', marginRight: 1 }}>
+                                    {matches[player.clubId]}
+                                </ListItemAvatar>
                                 <ListItemButton
                                     onClick={() =>
                                         isOnTeam ? handleSell(player) : handleBuy(player)
