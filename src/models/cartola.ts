@@ -1,38 +1,19 @@
-export interface CartolaResponse {
-    clubes: Record<string, Clube>
-    posicoes: Record<string, Posicao>
-    status: Record<string, Status>
-    atletas: Atleta[]
-}
-
-interface Clube {
-    escudos: Record<string, string>
-    nome: string
-    abreviacao: string
-    slug: string
-    apelido: string
-    nome_fantasia: string
+export interface Club {
     id: number
-    url_editoria: string
+    name: string
+    abbreviation: string
+    photo: string
 }
 
-interface Posicao {
-    id: number
-    nome: string
-    abreviacao: string
+export interface Clubs {
+    [key: number]: Club
 }
 
-interface Status {
-    id: number
-    nome: string
+export interface Matchup {
+    homeClubId: number
+    awayClubId: number
 }
 
-interface Atleta {
-    apelido: string
-    atleta_id: number
-    clube_id: number
-    foto?: string
-    posicao_id: number
-    preco_num: number
-    status_id: number
+export interface Matches {
+    [key: number]: JSX.Element
 }
