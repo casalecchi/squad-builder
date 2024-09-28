@@ -1,47 +1,31 @@
 import { useState } from 'react'
-import { CartolaResponse, Player, Clubs } from '../models'
+import { Player, Clubs, Matchup } from '../models'
 import axios from 'axios'
-import { positionIdMap, statusIdMap } from '../constants'
 
 const useFetchCartola = () => {
     const [players, setPlayers] = useState<Player[]>([])
     const [clubs, setClubs] = useState<Clubs>({})
+    const [matchups, setMatchups] = useState<Matchup[]>([])
 
     const fetchData = async () => {
         try {
-            const response = await axios.get<CartolaResponse>('/api/market')
-            const data = response.data
+            const marketResponse = await axios.get<Player[]>('/api/market')
+            const players = marketResponse.data
+            setPlayers(players.filter((player) => player.position != 'man'))
 
-            setPlayers(
-                data.atletas
-                    .map((atleta) => ({
-                        id: atleta.atleta_id,
-                        clubId: atleta.clube_id,
-                        position: positionIdMap[atleta.posicao_id],
-                        status: statusIdMap[atleta.status_id],
-                        name: atleta.apelido,
-                        price: atleta.preco_num,
-                        photo: atleta.foto?.replace('FORMATO', '220x220') ?? '',
-                    }))
-                    .filter((player) => player.position != 'man')
-            )
+            const clubsResponse = await axios.get<Clubs>('/api/clubs')
+            const clubs = clubsResponse.data
+            setClubs(clubs)
 
-            const clubsToAdd = {} as Clubs
-            Object.values(data.clubes).forEach((club) => {
-                clubsToAdd[club.id] = {
-                    id: club.id,
-                    name: club.nome,
-                    abbreviation: club.abreviacao,
-                    photo: club.escudos['60x60'],
-                }
-            })
-            setClubs(clubsToAdd)
+            const matchupsResponse = await axios.get<Matchup[]>('/api/matchups')
+            const matchups = matchupsResponse.data
+            setMatchups(matchups)
         } catch (error) {
             console.error('Error fetching Cartola players', error)
         }
     }
 
-    return { clubs, players, fetchData }
+    return { clubs, players, matchups, fetchData }
 }
 
 export default useFetchCartola
