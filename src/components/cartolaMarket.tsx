@@ -41,7 +41,7 @@ const CartolaMarket: FC = () => {
     return (
         <MarketDialog>
             <List sx={{ overflowY: 'scroll' }}>
-                {players
+                {(players ?? [])
                     .filter((p) => p.position == teamPositionMap[positionToShow])
                     .sort((a, b) => b.price - a.price)
                     .map((player) => {
