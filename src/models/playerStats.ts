@@ -1,4 +1,5 @@
 export interface PlayerStats {
+    cartolaId: number
     rating: number
     totalRating: number
     countRating: number

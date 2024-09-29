@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Adjustment, Clubs, Formation, Matches, Player, Team } from '../models'
-import { fourThreeThree } from '../constants'
+import { Adjustment, Clubs, Formation, Matches, Player, PlayerStats, Team } from '../models'
 import useFetchCartola from './useFetchCartola'
 import Match from '../components/match'
 import useGetPlayerData from './useGetPlayerData'
+import {
+    getLocalFormation,
+    getLocalStats,
+    getLocalTeam,
+    setLocalFormation,
+    setLocalStats,
+    setLocalTeam,
+} from '../utils'
 
 export interface TeamStateManager {
     team: Team
@@ -19,21 +26,9 @@ export interface TeamStateManager {
 }
 
 export const useTeamStateManager = (): TeamStateManager => {
-    const [team, setTeam] = useState<Team>(
-        JSON.parse(
-            localStorage.getItem('team') ??
-                JSON.stringify({
-                    goalkeeper: [],
-                    wingers: [],
-                    defenders: [],
-                    midfielders: [],
-                    strikers: [],
-                })
-        )
-    )
-    const [formation, setFormation] = useState<Formation>(
-        JSON.parse(localStorage.getItem('formation') ?? JSON.stringify(fourThreeThree))
-    )
+    const [team, setTeam] = useState<Team>(getLocalTeam())
+    const [formation, setFormation] = useState<Formation>(getLocalFormation())
+    const [stats, setStats] = useState<PlayerStats[]>(getLocalStats())
     const [adjustment, setAdjustment] = useState<Adjustment>({} as Adjustment)
     const [matches, setMatches] = useState<Matches>({})
     const [orderedPlayers, setOrderedPlayers] = useState<Player[]>([])
@@ -43,19 +38,25 @@ export const useTeamStateManager = (): TeamStateManager => {
     const addPlayer = (keyPosition: keyof Team, player: Player) => {
         const newTeam = { ...team }
         newTeam[keyPosition].push(player)
-        fetchPlayerData(player.clubId, player.name).then((statistics) =>
-            console.log(statistics?.rating)
-        )
+        fetchPlayerData(player.clubId, player.name).then((statistics) => {
+            if (!statistics) return
+            const playerStats = { ...statistics, cartolaId: player.id } as PlayerStats
+            const newStats = [...stats, playerStats]
+            setStats(newStats)
+        })
         setTeam(newTeam)
     }
 
     const removePlayer = (keyPosition: keyof Team, player: Player) => {
         const newTeam = { ...team }
         newTeam[keyPosition] = newTeam[keyPosition].filter((p) => p.id != player.id)
+        const filteredStats = stats.filter((stat) => player.id != stat.cartolaId)
+        setStats(filteredStats)
         setTeam(newTeam)
     }
 
     const changeFormation = (newFormation: Formation) => {
+        // TO DO - ADJUSTMENTS
         Object.keys(team).forEach((positionKey) => {
             const formationLength = newFormation[`${positionKey}` as keyof Formation].length
             if (formationLength < team[positionKey as keyof Team].length) {
@@ -63,7 +64,7 @@ export const useTeamStateManager = (): TeamStateManager => {
                 return
             }
         })
-        localStorage.setItem('formation', JSON.stringify(newFormation))
+        setLocalFormation(newFormation)
         setFormation(newFormation)
     }
 
@@ -72,8 +73,12 @@ export const useTeamStateManager = (): TeamStateManager => {
     }
 
     useEffect(() => {
-        localStorage.setItem('team', JSON.stringify(team))
+        setLocalTeam(team)
     }, [team])
+
+    useEffect(() => {
+        setLocalStats(stats)
+    }, [stats])
 
     useEffect(() => {
         const probable = players
