@@ -27,7 +27,7 @@ export const getCartolaMarket = async (req, res) => {
         name: atleta.apelido,
         price: atleta.preco_num,
         mean: atleta.media_num,
-        lastPoint: lastPoints[atleta.atleta_id]?.pontuacao,
+        lastPoint: lastPoints.atletas[atleta.atleta_id]?.pontuacao,
         photo: atleta.foto?.replace('FORMATO', '220x220') ?? '',
     }))
 

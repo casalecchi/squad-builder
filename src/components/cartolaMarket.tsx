@@ -7,6 +7,9 @@ import {
     ListItemText,
     ListItemIcon,
     ListItemButton,
+    ListSubheader,
+    Typography,
+    Stack,
 } from '@mui/material'
 import colors from '../styles/colors.module.scss'
 import StatusIcon from './ui/statusIcon'
@@ -40,7 +43,19 @@ const CartolaMarket: FC = () => {
 
     return (
         <MarketDialog>
-            <List sx={{ overflowY: 'scroll' }}>
+            <List subheader={<li />} sx={{ overflowY: 'scroll' }}>
+                <ListSubheader sx={{ backgroundColor: '#393939' }}>
+                    <Stack direction={'row'}>
+                        <Typography flex={1}></Typography>
+                        <Typography flex={1}></Typography>
+                        <Typography flex={1}>{'Status'}</Typography>
+                        <Typography flex={1}>{'Preço'}</Typography>
+                        <Typography flex={1}>{'Parcial'}</Typography>
+                        <Typography flex={1}>{'Média'}</Typography>
+                        <Typography flex={1}></Typography>
+                        <Typography flex={1}></Typography>
+                    </Stack>
+                </ListSubheader>
                 {(players ?? [])
                     .filter((p) => p.position == teamPositionMap[positionToShow])
                     .map((player) => {
@@ -75,6 +90,8 @@ const CartolaMarket: FC = () => {
                                     <StatusIcon status={player.status} />
                                 </ListItemIcon>
                                 <ListItemText primary={`C$${player.price}`} sx={{ flex: 1 }} />
+                                <ListItemText primary={player.lastPoint ?? 0} sx={{ flex: 1 }} />
+                                <ListItemText primary={player.mean} sx={{ flex: 1 }} />
                                 <ListItemAvatar sx={{ flex: 1, minWidth: '1rem', marginRight: 1 }}>
                                     {matches[player.clubId]}
                                 </ListItemAvatar>
