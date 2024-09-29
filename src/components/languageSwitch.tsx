@@ -1,19 +1,29 @@
 import { Switch, SwitchProps } from '@mui/material'
-import { FC, useState } from 'react'
+import { FC, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const LanguageSwitch: FC<SwitchProps> = (switchProps) => {
     const { i18n } = useTranslation()
     const { changeLanguage, language } = i18n
-    const [currentLanguage, setCurrentLanguage] = useState<string>(language)
 
     const handleChangeLanguage = () => {
-        const newLanguage = currentLanguage === 'en' ? 'pt' : 'en'
+        const newLanguage = language === 'en' ? 'pt' : 'en'
+        localStorage.setItem('lang', newLanguage)
         changeLanguage(newLanguage)
-        setCurrentLanguage(newLanguage)
     }
 
-    return <Switch color="warning" onChange={handleChangeLanguage} {...switchProps} />
+    useEffect(() => {
+        changeLanguage(localStorage.getItem('lang') ?? language)
+    }, [])
+
+    return (
+        <Switch
+            checked={language == 'pt'}
+            color="warning"
+            onChange={handleChangeLanguage}
+            {...switchProps}
+        />
+    )
 }
 
 export default LanguageSwitch

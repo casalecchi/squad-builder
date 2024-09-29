@@ -31,7 +31,9 @@ export const useTeamStateManager = (): TeamStateManager => {
                 })
         )
     )
-    const [formation, setFormation] = useState<Formation>(fourThreeThree)
+    const [formation, setFormation] = useState<Formation>(
+        JSON.parse(localStorage.getItem('formation') ?? JSON.stringify(fourThreeThree))
+    )
     const [adjustment, setAdjustment] = useState<Adjustment>({} as Adjustment)
     const [matches, setMatches] = useState<Matches>({})
     const [orderedPlayers, setOrderedPlayers] = useState<Player[]>([])
@@ -61,6 +63,7 @@ export const useTeamStateManager = (): TeamStateManager => {
                 return
             }
         })
+        localStorage.setItem('formation', JSON.stringify(newFormation))
         setFormation(newFormation)
     }
 
