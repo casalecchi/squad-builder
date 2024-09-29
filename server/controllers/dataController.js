@@ -2,14 +2,23 @@ import {
     fetchCartolaClubs,
     fetchCartolaLastPoints,
     fetchCartolaMarket,
+    fetchCartolaMarketInfo,
     fetchCartolaMatchups,
     fetchPlayerStats,
     queryPlayerId,
 } from '../services/fetchExternals.js'
-import { positionIdMap, statusIdMap } from '../mappings/cartola.js'
+import { marketStatusMap, positionIdMap, statusIdMap } from '../mappings/cartola.js'
 
 export const getCartolaMarket = async (req, res) => {
     const data = await fetchCartolaMarket()
+    const lastPoints = await fetchCartolaLastPoints()
+    const marketInfo = await fetchCartolaMarketInfo()
+
+    const info = {
+        round: marketInfo.rodada_atual,
+        status: marketStatusMap[marketInfo.status_mercado],
+    }
+
     const players = data.atletas.map((atleta) => ({
         id: atleta.atleta_id,
         clubId: atleta.clube_id,
@@ -17,10 +26,13 @@ export const getCartolaMarket = async (req, res) => {
         status: statusIdMap[atleta.status_id],
         name: atleta.apelido,
         price: atleta.preco_num,
+        mean: atleta.media_num,
+        lastPoint: lastPoints[atleta.atleta_id]?.pontuacao,
         photo: atleta.foto?.replace('FORMATO', '220x220') ?? '',
     }))
+
     if (!players) return res.status(404).json({ error: 'Cannot GET Cartola Market' })
-    return res.json(players)
+    return res.json({ players: players, info: info })
 }
 
 export const getClubs = async (req, res) => {
@@ -46,15 +58,6 @@ export const getMatches = async (req, res) => {
         awayClubId: match.clube_visitante_id,
     }))
     res.json(matchups)
-}
-
-export const getLastPoints = async (req, res) => {
-    const data = await fetchCartolaLastPoints()
-    const points = {}
-    Object.keys(data.atletas).forEach((playerId) => {
-        points[playerId] = data.atletas[playerId].pontuacao
-    })
-    res.json(points)
 }
 
 export const getPlayerData = async (req, res) => {

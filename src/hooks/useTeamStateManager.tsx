@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react'
-import { Adjustment, Clubs, Formation, Matches, Player, PlayerStats, Team } from '../models'
+import {
+    Adjustment,
+    Clubs,
+    Formation,
+    MarketInfo,
+    Matches,
+    Player,
+    PlayerStats,
+    Team,
+} from '../models'
 import useFetchCartola from './useFetchCartola'
 import Match from '../components/match'
 import useGetPlayerData from './useGetPlayerData'
@@ -17,6 +26,7 @@ export interface TeamStateManager {
     formation: Formation
     players: Player[]
     clubs: Clubs
+    marketInfo?: MarketInfo
     matches: Matches
     adjustment: Adjustment
     addPlayer: (keyPosition: keyof Team, player: Player) => void
@@ -32,7 +42,7 @@ export const useTeamStateManager = (): TeamStateManager => {
     const [adjustment, setAdjustment] = useState<Adjustment>({} as Adjustment)
     const [matches, setMatches] = useState<Matches>({})
     const [orderedPlayers, setOrderedPlayers] = useState<Player[]>([])
-    const { clubs, players, matchups, fetchData } = useFetchCartola()
+    const { clubs, players, matchups, marketInfo, fetchData } = useFetchCartola()
     const { fetchPlayerData } = useGetPlayerData()
 
     const addPlayer = (keyPosition: keyof Team, player: Player) => {
@@ -112,6 +122,7 @@ export const useTeamStateManager = (): TeamStateManager => {
         clubs,
         players: orderedPlayers,
         matches,
+        marketInfo,
         formation,
         adjustment,
         addPlayer,

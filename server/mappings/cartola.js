@@ -14,3 +14,7 @@ export const statusIdMap = {
     6: 'noStatus',
     7: 'probable',
 }
+
+export const marketStatusMap = {
+    2: 'closed',
+}

@@ -17,3 +17,8 @@ export interface Matchup {
 export interface Matches {
     [key: number]: JSX.Element
 }
+
+export interface MarketInfo {
+    status: 'closed' | 'open'
+    round: number
+}

@@ -8,6 +8,8 @@ export interface Player {
     status: Status
     name: string
     price: number
+    mean?: number
+    lastPoint?: number
     priceVariation?: number
     photo: string
 }

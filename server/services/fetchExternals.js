@@ -15,6 +15,11 @@ export const fetchCartolaMarket = async () => {
     return await fetchFromURL(URL)
 }
 
+export const fetchCartolaMarketInfo = async () => {
+    const URL = 'https://api.cartola.globo.com/mercado/status'
+    return await fetchFromURL(URL)
+}
+
 export const fetchCartolaClubs = async () => {
     const URL = 'https://api.cartola.globo.com/clubes'
     return await fetchFromURL(URL)
