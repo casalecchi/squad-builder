@@ -4,7 +4,7 @@ import {
     getClubs,
     getMatches,
     getPlayerData,
-} from '../controllers/playerController.js'
+} from '../controllers/dataController.js'
 
 const apiRouter = Router()
 

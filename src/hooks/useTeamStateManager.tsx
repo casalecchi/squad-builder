@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Adjustment, Clubs, Formation, Matches, Player, Team } from '../models'
 import { fourThreeThree } from '../constants'
 import useFetchCartola from './useFetchCartola'
-import { Avatar, Stack, Typography } from '@mui/material'
+import Match from '../components/match'
 
 export interface TeamStateManager {
     team: Team
@@ -58,18 +58,13 @@ export const useTeamStateManager = (): TeamStateManager => {
     }
 
     useEffect(() => {
-        // TO DO - refactor this, try to move this code to another place or create function
         const newMatches = {} as Matches
-        matchups.forEach((matchup) => {
+        matchups?.forEach((matchup) => {
             const homeId = matchup.homeClubId
             const awayId = matchup.awayClubId
-            const element = (
-                <Stack alignItems={'center'} direction={'row'} spacing={1}>
-                    <Avatar src={clubs[homeId].photo} variant={'square'} />
-                    <Typography>{'X'}</Typography>
-                    <Avatar src={clubs[awayId].photo} variant={'square'} />
-                </Stack>
-            )
+            const homePhoto = clubs[homeId]?.photo
+            const awayPhoto = clubs[awayId]?.photo
+            const element = <Match awayUrl={awayPhoto} homeUrl={homePhoto} />
             newMatches[homeId] = newMatches[awayId] = element
         })
         setMatches(newMatches)

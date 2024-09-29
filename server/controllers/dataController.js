@@ -4,7 +4,7 @@ import {
     fetchCartolaMatchups,
     fetchPlayerStats,
     queryPlayerId,
-} from '../services/index.js'
+} from '../services/fetchExternals.js'
 import { positionIdMap, statusIdMap } from '../mappings/cartola.js'
 
 export const getCartolaMarket = async (req, res) => {

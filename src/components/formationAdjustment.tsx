@@ -16,7 +16,7 @@ const FormationAdjustment: FC = () => {
     }
 
     useEffect(() => {
-        setOpen(adjustment.needAdjust)
+        setOpen(adjustment.needAdjust ?? false)
     }, [adjustment])
 
     return (
