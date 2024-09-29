@@ -19,13 +19,18 @@ export interface TeamStateManager {
 }
 
 export const useTeamStateManager = (): TeamStateManager => {
-    const [team, setTeam] = useState<Team>({
-        goalkeeper: [],
-        wingers: [],
-        defenders: [],
-        midfielders: [],
-        strikers: [],
-    })
+    const [team, setTeam] = useState<Team>(
+        JSON.parse(
+            localStorage.getItem('team') ??
+                JSON.stringify({
+                    goalkeeper: [],
+                    wingers: [],
+                    defenders: [],
+                    midfielders: [],
+                    strikers: [],
+                })
+        )
+    )
     const [formation, setFormation] = useState<Formation>(fourThreeThree)
     const [adjustment, setAdjustment] = useState<Adjustment>({} as Adjustment)
     const [matches, setMatches] = useState<Matches>({})
@@ -62,6 +67,10 @@ export const useTeamStateManager = (): TeamStateManager => {
     const resetAdjustment = () => {
         setAdjustment({} as Adjustment)
     }
+
+    useEffect(() => {
+        localStorage.setItem('team', JSON.stringify(team))
+    }, [team])
 
     useEffect(() => {
         const probable = players
