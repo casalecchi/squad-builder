@@ -1,5 +1,6 @@
 import {
     fetchCartolaClubs,
+    fetchCartolaLastPoints,
     fetchCartolaMarket,
     fetchCartolaMatchups,
     fetchPlayerStats,
@@ -45,6 +46,15 @@ export const getMatches = async (req, res) => {
         awayClubId: match.clube_visitante_id,
     }))
     res.json(matchups)
+}
+
+export const getLastPoints = async (req, res) => {
+    const data = await fetchCartolaLastPoints()
+    const points = {}
+    Object.keys(data.atletas).forEach((playerId) => {
+        points[playerId] = data.atletas[playerId].pontuacao
+    })
+    res.json(points)
 }
 
 export const getPlayerData = async (req, res) => {

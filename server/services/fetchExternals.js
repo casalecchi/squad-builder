@@ -25,6 +25,11 @@ export const fetchCartolaMatchups = async () => {
     return await fetchFromURL(URL)
 }
 
+export const fetchCartolaLastPoints = async () => {
+    const URL = 'https://api.cartola.globo.com/atletas/pontuados'
+    return await fetchFromURL(URL)
+}
+
 export const queryPlayerId = async (playerName, teamName) => {
     const name = prepareQueryString(playerName)
     const team = prepareQueryString(teamName)
