@@ -3,6 +3,7 @@ import { Adjustment, Clubs, Formation, Matches, Player, Team } from '../models'
 import { fourThreeThree } from '../constants'
 import useFetchCartola from './useFetchCartola'
 import Match from '../components/match'
+import useGetPlayerData from './useGetPlayerData'
 
 export interface TeamStateManager {
     team: Team
@@ -28,11 +29,16 @@ export const useTeamStateManager = (): TeamStateManager => {
     const [formation, setFormation] = useState<Formation>(fourThreeThree)
     const [adjustment, setAdjustment] = useState<Adjustment>({} as Adjustment)
     const [matches, setMatches] = useState<Matches>({})
+    const [orderedPlayers, setOrderedPlayers] = useState<Player[]>([])
     const { clubs, players, matchups, fetchData } = useFetchCartola()
+    const { fetchPlayerData } = useGetPlayerData()
 
     const addPlayer = (keyPosition: keyof Team, player: Player) => {
         const newTeam = { ...team }
         newTeam[keyPosition].push(player)
+        fetchPlayerData(player.clubId, player.name).then((statistics) =>
+            console.log(statistics?.rating)
+        )
         setTeam(newTeam)
     }
 
@@ -58,6 +64,16 @@ export const useTeamStateManager = (): TeamStateManager => {
     }
 
     useEffect(() => {
+        const probable = players
+            .filter((player) => player.status == 'probable')
+            .sort((a, b) => b.price - a.price)
+        const others = players
+            .filter((player) => player.status != 'probable')
+            .sort((a, b) => b.price - a.price)
+        setOrderedPlayers([...probable, ...others])
+    }, [players])
+
+    useEffect(() => {
         const newMatches = {} as Matches
         matchups?.forEach((matchup) => {
             const homeId = matchup.homeClubId
@@ -77,7 +93,7 @@ export const useTeamStateManager = (): TeamStateManager => {
     return {
         team,
         clubs,
-        players,
+        players: orderedPlayers,
         matches,
         formation,
         adjustment,

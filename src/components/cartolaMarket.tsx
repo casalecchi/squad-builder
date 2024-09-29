@@ -43,7 +43,6 @@ const CartolaMarket: FC = () => {
             <List sx={{ overflowY: 'scroll' }}>
                 {(players ?? [])
                     .filter((p) => p.position == teamPositionMap[positionToShow])
-                    .sort((a, b) => b.price - a.price)
                     .map((player) => {
                         const isOnTeam = team[positionToShow].find((p) => p.id == player.id)
 

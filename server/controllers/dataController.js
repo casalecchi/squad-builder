@@ -60,5 +60,5 @@ export const getPlayerData = async (req, res) => {
     const data = await fetchPlayerStats(playerId)
     if (!data) return res.status(404).json({ error: 'Data for selected player not found' })
 
-    return res.json(data)
+    return res.json(data.statistics)
 }
