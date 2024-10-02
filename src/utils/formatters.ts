@@ -4,3 +4,7 @@ export const formatPlayerName = (name: string | undefined) => {
     const needToShrink = name.length > 12 && splittedName.length > 1
     return needToShrink ? `${splittedName[0][0]}. ${splittedName[1]}` : name
 }
+
+export const formatNumber = (value?: number, decimalPlaces = 2) => {
+    return value?.toFixed(decimalPlaces) ?? '-'
+}

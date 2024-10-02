@@ -18,6 +18,7 @@ import { teamPositionMap } from '../constants'
 import { useTranslation } from 'react-i18next'
 import { useDataContext } from '../contexts/DataContext'
 import MarketDialog from './ui/marketDialog'
+import { formatNumber } from '../utils'
 
 const CartolaMarket: FC = () => {
     const { t } = useTranslation()
@@ -89,9 +90,18 @@ const CartolaMarket: FC = () => {
                                 <ListItemIcon sx={{ flex: 1 }}>
                                     <StatusIcon status={player.status} />
                                 </ListItemIcon>
-                                <ListItemText primary={`C$${player.price}`} sx={{ flex: 1 }} />
-                                <ListItemText primary={player.lastPoint ?? 0} sx={{ flex: 1 }} />
-                                <ListItemText primary={player.mean} sx={{ flex: 1 }} />
+                                <ListItemText
+                                    primary={`C$${formatNumber(player.price)}`}
+                                    sx={{ flex: 1 }}
+                                />
+                                <ListItemText
+                                    primary={formatNumber(player.lastPoint ?? 0)}
+                                    sx={{ flex: 1 }}
+                                />
+                                <ListItemText
+                                    primary={formatNumber(player.mean)}
+                                    sx={{ flex: 1 }}
+                                />
                                 <ListItemAvatar sx={{ flex: 1, minWidth: '1rem', marginRight: 1 }}>
                                     {matches[player.clubId]}
                                 </ListItemAvatar>

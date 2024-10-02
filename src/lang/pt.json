@@ -11,7 +11,11 @@
             "four": "Quatro Jogadores Defensivos",
             "five": "Cinco Jogadores Defensivos"
         },
-        "lineup": "Meu Time"
+        "lineup": "Meu Time",
+        "teamValue": "Valor do Time"
+    },
+    "common": {
+        "money": "C$"
     },
     "footer": {
         "rights": "Todos os direitos reservados."
@@ -23,7 +27,11 @@
         "pitch": "Campo de futebol"
     },
     "market": {
-        "title": "Mercado"
+        "title": "Mercado",
+        "status": {
+            "open": "Aberto",
+            "closed": "Fechado"
+        }
     },
     "position": {
         "abbreviations": {

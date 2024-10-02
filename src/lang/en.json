@@ -11,7 +11,11 @@
             "four": "Four Defense Players",
             "five": "Five Defense Players"
         },
-        "lineup": "My Lineup"
+        "lineup": "My Lineup",
+        "teamValue": "Team Value"
+    },
+    "common": {
+        "money": "C$"
     },
     "footer": {
         "rights": "All rights reserved."
@@ -23,7 +27,11 @@
         "pitch": "Soccer pitch"
     },
     "market": {
-        "title": "Market"
+        "title": "Market",
+        "status": {
+            "open": "Open",
+            "closed": "Closed"
+        }
     },
     "position": {
         "abbreviations": {

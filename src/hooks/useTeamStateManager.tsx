@@ -16,6 +16,7 @@ import {
     getLocalFormation,
     getLocalStats,
     getLocalTeam,
+    getTeamValue,
     setLocalFormation,
     setLocalStats,
     setLocalTeam,
@@ -23,6 +24,7 @@ import {
 
 export interface TeamStateManager {
     team: Team
+    teamValue: number
     formation: Formation
     players: Player[]
     clubs: Clubs
@@ -37,6 +39,7 @@ export interface TeamStateManager {
 
 export const useTeamStateManager = (): TeamStateManager => {
     const [team, setTeam] = useState<Team>(getLocalTeam())
+    const [teamValue, setTeamValue] = useState<number>(getTeamValue(team))
     const [formation, setFormation] = useState<Formation>(getLocalFormation())
     const [stats, setStats] = useState<PlayerStats[]>(getLocalStats())
     const [adjustment, setAdjustment] = useState<Adjustment>({} as Adjustment)
@@ -84,6 +87,7 @@ export const useTeamStateManager = (): TeamStateManager => {
 
     useEffect(() => {
         setLocalTeam(team)
+        setTeamValue(getTeamValue(team))
     }, [team])
 
     useEffect(() => {
@@ -119,6 +123,7 @@ export const useTeamStateManager = (): TeamStateManager => {
 
     return {
         team,
+        teamValue,
         clubs,
         players: orderedPlayers,
         matches,

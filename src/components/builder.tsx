@@ -7,16 +7,17 @@ import Team from './team'
 import { useDataContext } from '../contexts/DataContext'
 import CartolaMarket from './cartolaMarket'
 import FormationAdjustment from './formationAdjustment'
+import { formatNumber } from '../utils'
 
 const Builder: FC = () => {
     const { t } = useTranslation()
     const { teamStateManager } = useDataContext()
-    const { formation, changeFormation } = teamStateManager
+    const { teamValue, formation, changeFormation } = teamStateManager
 
     return (
         <Stack alignItems={'center'}>
             <Typography mb={2} variant="h3">
-                {t('builder.lineup').toUpperCase()}
+                {`${t('builder.teamValue').toUpperCase()}: ${t('common.money')}${formatNumber(teamValue)}`}
             </Typography>
             <FormationSelector
                 changeFormation={changeFormation}
