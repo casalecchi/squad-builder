@@ -8,8 +8,9 @@ export interface Player {
     status: Status
     name: string
     price: number
-    mean?: number
+    average?: number
     lastPoint?: number
+    totalGames?: number
     priceVariation?: number
     photo: string
 }

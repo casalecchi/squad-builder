@@ -28,6 +28,12 @@
     },
     "market": {
         "title": "Market",
+        "columns": {
+            "status": "Status",
+            "price": "Price",
+            "lastPoint": "Last Points",
+            "average": "Average"
+        },
         "status": {
             "open": "Open",
             "closed": "Closed"

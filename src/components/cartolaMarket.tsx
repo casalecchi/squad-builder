@@ -48,11 +48,10 @@ const CartolaMarket: FC = () => {
                 <ListSubheader sx={{ backgroundColor: '#393939' }}>
                     <Stack direction={'row'}>
                         <Typography flex={1}></Typography>
-                        <Typography flex={1}></Typography>
-                        <Typography flex={1}>{'Status'}</Typography>
-                        <Typography flex={1}>{'Preço'}</Typography>
-                        <Typography flex={1}>{'Parcial'}</Typography>
-                        <Typography flex={1}>{'Média'}</Typography>
+                        <Typography flex={1}>{t('market.columns.status')}</Typography>
+                        <Typography flex={1}>{t('market.columns.price')}</Typography>
+                        <Typography flex={1}>{t('market.columns.lastPoint')}</Typography>
+                        <Typography flex={1}>{t('market.columns.average')}</Typography>
                         <Typography flex={1}></Typography>
                         <Typography flex={1}></Typography>
                     </Stack>
@@ -64,14 +63,6 @@ const CartolaMarket: FC = () => {
 
                         return (
                             <ListItem divider key={player.id} sx={{ display: 'flex' }}>
-                                <ListItemAvatar sx={{ minWidth: '2rem', marginRight: 1 }}>
-                                    <Avatar
-                                        alt={player.name}
-                                        src={clubs[player.clubId]?.photo}
-                                        sx={{ height: '2rem', width: '2rem' }}
-                                        variant={'square'}
-                                    />
-                                </ListItemAvatar>
                                 <ListItemAvatar
                                     sx={{ width: '4rem', height: '4rem', marginRight: 2 }}
                                 >
@@ -85,7 +76,7 @@ const CartolaMarket: FC = () => {
                                 <ListItemText
                                     primary={player.name}
                                     secondary={clubs[player.clubId]?.name}
-                                    sx={{ flex: 1 }}
+                                    sx={{ flex: 2 }}
                                 />
                                 <ListItemIcon sx={{ flex: 1 }}>
                                     <StatusIcon status={player.status} />
@@ -99,10 +90,11 @@ const CartolaMarket: FC = () => {
                                     sx={{ flex: 1 }}
                                 />
                                 <ListItemText
-                                    primary={formatNumber(player.mean)}
+                                    primary={formatNumber(player.average)}
                                     sx={{ flex: 1 }}
                                 />
-                                <ListItemAvatar sx={{ flex: 1, minWidth: '1rem', marginRight: 1 }}>
+                                <ListItemText primary={player.totalGames} sx={{ flex: 1 }} />
+                                <ListItemAvatar sx={{ flex: 2, minWidth: '1rem', marginRight: 1 }}>
                                     {matches[player.clubId]}
                                 </ListItemAvatar>
                                 <ListItemButton

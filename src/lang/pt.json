@@ -28,6 +28,12 @@
     },
     "market": {
         "title": "Mercado",
+        "columns": {
+            "status": "Status",
+            "price": "Preço",
+            "lastPoint": "Pts. na Últ. Rodada",
+            "average": "Média"
+        },
         "status": {
             "open": "Aberto",
             "closed": "Fechado"
