@@ -35,14 +35,19 @@ export const fetchCartolaLastPoints = async () => {
     return await fetchFromURL(URL)
 }
 
-export const queryPlayerId = async (playerName, teamName) => {
-    const name = prepareQueryString(playerName)
-    const team = prepareQueryString(teamName)
-    const searchString = prepareQueryString(`${name} ${team}`)
+export const queryPlayerId = async (playerName, teamName, index = -1) => {
+    const name = index > -1 ? playerName.split(' ')[index] : playerName
+    const nameString = prepareQueryString(name)
+    const teamString = prepareQueryString(teamName)
+    const searchString = prepareQueryString(`${nameString} ${teamString}`)
 
     const URL = `https://www.sofascore.com/api/v1/search/player-team-persons?q=${searchString}&page=0`
     try {
         const data = await fetchFromURL(URL)
+        if (data.results.length == 0) {
+            if (playerName.split(' ').length < 2) throw Error
+            return queryPlayerId(playerName, teamName, index + 1)
+        }
         return data.results[0].entity.id
     } catch {
         console.error(`Error on query: params ${searchString}`)

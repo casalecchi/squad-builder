@@ -1,6 +1,6 @@
 import {
     fetchCartolaClubs,
-    fetchCartolaLastPoints,
+    // fetchCartolaLastPoints,
     fetchCartolaMarket,
     fetchCartolaMarketInfo,
     fetchCartolaMatchups,
@@ -11,7 +11,7 @@ import { marketStatusMap, positionIdMap, statusIdMap } from '../mappings/cartola
 
 export const getCartolaMarket = async (req, res) => {
     const data = await fetchCartolaMarket()
-    const lastPoints = await fetchCartolaLastPoints()
+    // const lastPoints = await fetchCartolaLastPoints()
     const marketInfo = await fetchCartolaMarketInfo()
 
     const info = {
@@ -27,7 +27,7 @@ export const getCartolaMarket = async (req, res) => {
         name: atleta.apelido,
         price: atleta.preco_num,
         mean: atleta.media_num,
-        lastPoint: lastPoints.atletas[atleta.atleta_id]?.pontuacao,
+        lastPoint: atleta.pontos_num,
         photo: atleta.foto?.replace('FORMATO', '220x220') ?? '',
     }))
 

@@ -16,5 +16,6 @@ export const statusIdMap = {
 }
 
 export const marketStatusMap = {
+    1: 'open',
     2: 'closed',
 }
