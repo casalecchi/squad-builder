@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { useDataContext } from '../contexts/DataContext'
+import { useDataContext } from '../../contexts/DataContext'
 import { Close } from '@mui/icons-material'
 import { Dialog, DialogTitle, IconButton } from '@mui/material'
 import { useTranslation } from 'react-i18next'

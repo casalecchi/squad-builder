@@ -17,9 +17,9 @@ import {
     fourThreeThree,
     threeFiveTwo,
     threeFourThree,
-} from '../constants'
-import { Formation } from '../models'
-import { findFormation } from '../utils'
+} from '../../constants'
+import { Formation } from '../../models'
+import { findFormation } from '../../utils'
 
 interface FormationSelectorProps extends StackProps {
     formationSelected: Formation

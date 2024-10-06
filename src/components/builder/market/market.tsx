@@ -3,24 +3,22 @@ import {
     List,
     ListItem,
     ListItemAvatar,
-    Avatar,
     ListItemText,
     ListItemIcon,
     ListItemButton,
     ListSubheader,
-    Typography,
-    Stack,
+    Avatar,
 } from '@mui/material'
-import colors from '../styles/colors.module.scss'
-import StatusIcon from './ui/statusIcon'
-import { Player } from '../models'
-import { teamPositionMap } from '../constants'
+import colors from '../../../styles/colors.module.scss'
+import StatusIcon from '../../ui/statusIcon'
+import { Player } from '../../../models'
+import { teamPositionMap } from '../../../constants'
 import { useTranslation } from 'react-i18next'
-import { useDataContext } from '../contexts/DataContext'
-import MarketDialog from './ui/marketDialog'
-import { formatNumber } from '../utils'
+import { useDataContext } from '../../../contexts/DataContext'
+import MarketDialog from '../../ui/marketDialog'
+import { formatNumber } from '../../../utils'
 
-const CartolaMarket: FC = () => {
+const Market: FC = () => {
     const { t } = useTranslation()
     const { teamStateManager, positionToShow, closeMarket } = useDataContext()
     const { team, formation, players, clubs, matches, addPlayer, removePlayer } = teamStateManager
@@ -46,15 +44,19 @@ const CartolaMarket: FC = () => {
         <MarketDialog>
             <List subheader={<li />} sx={{ overflowY: 'scroll' }}>
                 <ListSubheader sx={{ backgroundColor: '#393939' }}>
-                    <Stack direction={'row'}>
-                        <Typography flex={1}></Typography>
-                        <Typography flex={1}>{t('market.columns.status')}</Typography>
-                        <Typography flex={1}>{t('market.columns.price')}</Typography>
-                        <Typography flex={1}>{t('market.columns.lastPoint')}</Typography>
-                        <Typography flex={1}>{t('market.columns.average')}</Typography>
-                        <Typography flex={1}></Typography>
-                        <Typography flex={1}></Typography>
-                    </Stack>
+                    <ListItem>
+                        <ListItemText
+                            sx={{ width: '4rem', border: '1px solid red' }}
+                        ></ListItemText>
+                        <ListItemText sx={{ flex: 1 }}>{t('market.columns.status')}</ListItemText>
+                        <ListItemText sx={{ flex: 1 }}>{t('market.columns.price')}</ListItemText>
+                        <ListItemText sx={{ flex: 1 }}>
+                            {t('market.columns.lastPoint')}
+                        </ListItemText>
+                        <ListItemText sx={{ flex: 1 }}>{t('market.columns.average')}</ListItemText>
+                        <ListItemText sx={{ flex: 1 }}></ListItemText>
+                        <ListItemText sx={{ flex: 1 }}></ListItemText>
+                    </ListItem>
                 </ListSubheader>
                 {(players ?? [])
                     .filter((p) => p.position == teamPositionMap[positionToShow])
@@ -64,7 +66,11 @@ const CartolaMarket: FC = () => {
                         return (
                             <ListItem divider key={player.id} sx={{ display: 'flex' }}>
                                 <ListItemAvatar
-                                    sx={{ width: '4rem', height: '4rem', marginRight: 2 }}
+                                    sx={{
+                                        width: '4rem',
+                                        height: '4rem',
+                                        marginRight: 2,
+                                    }}
                                 >
                                     <Avatar
                                         alt={player.name}
@@ -118,4 +124,4 @@ const CartolaMarket: FC = () => {
     )
 }
 
-export default CartolaMarket
+export default Market

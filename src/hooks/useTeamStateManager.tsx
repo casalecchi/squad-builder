@@ -10,7 +10,7 @@ import {
     Team,
 } from '../models'
 import useFetchCartola from './useFetchCartola'
-import Match from '../components/match'
+import { Match } from '../components/builder/market/marketItems'
 import useGetPlayerData from './useGetPlayerData'
 import {
     getLocalFormation,

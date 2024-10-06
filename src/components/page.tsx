@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Stack, useMediaQuery } from '@mui/material'
 import Header from './header'
 import Footer from './footer'
-import Builder from './builder'
+import Builder from './builder/builder'
 import ContentContainer from './ui/contentContainer'
 
 const Page: FC = () => {

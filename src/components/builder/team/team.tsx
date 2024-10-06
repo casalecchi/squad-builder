@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import PlayerButton from './playerButton'
-import { useDataContext } from '../contexts/DataContext'
+import { useDataContext } from '../../../contexts/DataContext'
 
 const Team: FC = () => {
     const { teamStateManager } = useDataContext()

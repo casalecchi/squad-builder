@@ -1,13 +1,13 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
-import pitch from '../assets/campinho.svg'
+import pitch from '../../assets/campinho.svg'
 import { useTranslation } from 'react-i18next'
 import FormationSelector from './formationSelector'
-import Team from './team'
-import { useDataContext } from '../contexts/DataContext'
-import CartolaMarket from './cartolaMarket'
+import Team from './team/team'
+import { useDataContext } from '../../contexts/DataContext'
 import FormationAdjustment from './formationAdjustment'
-import { formatNumber } from '../utils'
+import { formatNumber } from '../../utils'
+import Market from './market/market'
 
 const Builder: FC = () => {
     const { t } = useTranslation()
@@ -28,7 +28,7 @@ const Builder: FC = () => {
                 <img alt={t('images.pitch')} src={pitch} width={'100%'} />
                 <Team />
             </Box>
-            <CartolaMarket />
+            <Market />
             <FormationAdjustment />
         </Stack>
     )

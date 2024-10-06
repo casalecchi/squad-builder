@@ -1,12 +1,12 @@
 import { Add, Close } from '@mui/icons-material'
 import { Stack, IconButton, Typography, Avatar, Box, IconButtonProps } from '@mui/material'
 import { FC, useState } from 'react'
-import colors from '../styles/colors.module.scss'
-import { Player, PlayerArea, Team } from '../models'
+import colors from '../../../styles/colors.module.scss'
+import { Player, PlayerArea, Team } from '../../../models'
 import { useTranslation } from 'react-i18next'
-import { TranslationKey } from '../@types/i18n'
-import { formatPlayerName } from '../utils/formatters'
-import { useDataContext } from '../contexts/DataContext'
+import { TranslationKey } from '../../../@types/i18n'
+import { formatPlayerName } from '../../../utils/formatters'
+import { useDataContext } from '../../../contexts/DataContext'
 
 interface PlayerProps extends IconButtonProps {
     player?: Player
