@@ -1,4 +1,4 @@
-import { Avatar, Stack, Typography } from '@mui/material'
+import { Avatar, ListItemAvatar, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 
 interface MarketAvatarProps {
@@ -7,7 +7,11 @@ interface MarketAvatarProps {
 }
 
 export const MarketAvatar: FC<MarketAvatarProps> = ({ alt, src }) => {
-    return <Avatar alt={alt} src={src} sx={{ height: '100%', width: '100%' }} variant="square" />
+    return (
+        <ListItemAvatar sx={{ height: '4rem', width: '4rem' }}>
+            <Avatar alt={alt} src={src} sx={{ height: '100%', width: '100%' }} variant="square" />
+        </ListItemAvatar>
+    )
 }
 
 interface MatchProps {
