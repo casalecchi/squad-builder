@@ -14,11 +14,13 @@ export const getCartolaMarket = async (req, res) => {
     // const lastPoints = await fetchCartolaLastPoints()
     const marketInfo = await fetchCartolaMarketInfo()
 
+    if (!marketInfo) return res.status(404).json({ error: 'Cannot GET market info' })
     const info = {
         round: marketInfo.rodada_atual,
         status: marketStatusMap[marketInfo.status_mercado],
     }
 
+    if (!data.atletas) return res.status(404).json({ error: 'Cannot GET atletas' })
     const players = data.atletas.map((atleta) => ({
         id: atleta.atleta_id,
         clubId: atleta.clube_id,
