@@ -1,29 +1,13 @@
-$primary: #424242;
-$secondary: #cccccc;
-$green: #37ff8b;
-$purple: #b14aed;
-$white: #fff;
-$lightGreen: #39ff14;
-$sand: #e2e2b6;
-$lightBlue: #6eacda;
-$blue: #03346e;
-$darkBlue: #021526;
-$snow: #f5f5f5;
-$cyan: #48cfcb;
-$darkCyan: #229799;
+$primary: #91f5ad;
+$secondary: #2e5eaa;
+$pure-black: #000000;
+$card-dark-background: #1e1e1e;
+$player-green: #3cee18;
 
 :export {
     primary: $primary;
     secondary: $secondary;
-    green: $green;
-    purple: $purple;
-    white: $white;
-    lightGreen: $lightGreen;
-    sand: $sand;
-    lightBlue: $lightBlue;
-    blue: $blue;
-    darkBlue: $darkBlue;
-    snow: $snow;
-    cyan: $cyan;
-    darkCyan: $darkCyan;
+    pureBlack: $pure-black;
+    cardDarkBackground: $card-dark-background;
+    playerGreen: $player-green;
 }
