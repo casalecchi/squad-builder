@@ -16,14 +16,7 @@ const LanguageSwitch: FC<SwitchProps> = (switchProps) => {
         changeLanguage(localStorage.getItem('lang') ?? language)
     }, [])
 
-    return (
-        <Switch
-            checked={language == 'pt'}
-            color="warning"
-            onChange={handleChangeLanguage}
-            {...switchProps}
-        />
-    )
+    return <Switch checked={language == 'pt'} onChange={handleChangeLanguage} {...switchProps} />
 }
 
 export default LanguageSwitch

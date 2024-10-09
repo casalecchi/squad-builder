@@ -19,7 +19,7 @@ const StatusIcon: FC<StatusIconProps> = ({ status }) => {
         case 'noStatus':
             return <></>
         case 'probable':
-            return <Check sx={{ color: colors.lightGreen }} />
+            return <Check sx={{ color: colors.playerGreen }} />
     }
 }
 

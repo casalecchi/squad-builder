@@ -44,7 +44,7 @@ const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...pro
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                     sx={{
-                        backgroundColor: colors.lightGreen,
+                        backgroundColor: colors.playerGreen,
                         boxShadow: '3px 3px 3px green',
                         padding: 0,
                         height: buttonSize,
