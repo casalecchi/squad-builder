@@ -34,6 +34,7 @@
             "lastPoint": "Last Points",
             "average": "Average"
         },
+        "currentRound": "Current Round",
         "status": {
             "open": "Open",
             "closed": "Closed"
