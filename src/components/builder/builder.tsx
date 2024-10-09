@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { FC } from 'react'
 import pitch from '../../assets/campinho.svg'
 import { useTranslation } from 'react-i18next'
@@ -8,6 +8,7 @@ import { useDataContext } from '../../contexts/DataContext'
 import FormationAdjustment from './formationAdjustment'
 import { formatNumber } from '../../utils'
 import Market from './market/market'
+import { CustomCard } from '../ui/customCard'
 
 const Builder: FC = () => {
     const { t } = useTranslation()
@@ -15,7 +16,7 @@ const Builder: FC = () => {
     const { teamValue, formation, changeFormation } = teamStateManager
 
     return (
-        <Stack alignItems={'center'}>
+        <CustomCard alignItems={'center'}>
             <Typography mb={2} variant="h3">
                 {`${t('builder.teamValue').toUpperCase()}: ${t('common.money')}${formatNumber(teamValue)}`}
             </Typography>
@@ -30,7 +31,7 @@ const Builder: FC = () => {
             </Box>
             <Market />
             <FormationAdjustment />
-        </Stack>
+        </CustomCard>
     )
 }
 
