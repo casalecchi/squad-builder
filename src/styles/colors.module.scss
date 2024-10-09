@@ -3,6 +3,7 @@ $secondary: #2e5eaa;
 $pure-black: #000000;
 $card-dark-background: #1e1e1e;
 $player-green: #3cee18;
+$player-red: #fe5f55;
 
 :export {
     primary: $primary;
@@ -10,4 +11,5 @@ $player-green: #3cee18;
     pureBlack: $pure-black;
     cardDarkBackground: $card-dark-background;
     playerGreen: $player-green;
+    playerRed: $player-red;
 }
