@@ -10,9 +10,13 @@ const theme = createTheme({
         secondary: {
             main: colors.secondary,
         },
-        text: {
-            primary: colors.white,
+        background: {
+            default: colors.pureBlack,
+            paper: colors.cardDarkBackground,
         },
+    },
+    typography: {
+        fontFamily: 'Oswald, Roboto',
     },
 })
 
