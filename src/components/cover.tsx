@@ -1,12 +1,13 @@
 import { FC } from 'react'
 import colors from '../styles/colors.module.scss'
 import { Box, Button, Stack, Typography, useMediaQuery } from '@mui/material'
+import background from '../assets/background.svg'
 
 const Cover: FC = () => {
     const mobile = useMediaQuery('(max-width:600px)', { noSsr: true })
 
-    const scrollToBuilder = () => {
-        const element = document.getElementById('builder')
+    const scrollToDetail = () => {
+        const element = document.getElementById('howItWorks')
         element?.scrollIntoView({ behavior: 'smooth' })
     }
 
@@ -18,7 +19,12 @@ const Cover: FC = () => {
             justifyContent={'space-evenly'}
             px={2}
             py={3}
-            sx={{ background: colors.pageDarkBackground }}
+            sx={{
+                backgroundImage: `url(${background})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+            }}
         >
             <Stack alignItems={'baseline'} direction={'row'}>
                 <Stack>
@@ -59,7 +65,7 @@ const Cover: FC = () => {
                             {'Try it'}
                         </Button>
                         <Button
-                            onClick={scrollToBuilder}
+                            onClick={scrollToDetail}
                             variant={'outlined'}
                             sx={{
                                 color: colors.pureBlack,

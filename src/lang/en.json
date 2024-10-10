@@ -23,6 +23,12 @@
     "formation": {
         "title": "Change Formation"
     },
+    "howWorks": {
+        "step1": "Choose your favorite players",
+        "step2": "Analyze their data and statistics",
+        "step3": "Compare with the optimized model",
+        "step4": "Build your team"
+    },
     "images": {
         "pitch": "Soccer pitch"
     },

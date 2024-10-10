@@ -1,16 +1,13 @@
 import { FC } from 'react'
 import { Stack } from '@mui/material'
-import Builder from './builder/builder'
-import ContentContainer from './ui/contentContainer'
 import Cover from './cover'
+import HowItWorks from './howItWorks'
 
 const Page: FC = () => {
     return (
         <Stack display={'flex'}>
             <Cover />
-            <ContentContainer>
-                <Builder />
-            </ContentContainer>
+            <HowItWorks />
         </Stack>
     )
 }

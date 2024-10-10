@@ -23,6 +23,12 @@
     "formation": {
         "title": "Troca de Formação"
     },
+    "howWorks": {
+        "step1": "Escolha seus jogadores",
+        "step2": "Obtenha dados e estatísticas do seu time",
+        "step3": "Compare com o modelo otimizado",
+        "step4": "Construa seu time"
+    },
     "images": {
         "pitch": "Campo de futebol"
     },
