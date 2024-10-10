@@ -63,7 +63,7 @@ const Cover: FC = () => {
                             variant={'outlined'}
                             sx={{
                                 color: colors.pureBlack,
-                                background: colors.primary,
+                                background: colors.primaryDark,
                                 borderWidth: 3,
                                 borderRadius: 10,
                                 textTransform: 'none',

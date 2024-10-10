@@ -1,14 +1,14 @@
 import { createTheme } from '@mui/material'
 import colors from '../styles/colors.module.scss'
 
-const theme = createTheme({
+export const darkTheme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
-            main: colors.primary,
+            main: colors.primaryDark,
         },
         secondary: {
-            main: colors.secondary,
+            main: colors.secondaryDark,
         },
         background: {
             default: colors.pureBlack,
@@ -20,4 +20,17 @@ const theme = createTheme({
     },
 })
 
-export default theme
+export const lightTheme = createTheme({
+    palette: {
+        mode: 'light',
+        primary: {
+            main: colors.primaryLight,
+        },
+        secondary: {
+            main: colors.secondaryLight,
+        },
+    },
+    typography: {
+        fontFamily: 'Oswald, Roboto',
+    },
+})
