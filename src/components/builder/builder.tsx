@@ -16,7 +16,7 @@ const Builder: FC = () => {
     const { teamValue, formation, changeFormation } = teamStateManager
 
     return (
-        <CustomCard alignItems={'center'}>
+        <CustomCard alignItems={'center'} id={'builder'}>
             <Typography mb={2} variant="h3">
                 {`${t('builder.teamValue').toUpperCase()}: ${t('common.money')}${formatNumber(teamValue)}`}
             </Typography>

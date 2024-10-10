@@ -5,6 +5,11 @@ import { Box, Button, Stack, Typography, useMediaQuery } from '@mui/material'
 const Cover: FC = () => {
     const mobile = useMediaQuery('(max-width:600px)', { noSsr: true })
 
+    const scrollToBuilder = () => {
+        const element = document.getElementById('builder')
+        element?.scrollIntoView({ behavior: 'smooth' })
+    }
+
     return (
         <Box
             alignItems={mobile ? 'end' : 'center'}
@@ -54,6 +59,7 @@ const Cover: FC = () => {
                             {'Try it'}
                         </Button>
                         <Button
+                            onClick={scrollToBuilder}
                             variant={'outlined'}
                             sx={{
                                 color: colors.pureBlack,
