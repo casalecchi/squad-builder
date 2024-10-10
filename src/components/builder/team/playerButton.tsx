@@ -66,7 +66,7 @@ const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...pro
                                             position: 'absolute',
                                             height: '100%',
                                             width: '100%',
-                                            backgroundColor: 'red',
+                                            backgroundColor: colors.playerRed,
                                             opacity: 0.3,
                                             zIndex: 1,
                                         }}

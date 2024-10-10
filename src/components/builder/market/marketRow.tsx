@@ -43,7 +43,7 @@ export const SiteRow: FC<Row> = ({ player, isOnTeam, clubName, match, handleBuy,
             <ListItemButton
                 onClick={() => (isOnTeam ? handleSell(player) : handleBuy(player))}
                 sx={{
-                    backgroundColor: isOnTeam ? 'red' : colors.playerGreen,
+                    backgroundColor: isOnTeam ? colors.playerRed : colors.playerGreen,
                     borderRadius: 8,
                     justifyContent: 'center',
                     flex: 1,
@@ -85,7 +85,7 @@ export const MobileRow: FC<Row> = ({
                 <ListItemButton
                     onClick={() => (isOnTeam ? handleSell(player) : handleBuy(player))}
                     sx={{
-                        backgroundColor: isOnTeam ? 'red' : colors.playerGreen,
+                        backgroundColor: isOnTeam ? colors.playerRed : colors.playerGreen,
                         borderRadius: 8,
                         justifyContent: 'center',
                         flex: 1,
