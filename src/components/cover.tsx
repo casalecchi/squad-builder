@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import colors from '../styles/colors.module.scss'
 import { Box, Button, Stack, Typography, useMediaQuery } from '@mui/material'
-import background from '../assets/background.svg'
 import { Link } from 'react-router-dom'
 
 const Cover: FC = () => {
@@ -21,7 +20,7 @@ const Cover: FC = () => {
             px={2}
             py={3}
             sx={{
-                backgroundImage: `url(${background})`,
+                backgroundImage: 'url(../../public/background.svg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',

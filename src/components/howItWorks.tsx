@@ -1,7 +1,6 @@
 import { Box, Stack, Typography, useMediaQuery } from '@mui/material'
 import { FC } from 'react'
 import time from '../assets/time-exemplo.png'
-import background from '../assets/old-background.svg'
 import { InstructionCard } from './ui/instructionCard'
 import { t } from 'i18next'
 
@@ -15,7 +14,7 @@ const HowItWorks: FC = () => {
             id={'howItWorks'}
             justifyContent={'center'}
             sx={{
-                backgroundImage: `url(${background})`,
+                backgroundImage: 'url(../../public/old-background.svg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
