@@ -9,11 +9,10 @@ const Cover: FC = () => {
         <Box
             alignItems={mobile ? 'end' : 'center'}
             display={'flex'}
-            height={'100vh'}
+            height={'100dvh'}
             justifyContent={'space-evenly'}
-            pb={mobile ? 'calc(2rem + env(safe-area-inset-bottom))' : 3}
-            pt={3}
             px={2}
+            py={3}
             sx={{ background: colors.pageDarkBackground }}
         >
             <Stack alignItems={'baseline'} direction={'row'}>
