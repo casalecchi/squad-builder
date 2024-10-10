@@ -2,6 +2,7 @@ import { FC } from 'react'
 import colors from '../styles/colors.module.scss'
 import { Box, Button, Stack, Typography, useMediaQuery } from '@mui/material'
 import background from '../assets/background.svg'
+import { Link } from 'react-router-dom'
 
 const Cover: FC = () => {
     const mobile = useMediaQuery('(max-width:600px)', { noSsr: true })
@@ -53,6 +54,8 @@ const Cover: FC = () => {
                     >
                         <Button
                             color={'primary'}
+                            component={Link}
+                            to={'/app'}
                             variant={'outlined'}
                             sx={{
                                 borderWidth: 3,

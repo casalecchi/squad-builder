@@ -16,7 +16,7 @@ const Builder: FC = () => {
     const { teamValue, formation, changeFormation } = teamStateManager
 
     return (
-        <CustomCard alignItems={'center'} id={'builder'}>
+        <CustomCard alignItems={'center'} fixedSize={'100vh'}>
             <Typography mb={2} variant="h3">
                 {`${t('builder.teamValue').toUpperCase()}: ${t('common.money')}${formatNumber(teamValue)}`}
             </Typography>
@@ -25,8 +25,16 @@ const Builder: FC = () => {
                 formationSelected={formation}
                 mb={2}
             />
-            <Box position={'relative'} sx={{ xs: { width: '100%' }, md: { height: '85vh' } }}>
-                <img alt={t('images.pitch')} src={pitch} width={'100%'} />
+            <Box position={'relative'}>
+                <img
+                    alt={t('images.pitch')}
+                    src={pitch}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                    }}
+                />
                 <Team />
             </Box>
             <Market />
