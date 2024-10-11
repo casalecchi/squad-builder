@@ -20,7 +20,7 @@ const Cover: FC = () => {
             px={2}
             py={3}
             sx={{
-                backgroundImage: 'url(../../public/background.svg)',
+                backgroundImage: 'url(/background.svg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',

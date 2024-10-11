@@ -14,7 +14,7 @@ const HowItWorks: FC = () => {
             id={'howItWorks'}
             justifyContent={'center'}
             sx={{
-                backgroundImage: 'url(../../public/old-background.svg)',
+                backgroundImage: 'url(/old-background.svg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
