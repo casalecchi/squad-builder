@@ -9,14 +9,14 @@
             }
         }
     ],
-    "routes": [
+    "rewrites": [
         {
-            "src": "/api/(.*)",
-            "dest": "/server/server.js"
+            "source": "/api/(.*)",
+            "destination": "/api/$1"
         },
         {
-            "src": "/(.*)",
-            "dest": "/dist/index.html"
+            "source": "/(.*)",
+            "destination": "/index.html"
         }
     ]
 }
