@@ -12,7 +12,10 @@ interface StatCardProps {
 
 export const StatCard: FC<StatCardProps> = ({ attribute }) => {
     const { teamStateManager } = useDataContext()
-    const values = teamStateManager.stats.map((stat) => stat[attribute] as number)
+    const values =
+        teamStateManager.stats.length == 0
+            ? [0]
+            : teamStateManager.stats.map((stat) => stat[attribute] as number)
     console.log(values)
     // TODO - refactor
     const sum = values.reduce((acc, currentValue) => acc + currentValue, 0)
