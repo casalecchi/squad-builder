@@ -3,7 +3,6 @@ import { FC } from 'react'
 import pitch from '../../assets/campinho.svg'
 import FormationSelector from './formationSelector'
 import Team from './team/team'
-import { useDataContext } from '../../contexts/DataContext'
 import FormationAdjustment from './formationAdjustment'
 import Market from './market/market'
 import { StatCard } from './stats/statCard'
@@ -30,8 +29,6 @@ const BoxTeam: FC = () => {
 
 const Builder: FC = () => {
     const mobile = useMediaQuery('(max-width:600px)', { noSsr: true })
-    const { teamStateManager } = useDataContext()
-    const { formation, changeFormation } = teamStateManager
 
     return (
         <Stack
@@ -48,10 +45,7 @@ const Builder: FC = () => {
                         spacing={2}
                         width={mobile ? '100%' : '90%'}
                     >
-                        <FormationSelector
-                            changeFormation={changeFormation}
-                            formationSelected={formation}
-                        />
+                        <FormationSelector />
                         <BoxTeam />
                         <Market />
                         <FormationAdjustment />

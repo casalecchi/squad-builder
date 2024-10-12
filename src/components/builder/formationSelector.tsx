@@ -4,7 +4,6 @@ import {
     Select,
     ListSubheader,
     MenuItem,
-    StackProps,
     SelectChangeEvent,
 } from '@mui/material'
 import { FC } from 'react'
@@ -18,20 +17,13 @@ import {
     threeFiveTwo,
     threeFourThree,
 } from '../../constants'
-import { Formation } from '../../models'
 import { findFormation } from '../../utils'
+import { useDataContext } from '../../contexts/DataContext'
 
-interface FormationSelectorProps extends StackProps {
-    formationSelected: Formation
-    changeFormation: (newFormation: Formation) => void
-}
-
-const FormationSelector: FC<FormationSelectorProps> = ({
-    formationSelected,
-    changeFormation,
-    ...props
-}) => {
+const FormationSelector: FC = () => {
     const { t } = useTranslation()
+    const { teamStateManager } = useDataContext()
+    const { formation, changeFormation } = teamStateManager
 
     const handleFormationChange = (event: SelectChangeEvent) => {
         const newId = event.target.value
@@ -40,9 +32,9 @@ const FormationSelector: FC<FormationSelectorProps> = ({
     }
 
     return (
-        <Stack alignItems={'center'} direction={'row'} gap={2} {...props}>
+        <Stack alignItems={'center'} direction={'row'} gap={2}>
             <Typography>{t('builder.formationGroups.title').toUpperCase()}</Typography>
-            <Select onChange={handleFormationChange} value={formationSelected.id}>
+            <Select onChange={handleFormationChange} value={formation.id}>
                 <ListSubheader>{t('builder.formationGroups.three')}</ListSubheader>
                 <MenuItem value={threeFourThree.id}>3-4-3</MenuItem>
                 <MenuItem value={threeFiveTwo.id}>3-5-2</MenuItem>
