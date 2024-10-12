@@ -23,8 +23,7 @@ export const useTeam = (): TeamState => {
         fetchPlayerData(player.clubId, player.name).then((statistics) => {
             if (!statistics) return
             const playerStats = { ...statistics, cartolaId: player.id } as PlayerStats
-            const newStats = [...stats, playerStats]
-            setStats(newStats)
+            setStats((prevStats) => [...prevStats, playerStats])
         })
         setTeam(newTeam)
     }
