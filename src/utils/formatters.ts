@@ -6,5 +6,6 @@ export const formatPlayerName = (name: string | undefined) => {
 }
 
 export const formatNumber = (value?: number, decimalPlaces = 2) => {
-    return value?.toFixed(decimalPlaces) ?? '-'
+    // TODO - refactor this
+    return parseFloat(value?.toFixed(decimalPlaces) ?? '0')
 }

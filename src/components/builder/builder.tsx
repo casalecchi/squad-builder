@@ -55,34 +55,16 @@ const Builder: FC = () => {
             </Stack>
             <Stack>
                 <Stack spacing={2}>
-                    <StatCard />
-                    <StatCard />
+                    <StatCard attribute={'accurateLongBallsPercentage'} />
+                    <StatCard attribute={'totalDuelsWonPercentage'} />
+                    <StatCard attribute={'tacklesWonPercentage'} />
+                    <StatCard attribute={'goalConversionPercentage'} />
+                    <StatCard attribute={'successfulDribblesPercentage'} />
+                    <StatCard attribute={'expectedGoals'} />
+                    <StatCard attribute={'expectedAssists'} />
                 </Stack>
             </Stack>
-            <Stack>
-                <Stack spacing={2}>
-                    <StatCard />
-                    <StatCard />
-                </Stack>
-            </Stack>
-            <Stack>
-                <Stack spacing={2}>
-                    <StatCard />
-                    <StatCard />
-                </Stack>
-            </Stack>
-            <Stack>
-                <Stack spacing={2}>
-                    <StatCard />
-                    <StatCard />
-                </Stack>
-            </Stack>
-            <Stack>
-                <Stack spacing={2}>
-                    <StatCard />
-                    <StatCard />
-                </Stack>
-            </Stack>
+            <Stack></Stack>
         </Stack>
     )
 }
