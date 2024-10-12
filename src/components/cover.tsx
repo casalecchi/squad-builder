@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import colors from '../styles/colors.module.scss'
-import { Box, Button, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { useDeviceContext } from '../contexts/DeviceContext'
 
 const Cover: FC = () => {
-    const mobile = useMediaQuery('(max-width:600px)', { noSsr: true })
+    const { mobile } = useDeviceContext()
 
     const scrollToDetail = () => {
         const element = document.getElementById('howItWorks')

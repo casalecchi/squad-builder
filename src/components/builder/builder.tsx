@@ -1,4 +1,4 @@
-import { Box, Stack, useMediaQuery } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import { FC } from 'react'
 import pitch from '../../assets/campinho.svg'
 import FormationSelector from './formationSelector'
@@ -7,6 +7,7 @@ import FormationAdjustment from './formationAdjustment'
 import Market from './market/market'
 import { StatCard } from './stats/statCard'
 import { CustomPaper } from '../ui/customPaper'
+import { useDeviceContext } from '../../contexts/DeviceContext'
 
 const BoxTeam: FC = () => {
     return (
@@ -15,7 +16,7 @@ const BoxTeam: FC = () => {
                 aspectRatio: 0.9776,
                 position: 'relative',
                 width: '100%',
-                maxWidth: 800,
+                maxWidth: 680,
                 backgroundImage: `url(${pitch})`,
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
@@ -28,7 +29,7 @@ const BoxTeam: FC = () => {
 }
 
 const Builder: FC = () => {
-    const mobile = useMediaQuery('(max-width:600px)', { noSsr: true })
+    const { mobile } = useDeviceContext()
 
     return (
         <Stack

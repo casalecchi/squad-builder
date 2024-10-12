@@ -1,14 +1,15 @@
 import { FC, useEffect, useState } from 'react'
-import { List, ListItem, ListItemText, ListSubheader, useMediaQuery } from '@mui/material'
+import { List, ListItem, ListItemText, ListSubheader } from '@mui/material'
 import { Player } from '../../../models'
 import { teamPositionMap } from '../../../constants'
 import { useTranslation } from 'react-i18next'
 import { useDataContext } from '../../../contexts/DataContext'
 import MarketDialog from '../../ui/marketDialog'
 import { MobileRow, SiteRow } from './marketRow'
+import { useDeviceContext } from '../../../contexts/DeviceContext'
 
 const Market: FC = () => {
-    const mobile = useMediaQuery('(max-width:600px)', { noSsr: true })
+    const { mobile } = useDeviceContext()
     const { t } = useTranslation()
     const { teamStateManager, positionToShow, closeMarket } = useDataContext()
     const { team, formation, players, clubs, matches, addPlayer, removePlayer } = teamStateManager

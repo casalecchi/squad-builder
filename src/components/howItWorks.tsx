@@ -1,11 +1,12 @@
-import { Box, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 import time from '../assets/time-exemplo.png'
 import { InstructionCard } from './ui/instructionCard'
 import { t } from 'i18next'
+import { useDeviceContext } from '../contexts/DeviceContext'
 
 const HowItWorks: FC = () => {
-    const mobile = useMediaQuery('(max-width:600px)', { noSsr: true })
+    const { mobile } = useDeviceContext()
 
     return (
         <Box
