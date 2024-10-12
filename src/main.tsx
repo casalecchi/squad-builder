@@ -9,6 +9,7 @@ import { ThemeProvider } from '@emotion/react'
 import { CssBaseline } from '@mui/material'
 import { darkTheme } from './configurations/theme.ts'
 import { DataProvider } from './contexts/DataContext.tsx'
+import { DeviceProvider } from './contexts/DeviceContext.tsx'
 
 const router = createBrowserRouter([
     {
@@ -25,9 +26,11 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <ThemeProvider theme={darkTheme}>
             <CssBaseline enableColorScheme>
-                <DataProvider>
-                    <RouterProvider router={router} />
-                </DataProvider>
+                <DeviceProvider>
+                    <DataProvider>
+                        <RouterProvider router={router} />
+                    </DataProvider>
+                </DeviceProvider>
             </CssBaseline>
         </ThemeProvider>
     </StrictMode>
