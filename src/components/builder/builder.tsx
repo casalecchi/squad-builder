@@ -13,11 +13,10 @@ const BoxTeam: FC = () => {
     return (
         <Box
             sx={{
+                aspectRatio: 0.9776,
                 position: 'relative',
                 width: '100%',
-                height: '100%',
                 maxWidth: 800,
-                maxHeight: 800,
                 backgroundImage: `url(${pitch})`,
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
