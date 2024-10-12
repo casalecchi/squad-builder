@@ -37,8 +37,8 @@ const Builder: FC = () => {
             p={2}
             spacing={2}
         >
-            <Stack flex={mobile ? undefined : 5} height={mobile ? 500 : undefined}>
-                <CustomPaper sx={{ height: '100%', px: 0 }}>
+            <Stack flex={mobile ? undefined : 5}>
+                <CustomPaper sx={{ height: mobile ? undefined : '100%', px: 0, flex: 0 }}>
                     <Stack
                         alignItems={'center'}
                         height={'100%'}
