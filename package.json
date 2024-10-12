@@ -19,6 +19,7 @@
         "@fontsource/roboto": "^5.0.14",
         "@mui/icons-material": "^6.0.0",
         "@mui/material": "^6.0.0",
+        "@mui/x-charts": "^7.20.0",
         "@types/react-router-dom": "^5.3.3",
         "axios": "^1.7.7",
         "i18next": "^23.14.0",
