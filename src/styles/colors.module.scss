@@ -7,6 +7,11 @@ $card-dark-background: #1e1e1e;
 $player-green: #3cee18;
 $player-red: #fe5f55;
 
+$bad: #d72638;
+$regular: #f0a202;
+$good: #91f5ad;
+$perfect: #01baef;
+
 :export {
     primaryDark: $primary-dark;
     primaryLight: $primary-light;
@@ -16,4 +21,9 @@ $player-red: #fe5f55;
     cardDarkBackground: $card-dark-background;
     playerGreen: $player-green;
     playerRed: $player-red;
+
+    bad: $bad;
+    regular: $regular;
+    good: $good;
+    perfect: $perfect;
 }
