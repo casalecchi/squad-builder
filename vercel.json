@@ -16,7 +16,7 @@
         },
         {
             "source": "/(.*)",
-            "destination": "/dist/$1"
+            "destination": "/index.html"
         }
     ]
 }
