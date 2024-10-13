@@ -3,9 +3,9 @@ import { FC } from 'react'
 import { Player } from '../../../models'
 
 interface AccordionCellProps extends StackProps {
-    player: Player
-    statValue: number | string
-    statUnit: string
+    player?: Player
+    statValue?: number | string
+    statUnit?: string
     isHeader?: boolean
 }
 
@@ -26,14 +26,14 @@ export const AccordionCell: FC<AccordionCellProps> = ({
         >
             <Stack alignItems={'center'} direction={'row'} spacing={1}>
                 <Avatar
-                    alt={player.name}
-                    src={player.photo}
+                    alt={player?.name}
+                    src={player?.photo}
                     sx={{ height: '2rem', width: '2rem' }}
                 />
-                <Typography>{`${player.name}`}</Typography>
+                <Typography>{`${player?.name ?? 'Jogador'}`}</Typography>
             </Stack>
             <Stack alignItems={'center'} direction={'row'} spacing={3}>
-                <Typography>{`${statValue} ${statUnit}`}</Typography>
+                <Typography>{`${statValue ?? '-'} ${statUnit}`}</Typography>
                 {isHeader && (
                     <Typography fontSize={'0.7rem'} sx={{ opacity: 0.4 }}>
                         {'See playes stats'}
