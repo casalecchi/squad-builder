@@ -12,8 +12,8 @@ import {
 } from '@mui/material'
 import { Dispatch, FC, SetStateAction, useState } from 'react'
 import { StatType } from '../../../models'
-import { t } from 'i18next'
 import colors from '../../../styles/colors.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface OptionsProps {
     statType: StatType
@@ -21,20 +21,23 @@ interface OptionsProps {
     onStatTypeSelection: (selectedStatType: StatType) => void
 }
 
-const Option: FC<OptionsProps> = ({ statType, selectedStatType, onStatTypeSelection }) => (
-    <ListItemButton
-        onClick={() => onStatTypeSelection(statType)}
-        selected={statType === selectedStatType}
-        sx={{ p: 1 }}
-    >
-        <ListItem sx={{ padding: 0 }}>
-            <ListItemText
-                primary={t(`statType.${statType}`).toUpperCase()}
-                primaryTypographyProps={{ fontSize: '0.7rem' }}
-            />
-        </ListItem>
-    </ListItemButton>
-)
+const Option: FC<OptionsProps> = ({ statType, selectedStatType, onStatTypeSelection }) => {
+    const { t } = useTranslation()
+    return (
+        <ListItemButton
+            onClick={() => onStatTypeSelection(statType)}
+            selected={statType === selectedStatType}
+            sx={{ p: 1 }}
+        >
+            <ListItem sx={{ padding: 0 }}>
+                <ListItemText
+                    primary={t(`statType.${statType}`).toUpperCase()}
+                    primaryTypographyProps={{ fontSize: '0.7rem' }}
+                />
+            </ListItem>
+        </ListItemButton>
+    )
+}
 
 interface SelectStatType {
     selectedStatType: StatType
@@ -47,6 +50,7 @@ export const SelectStatType: FC<SelectStatType> = ({
     typesToDisplay,
     setSelectedStatType,
 }) => {
+    const { t } = useTranslation()
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>()
     const open = Boolean(anchorEl)
 

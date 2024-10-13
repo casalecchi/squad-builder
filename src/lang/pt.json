@@ -1,6 +1,9 @@
 {
     "app": {
-        "description": "TCC do Felipe"
+        "title": "Cartola Insights",
+        "description": "Ferramenta para construir seu time com análise de dados",
+        "tryIt": "Montar",
+        "howItWorks": "Como Funciona"
     },
     "builder": {
         "buy": "Comprar",
@@ -24,6 +27,7 @@
         "title": "Troca de Formação"
     },
     "howWorks": {
+        "description": "Aplicativo feito com fins acadêmicos para o jogo Cartola.",
         "step1": "Escolha seus jogadores",
         "step2": "Obtenha dados e estatísticas do seu time",
         "step3": "Compare com o modelo otimizado",

@@ -1,6 +1,9 @@
 {
     "app": {
-        "description": "Felipe's TCC"
+        "title": "Cartola Insights",
+        "description": "Tool to build your team with data analytics",
+        "tryIt": "Try It",
+        "howItWorks": "How It Works"
     },
     "builder": {
         "buy": "Buy",
@@ -24,6 +27,7 @@
         "title": "Change Formation"
     },
     "howWorks": {
+        "description": "This is an academic app for the Cartola fantasy game.",
         "step1": "Choose your favorite players",
         "step2": "Analyze their data and statistics",
         "step3": "Compare with the optimized model",
