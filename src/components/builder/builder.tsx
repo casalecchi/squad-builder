@@ -38,7 +38,7 @@ const Builder: FC = () => {
             p={2}
             spacing={2}
         >
-            <Stack flex={mobile ? undefined : 5}>
+            <Stack flex={mobile ? undefined : 6}>
                 <CustomPaper sx={{ height: mobile ? undefined : '100%', px: 0, flex: 0 }}>
                     <Stack
                         alignItems={'center'}
@@ -53,18 +53,19 @@ const Builder: FC = () => {
                     </Stack>
                 </CustomPaper>
             </Stack>
-            <Stack>
+            <Stack flex={mobile ? undefined : 3}>
                 <Stack spacing={2}>
-                    <StatCard attribute={'accurateLongBallsPercentage'} />
-                    <StatCard attribute={'totalDuelsWonPercentage'} />
                     <StatCard attribute={'tacklesWonPercentage'} />
                     <StatCard attribute={'goalConversionPercentage'} />
                     <StatCard attribute={'successfulDribblesPercentage'} />
-                    <StatCard attribute={'expectedGoals'} />
-                    <StatCard attribute={'expectedAssists'} />
                 </Stack>
             </Stack>
-            <Stack></Stack>
+            <Stack flex={mobile ? undefined : 3}>
+                <Stack spacing={2}>
+                    <StatCard attribute={'expectedGoals'} />
+                    <StatCard attribute={'expectedAssists'} defaultType={'90min'} />
+                </Stack>
+            </Stack>
         </Stack>
     )
 }

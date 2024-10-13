@@ -1,31 +1,43 @@
 import { Stack, Typography } from '@mui/material'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { StatGauge } from './statGauge'
 import { CustomPaper } from '../../ui/customPaper'
-import { PlayerStats } from '../../../models'
+import { PlayerStats, StatType } from '../../../models'
 import { useDataContext } from '../../../contexts/DataContext'
-import { formatNumber } from '../../../utils'
+import { getAbsoluteStat } from '../../../utils'
+import { SelectStatType } from './selectStatType'
 
 interface StatCardProps {
     attribute: keyof PlayerStats
+    defaultType?: StatType
+    typesToDisplay?: StatType[]
 }
 
-export const StatCard: FC<StatCardProps> = ({ attribute }) => {
+export const StatCard: FC<StatCardProps> = ({
+    attribute,
+    defaultType = 'game',
+    typesToDisplay = ['total', 'game', '90min'],
+}) => {
     const { teamStateManager } = useDataContext()
-    const values =
-        teamStateManager.stats.length == 0
-            ? [0]
-            : teamStateManager.stats.map((stat) => stat[attribute] as number)
-    console.log(values)
-    // TODO - refactor
-    const sum = values.reduce((acc, currentValue) => acc + currentValue, 0)
-    const average = sum / values.length
+    const { stats } = teamStateManager
+    const [selectedStatType, setSelectedStatType] = useState<StatType>(defaultType)
+    const value = getAbsoluteStat(attribute, stats)
 
     return (
-        <CustomPaper>
-            <Stack alignItems={'center'} justifyContent={'center'}>
-                <StatGauge value={formatNumber(average)} />
-                <Typography>{`${formatNumber(average)}% of ${attribute}`}</Typography>
+        <CustomPaper sx={{ p: 1, pb: 2 }}>
+            <Stack width={'100%'}>
+                <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'}>
+                    <Typography>{attribute}</Typography>
+                    <SelectStatType
+                        selectedStatType={selectedStatType}
+                        setSelectedStatType={setSelectedStatType}
+                        typesToDisplay={typesToDisplay}
+                    />
+                </Stack>
+                <Stack alignItems={'center'} justifyContent={'center'}>
+                    <StatGauge value={value} />
+                    <Typography>{`${attribute} per 90 min`}</Typography>
+                </Stack>
             </Stack>
         </CustomPaper>
     )

@@ -108,6 +108,7 @@ export interface PlayerStats {
     goalKicks: number
     ballRecovery: number
     id: number
-    type: string
     appearances: number
 }
+
+export type StatType = 'total' | '90min' | 'game'

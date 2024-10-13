@@ -68,5 +68,10 @@
         "injured": "Lesionado",
         "noStatus": "Sem status",
         "probable": "Probable"
+    },
+    "statType": {
+        "total": "Total",
+        "game": "Por Jogo",
+        "90min": "Por 90 min"
     }
 }
