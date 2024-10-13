@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IconButton, Popover, Stack, Typography } from '@mui/material'
 import SettingsIcon from '@mui/icons-material/Settings'
 import LanguageSwitch from './languageSwitch'
+import colors from '../styles/colors.module.scss'
 
 const SettingsMenu = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -22,6 +23,10 @@ const SettingsMenu = () => {
                 color="primary"
                 onClick={handleOpen}
                 sx={{
+                    backgroundColor: colors.pureBlack,
+                    '&:hover': {
+                        backgroundColor: '#1e1e1e',
+                    },
                     position: 'fixed',
                     top: 16,
                     right: 16,
