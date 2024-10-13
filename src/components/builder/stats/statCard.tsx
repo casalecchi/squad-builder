@@ -27,7 +27,7 @@ export const StatCard: FC<StatCardProps> = ({
         <CustomPaper sx={{ p: 1, pb: 2 }}>
             <Stack width={'100%'}>
                 <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'}>
-                    <Typography>{attribute}</Typography>
+                    <Typography ml={0.5}>{attribute}</Typography>
                     <SelectStatType
                         selectedStatType={selectedStatType}
                         setSelectedStatType={setSelectedStatType}

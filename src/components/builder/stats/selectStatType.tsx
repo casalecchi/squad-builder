@@ -13,6 +13,7 @@ import {
 import { Dispatch, FC, SetStateAction, useState } from 'react'
 import { StatType } from '../../../models'
 import { t } from 'i18next'
+import colors from '../../../styles/colors.module.scss'
 
 interface OptionsProps {
     statType: StatType
@@ -24,9 +25,13 @@ const Option: FC<OptionsProps> = ({ statType, selectedStatType, onStatTypeSelect
     <ListItemButton
         onClick={() => onStatTypeSelection(statType)}
         selected={statType === selectedStatType}
+        sx={{ p: 1 }}
     >
         <ListItem sx={{ padding: 0 }}>
-            <ListItemText primary={t(`statType.${statType}`).toUpperCase()} />
+            <ListItemText
+                primary={t(`statType.${statType}`).toUpperCase()}
+                primaryTypographyProps={{ fontSize: '0.7rem' }}
+            />
         </ListItem>
     </ListItemButton>
 )
@@ -56,10 +61,10 @@ export const SelectStatType: FC<SelectStatType> = ({
 
     return (
         <Stack alignItems={'center'} direction={'row'}>
-            <Typography fontSize={'0.75rem'} sx={{ opacity: 0.4 }}>
+            <Typography fontSize={'0.75rem'} mr={0.5} sx={{ opacity: 0.4 }}>
                 {t(`statType.${selectedStatType}`).toUpperCase()}
             </Typography>
-            <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
+            <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} sx={{ p: 0.5 }}>
                 <MoreVert color="primary" />
             </IconButton>
             <Popover
@@ -79,11 +84,12 @@ export const SelectStatType: FC<SelectStatType> = ({
                     {/* TODO - Escolher se subheader vai ou fica */}
                     <ListSubheader
                         sx={{
+                            color: colors.lightGray,
                             backgroundColor: 'initial',
-                            height: '2.5rem',
-                            lineHeight: 2.5,
+                            height: '1.5rem',
+                            lineHeight: 1.5,
                             '&:before': {
-                                borderBottom: `1px solid grey`,
+                                borderBottom: `1px solid ${colors.lightGray}`,
                                 content: `' '`,
                                 display: 'block',
                                 position: 'absolute',
@@ -93,7 +99,7 @@ export const SelectStatType: FC<SelectStatType> = ({
                             },
                         }}
                     >
-                        {'Choose your unit'}
+                        {t('statType.choose')}
                     </ListSubheader>
                     {typesToDisplay.map((statType) => (
                         <Option
