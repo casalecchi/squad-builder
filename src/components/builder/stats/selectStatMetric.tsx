@@ -11,27 +11,27 @@ import {
     ListSubheader,
 } from '@mui/material'
 import { Dispatch, FC, SetStateAction, useState } from 'react'
-import { StatType } from '../../../models'
+import { StatMetric } from '../../../models'
 import colors from '../../../styles/colors.module.scss'
 import { useTranslation } from 'react-i18next'
 
 interface OptionsProps {
-    statType: StatType
-    selectedStatType: StatType
-    onStatTypeSelection: (selectedStatType: StatType) => void
+    statMetric: StatMetric
+    selectedStatMetric: StatMetric
+    onStatMetricSelection: (selectedMetricType: StatMetric) => void
 }
 
-const Option: FC<OptionsProps> = ({ statType, selectedStatType, onStatTypeSelection }) => {
+const Option: FC<OptionsProps> = ({ statMetric, selectedStatMetric, onStatMetricSelection }) => {
     const { t } = useTranslation()
     return (
         <ListItemButton
-            onClick={() => onStatTypeSelection(statType)}
-            selected={statType === selectedStatType}
+            onClick={() => onStatMetricSelection(statMetric)}
+            selected={statMetric === selectedStatMetric}
             sx={{ p: 1 }}
         >
             <ListItem sx={{ padding: 0 }}>
                 <ListItemText
-                    primary={t(`statType.${statType}`).toUpperCase()}
+                    primary={t(`statMetric.${statMetric}`).toUpperCase()}
                     primaryTypographyProps={{ fontSize: '0.7rem' }}
                 />
             </ListItem>
@@ -39,23 +39,23 @@ const Option: FC<OptionsProps> = ({ statType, selectedStatType, onStatTypeSelect
     )
 }
 
-interface SelectStatType {
-    selectedStatType: StatType
-    typesToDisplay: StatType[]
-    setSelectedStatType: Dispatch<SetStateAction<StatType>>
+interface SelectStatMetric {
+    selectedStatMetric: StatMetric
+    typesToDisplay: StatMetric[]
+    setSelectedStatMetric: Dispatch<SetStateAction<StatMetric>>
 }
 
-export const SelectStatType: FC<SelectStatType> = ({
-    selectedStatType,
+export const SelectStatMetric: FC<SelectStatMetric> = ({
+    selectedStatMetric,
     typesToDisplay,
-    setSelectedStatType,
+    setSelectedStatMetric,
 }) => {
     const { t } = useTranslation()
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>()
     const open = Boolean(anchorEl)
 
-    const onStatTypeSelection = (statType: StatType) => {
-        setSelectedStatType(statType)
+    const onStatMetricSelection = (statMetric: StatMetric) => {
+        setSelectedStatMetric(statMetric)
         handleClose()
     }
 
@@ -66,7 +66,7 @@ export const SelectStatType: FC<SelectStatType> = ({
     return (
         <Stack alignItems={'center'} direction={'row'}>
             <Typography fontSize={'0.75rem'} mr={0.5} sx={{ opacity: 0.4 }}>
-                {t(`statType.${selectedStatType}`).toUpperCase()}
+                {t(`statMetric.${selectedStatMetric}`).toUpperCase()}
             </Typography>
             <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} sx={{ p: 0.5 }}>
                 <MoreVert color="primary" />
@@ -103,14 +103,14 @@ export const SelectStatType: FC<SelectStatType> = ({
                             },
                         }}
                     >
-                        {t('statType.choose')}
+                        {t('statMetric.choose')}
                     </ListSubheader>
-                    {typesToDisplay.map((statType) => (
+                    {typesToDisplay.map((statMetric) => (
                         <Option
-                            key={statType}
-                            onStatTypeSelection={onStatTypeSelection}
-                            selectedStatType={selectedStatType}
-                            statType={statType}
+                            key={statMetric}
+                            onStatMetricSelection={onStatMetricSelection}
+                            selectedStatMetric={selectedStatMetric}
+                            statMetric={statMetric}
                         />
                     ))}
                 </List>

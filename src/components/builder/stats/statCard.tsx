@@ -2,17 +2,17 @@ import { Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from
 import { FC, useState } from 'react'
 import { StatGauge } from './statGauge'
 import { CustomPaper } from '../../ui/customPaper'
-import { PlayerStats, StatType } from '../../../models'
+import { PlayerStats, StatMetric } from '../../../models'
 import { useDataContext } from '../../../contexts/DataContext'
 import { getAbsoluteStat } from '../../../utils'
-import { SelectStatType } from './selectStatType'
+import { SelectStatMetric } from './selectStatMetric'
 import { ExpandMore } from '@mui/icons-material'
 import { AccordionCell } from './accordionCell'
 
 interface StatCardProps {
     attribute: keyof PlayerStats
-    defaultType?: StatType
-    typesToDisplay?: StatType[]
+    defaultType?: StatMetric
+    typesToDisplay?: StatMetric[]
 }
 
 export const StatCard: FC<StatCardProps> = ({
@@ -22,7 +22,7 @@ export const StatCard: FC<StatCardProps> = ({
 }) => {
     const { teamStateManager } = useDataContext()
     const { stats } = teamStateManager
-    const [selectedStatType, setSelectedStatType] = useState<StatType>(defaultType)
+    const [selectedStatMetric, setSelectedStatMetric] = useState<StatMetric>(defaultType)
     const value = getAbsoluteStat(attribute, stats)
 
     return (
@@ -30,9 +30,9 @@ export const StatCard: FC<StatCardProps> = ({
             <Stack width={'100%'}>
                 <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'}>
                     <Typography ml={0.5}>{attribute}</Typography>
-                    <SelectStatType
-                        selectedStatType={selectedStatType}
-                        setSelectedStatType={setSelectedStatType}
+                    <SelectStatMetric
+                        selectedStatMetric={selectedStatMetric}
+                        setSelectedStatMetric={setSelectedStatMetric}
                         typesToDisplay={typesToDisplay}
                     />
                 </Stack>

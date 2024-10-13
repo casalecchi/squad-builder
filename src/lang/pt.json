@@ -73,8 +73,8 @@
         "noStatus": "Sem status",
         "probable": "Probable"
     },
-    "statType": {
-        "choose": "Escolha a unidade",
+    "statMetric": {
+        "choose": "Escolha a medida",
         "total": "Total",
         "game": "Por Jogo",
         "90min": "Por 90 min"

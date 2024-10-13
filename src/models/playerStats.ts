@@ -111,4 +111,4 @@ export interface PlayerStats {
     appearances: number
 }
 
-export type StatType = 'total' | '90min' | 'game'
+export type StatMetric = 'total' | '90min' | 'game'
