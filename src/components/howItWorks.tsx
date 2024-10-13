@@ -2,10 +2,11 @@ import { Box, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 import time from '../assets/time-exemplo.png'
 import { InstructionCard } from './ui/instructionCard'
-import { t } from 'i18next'
 import { useDeviceContext } from '../contexts/DeviceContext'
+import { useTranslation } from 'react-i18next'
 
 const HowItWorks: FC = () => {
+    const { t } = useTranslation()
     const { mobile } = useDeviceContext()
 
     return (
@@ -22,14 +23,14 @@ const HowItWorks: FC = () => {
             }}
         >
             <Stack alignItems={'center'} py={5} spacing={10}>
-                <Typography fontSize={'3rem'}>{'How it Works?'}</Typography>
+                <Typography fontSize={'3rem'}>{`${t('app.howItWorks')}?`}</Typography>
                 <Stack direction={mobile ? 'column' : 'row'} mt={10} spacing={3}>
                     <InstructionCard image={time} text={`1. ${t('howWorks.step1')}`} />
                     <InstructionCard image={time} text={`2. ${t('howWorks.step2')}`} />
                     <InstructionCard image={time} text={`3. ${t('howWorks.step3')}`} />
                     <InstructionCard image={time} text={`4. ${t('howWorks.step4')}`} />
                 </Stack>
-                <Typography>{'This is an academic app for the Cartola fantasy game.'}</Typography>
+                <Typography>{t('howWorks.description')}</Typography>
             </Stack>
         </Box>
     )

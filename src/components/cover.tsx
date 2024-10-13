@@ -3,8 +3,10 @@ import colors from '../styles/colors.module.scss'
 import { Box, Button, Stack, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useDeviceContext } from '../contexts/DeviceContext'
+import { useTranslation } from 'react-i18next'
 
 const Cover: FC = () => {
+    const { t } = useTranslation()
     const { mobile } = useDeviceContext()
 
     const scrollToDetail = () => {
@@ -35,7 +37,7 @@ const Cover: FC = () => {
                         fontWeight={500}
                         lineHeight={1}
                     >
-                        {'Cartola Insights'}
+                        {t('app.title')}
                     </Typography>
                     <Typography
                         color={'primary'}
@@ -44,7 +46,7 @@ const Cover: FC = () => {
                         lineHeight={1}
                         mt={1}
                     >
-                        {'Tool to build your team with data analytics'}
+                        {t('app.description')}
                     </Typography>
                     <Stack
                         direction={'row'}
@@ -65,7 +67,7 @@ const Cover: FC = () => {
                                 flex: 1,
                             }}
                         >
-                            {'Try it'}
+                            {t('app.tryIt')}
                         </Button>
                         <Button
                             onClick={scrollToDetail}
@@ -80,7 +82,7 @@ const Cover: FC = () => {
                                 flex: 1,
                             }}
                         >
-                            {'How it works'}
+                            {t('app.howItWorks')}
                         </Button>
                     </Stack>
                 </Stack>
