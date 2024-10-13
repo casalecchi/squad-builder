@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../../../@types/i18n'
 import { formatPlayerName } from '../../../utils/formatters'
 import { useDataContext } from '../../../contexts/DataContext'
+import { useDeviceContext } from '../../../contexts/DeviceContext'
 
 interface PlayerProps extends IconButtonProps {
     player?: Player
@@ -16,6 +17,7 @@ interface PlayerProps extends IconButtonProps {
 
 const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...props }) => {
     const { t } = useTranslation()
+    const { bigScreen } = useDeviceContext()
     const [isHovered, setIsHovered] = useState(false)
     const { teamStateManager, openMarket } = useDataContext()
     const { removePlayer } = teamStateManager
@@ -33,7 +35,7 @@ const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...pro
                 spacing={0.5}
                 sx={{
                     position: 'absolute',
-                    bottom: playerArea.bottom,
+                    bottom: bigScreen ? `calc(${playerArea.bottom} + 4%)` : playerArea.bottom,
                     left: playerArea.left,
                     transform: 'translate(-50%, -50%)',
                 }}

@@ -1,17 +1,18 @@
 import { createContext, useContext, useMemo, ReactNode } from 'react'
-import { useMediaQuery, useTheme } from '@mui/material'
+import { useMediaQuery } from '@mui/material'
 
 interface DeviceContextType {
     mobile: boolean
+    bigScreen: boolean
 }
 
-const DeviceContext = createContext<DeviceContextType>({ mobile: false })
+const DeviceContext = createContext<DeviceContextType>({ mobile: false, bigScreen: false })
 
 const DeviceProvider = ({ children }: { children: ReactNode }) => {
-    const theme = useTheme()
-    const mobile = useMediaQuery(theme.breakpoints.down('md'), { noSsr: true })
+    const mobile = useMediaQuery('(max-width: 1025px)', { noSsr: true })
+    const bigScreen = useMediaQuery('(min-width: 2000px)', { noSsr: true })
 
-    const value = useMemo(() => ({ mobile }), [mobile])
+    const value = useMemo(() => ({ mobile, bigScreen }), [mobile, bigScreen])
 
     return <DeviceContext.Provider value={value}>{children}</DeviceContext.Provider>
 }

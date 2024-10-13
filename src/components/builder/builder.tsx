@@ -10,13 +10,19 @@ import { CustomPaper } from '../ui/customPaper'
 import { useDeviceContext } from '../../contexts/DeviceContext'
 
 const BoxTeam: FC = () => {
+    const { mobile } = useDeviceContext()
+
     return (
         <Box
             sx={{
                 aspectRatio: 0.9776,
                 position: 'relative',
                 width: '100%',
-                maxWidth: 680,
+                maxWidth: {
+                    md: mobile ? undefined : 'min(72vh, 500px)',
+                    lg: `min(80vh, 500px)`,
+                    xl: `min(82vh, 1000px)`,
+                },
                 backgroundImage: `url(${pitch})`,
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
