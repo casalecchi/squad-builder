@@ -17,6 +17,26 @@
         "lineup": "My Lineup",
         "teamValue": "Team Value"
     },
+    "cards": {
+        "goals": "Goals",
+        "assists": "Assists",
+        "savedShots": "Shots Saved",
+        "shotsOffTarget": "Shots Off Target",
+        "sufferedFouls": "Suffered Fouls",
+        "sufferedPenalties": "Suffered Penalties",
+        "savedPenalties": "Saved Penalties",
+        "cleanSheets": "Clean Sheets",
+        "saves": "Saves",
+        "tackleWon": "Tackles Won",
+        "penaltyLost": "Lost Penalties",
+        "offsides": "Offsides",
+        "ownGoals": "Own Goals",
+        "redCard": "Red Cards",
+        "yellowCards": "Yellow Cards",
+        "goalsConceded": "Suffered Goals",
+        "fouls": "Fouls",
+        "penaltiesConceded": "Penalties Conceded"
+    },
     "common": {
         "money": "C$"
     },
@@ -78,5 +98,17 @@
         "total": "Total",
         "game": "Per Game",
         "90min": "Per 90 min"
+    },
+    "unit": {
+        "goals": "Goals",
+        "assists": "Assists",
+        "shots": "Shots",
+        "fouls": "Fouls",
+        "saves": "Saves",
+        "cleanSheet": "Clean Sheets",
+        "tackleWon": "Tackles Won",
+        "penalties": "Penalties",
+        "offsides": "Offsides",
+        "cards": "Cards"
     }
 }

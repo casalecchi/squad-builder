@@ -8,6 +8,7 @@ import Market from './market/market'
 import { StatCard } from './stats/statCard'
 import { CustomPaper } from '../ui/customPaper'
 import { useDeviceContext } from '../../contexts/DeviceContext'
+import { statsCards } from '../../constants/card'
 
 const BoxTeam: FC = () => {
     const { mobile } = useDeviceContext()
@@ -61,15 +62,20 @@ const Builder: FC = () => {
             </Stack>
             <Stack flex={mobile ? undefined : 3}>
                 <Stack spacing={2}>
-                    <StatCard attribute={'goals'} />
-                    <StatCard attribute={'assists'} />
-                    <StatCard attribute={'offsides'} />
+                    {statsCards
+                        .filter((card) => card.attributes.length == 1 && !card.negative)
+                        .map((card) => (
+                            <StatCard detail={card} key={card.title} />
+                        ))}
                 </Stack>
             </Stack>
             <Stack flex={mobile ? undefined : 3}>
                 <Stack spacing={2}>
-                    <StatCard attribute={'wasFouled'} />
-                    <StatCard attribute={'shotsOffTarget'} defaultType={'90min'} />
+                    {statsCards
+                        .filter((card) => card.attributes.length == 1 && card.negative)
+                        .map((card) => (
+                            <StatCard detail={card} key={card.title} />
+                        ))}
                 </Stack>
             </Stack>
         </Stack>

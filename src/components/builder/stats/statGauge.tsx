@@ -1,22 +1,23 @@
 import { Gauge, gaugeClasses } from '@mui/x-charts'
 import { FC } from 'react'
-import { getPercentageColor } from '../../../utils/stats'
+import { getNegativeColor, getPositiveColor } from '../../../utils/stats'
 
 interface StatGaugeProps {
     value: number
+    maxValue: number
+    negative?: boolean
 }
 
-export const StatGauge: FC<StatGaugeProps> = ({ value }) => {
-    const color = getPercentageColor(value)
+export const StatGauge: FC<StatGaugeProps> = ({ value, maxValue, negative }) => {
+    const color = negative ? getNegativeColor(value, maxValue) : getPositiveColor(value, maxValue)
 
     return (
         <Gauge
             endAngle={90}
             height={100}
             startAngle={-90}
-            text={({ value }) => `${value}%`}
             value={value}
-            valueMax={10}
+            valueMax={value > maxValue ? value : maxValue}
             valueMin={0}
             width={100}
             sx={{

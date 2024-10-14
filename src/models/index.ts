@@ -1,4 +1,5 @@
 export * from './adjustment'
+export * from './card'
 export * from './cartola'
 export * from './formation'
 export * from './player'

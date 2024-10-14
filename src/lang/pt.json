@@ -17,6 +17,26 @@
         "lineup": "Meu Time",
         "teamValue": "Valor do Time"
     },
+    "cards": {
+        "goals": "Gols",
+        "assists": "Assistências",
+        "savedShots": "Finalizações Defendidas",
+        "shotsOffTarget": "Finalizações para Fora",
+        "sufferedFouls": "Faltas Sofridas",
+        "sufferedPenalties": "Penâltis Sofridos",
+        "savedPenalties": "Penâltis Defendidos",
+        "cleanSheets": "Jogos Sem Sofrer Gols",
+        "saves": "Defesas",
+        "tackleWon": "Desarmes",
+        "penaltyLost": "Penâltis Perdidos",
+        "offsides": "Impedimentos",
+        "ownGoals": "Gols Contra",
+        "redCard": "Cartões Vermelho",
+        "yellowCards": "Cartões Amarelo",
+        "goalsConceded": "Gols Sofridos",
+        "fouls": "Faltas Cometidas",
+        "penaltiesConceded": "Penâltis Sofridos"
+    },
     "common": {
         "money": "C$"
     },
@@ -78,5 +98,17 @@
         "total": "Total",
         "game": "Por Jogo",
         "90min": "Por 90 min"
+    },
+    "unit": {
+        "goals": "Gols",
+        "assists": "Assistências",
+        "shots": "Finalizações",
+        "fouls": "Faltas",
+        "saves": "Defesas",
+        "cleanSheet": "Jogos Sem Tomar Gols",
+        "tackleWon": "Desarmes",
+        "penalties": "Penâltis",
+        "offsides": "Impedimentos",
+        "cards": "Cartões"
     }
 }

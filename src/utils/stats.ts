@@ -2,15 +2,27 @@ import { PlayerStats, PlayerWithStats, StatMetric } from '../models'
 import colors from '../styles/colors.module.scss'
 import { formatNumber } from './formatters'
 
-export const getPercentageColor = (value: number) => {
-    if (value < 5) {
+export const getPositiveColor = (value: number, max: number) => {
+    if (value < max * 0.4) {
         return colors.bad
-    } else if (value < 8) {
+    } else if (value < max * 0.65) {
         return colors.regular
-    } else if (value < 9.7) {
+    } else if (value < max * 0.9) {
         return colors.good
     } else {
         return colors.perfect
+    }
+}
+
+export const getNegativeColor = (value: number, max: number) => {
+    if (value < max * 0.2) {
+        return colors.perfect
+    } else if (value < max * 0.4) {
+        return colors.good
+    } else if (value < max * 0.7) {
+        return colors.regular
+    } else {
+        return colors.bad
     }
 }
 

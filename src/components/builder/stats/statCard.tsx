@@ -2,22 +2,23 @@ import { Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from
 import { FC, useEffect, useState } from 'react'
 import { StatGauge } from './statGauge'
 import { CustomPaper } from '../../ui/customPaper'
-import { PlayerStats, PlayerWithStats, StatMetric } from '../../../models'
+import { CardDetail, PlayerWithStats, StatMetric } from '../../../models'
 import { useDataContext } from '../../../contexts/DataContext'
 import { getStatValue, transformValueToMetric } from '../../../utils'
 import { SelectStatMetric } from './selectStatMetric'
 import { ExpandMore } from '@mui/icons-material'
 import { AccordionCell } from './accordionCell'
 import { useTranslation } from 'react-i18next'
+import { TranslationKey } from '../../../@types/i18n'
 
 interface StatCardProps {
-    attribute: keyof PlayerStats
+    detail: CardDetail
     defaultType?: StatMetric
     typesToDisplay?: StatMetric[]
 }
 
 export const StatCard: FC<StatCardProps> = ({
-    attribute,
+    detail,
     defaultType = 'game',
     typesToDisplay = ['total', 'game', '90min'],
 }) => {
@@ -26,6 +27,9 @@ export const StatCard: FC<StatCardProps> = ({
     const { stats } = teamStateManager
     const [selectedStatMetric, setSelectedStatMetric] = useState<StatMetric>(defaultType)
     const [orderedByStat, setOrderedByStat] = useState<PlayerWithStats[]>([])
+    const { attributes } = detail
+    // TODO - custom attribute
+    const attribute = attributes[0]
     const value = getStatValue(attribute, stats, selectedStatMetric)
 
     useEffect(() => {
@@ -42,7 +46,7 @@ export const StatCard: FC<StatCardProps> = ({
         <CustomPaper sx={{ p: 1 }}>
             <Stack width={'100%'}>
                 <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'}>
-                    <Typography ml={0.5}>{attribute.toUpperCase()}</Typography>
+                    <Typography ml={0.5}>{t(`cards.${detail.title}` as TranslationKey)}</Typography>
                     <SelectStatMetric
                         selectedStatMetric={selectedStatMetric}
                         setSelectedStatMetric={setSelectedStatMetric}
@@ -50,9 +54,13 @@ export const StatCard: FC<StatCardProps> = ({
                     />
                 </Stack>
                 <Stack alignItems={'center'} justifyContent={'center'}>
-                    <StatGauge value={value} />
+                    <StatGauge
+                        maxValue={detail.interval.max}
+                        negative={detail.negative}
+                        value={value}
+                    />
                     <Typography>
-                        {`${attribute} ${t(`statMetric.${selectedStatMetric}`)}`.toUpperCase()}
+                        {`${t(`unit.${detail.unit}`)} ${t(`statMetric.${selectedStatMetric}`)}`.toUpperCase()}
                     </Typography>
                     <Accordion
                         disableGutters
