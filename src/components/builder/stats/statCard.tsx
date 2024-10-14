@@ -30,15 +30,21 @@ export const StatCard: FC<StatCardProps> = ({
     const { attributes } = detail
     // TODO - custom attribute
     const attribute = attributes[0]
-    const value = getStatValue(attribute, stats, selectedStatMetric)
+    const value = getStatValue(
+        attribute,
+        stats.filter((ps) => !detail.positionsNotAllowed.includes(ps.player.position)),
+        selectedStatMetric
+    )
 
     useEffect(() => {
         setOrderedByStat(
-            stats.toSorted(
-                (a, b) =>
-                    transformValueToMetric(attribute, b.stats, selectedStatMetric) -
-                    transformValueToMetric(attribute, a.stats, selectedStatMetric)
-            )
+            stats
+                .filter((ps) => !detail.positionsNotAllowed.includes(ps.player.position))
+                .toSorted(
+                    (a, b) =>
+                        transformValueToMetric(attribute, b.stats, selectedStatMetric) -
+                        transformValueToMetric(attribute, a.stats, selectedStatMetric)
+                )
         )
     }, [stats, selectedStatMetric])
 
