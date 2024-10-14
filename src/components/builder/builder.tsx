@@ -61,15 +61,15 @@ const Builder: FC = () => {
             </Stack>
             <Stack flex={mobile ? undefined : 3}>
                 <Stack spacing={2}>
-                    <StatCard attribute={'tacklesWonPercentage'} />
-                    <StatCard attribute={'goalConversionPercentage'} />
-                    <StatCard attribute={'successfulDribblesPercentage'} />
+                    <StatCard attribute={'goals'} />
+                    <StatCard attribute={'assists'} />
+                    <StatCard attribute={'offsides'} />
                 </Stack>
             </Stack>
             <Stack flex={mobile ? undefined : 3}>
                 <Stack spacing={2}>
-                    <StatCard attribute={'expectedGoals'} />
-                    <StatCard attribute={'expectedAssists'} defaultType={'90min'} />
+                    <StatCard attribute={'wasFouled'} />
+                    <StatCard attribute={'shotsOffTarget'} defaultType={'90min'} />
                 </Stack>
             </Stack>
         </Stack>
