@@ -16,6 +16,8 @@ export const StatGauge: FC<StatGaugeProps> = ({ value }) => {
             startAngle={-90}
             text={({ value }) => `${value}%`}
             value={value}
+            valueMax={10}
+            valueMin={0}
             width={100}
             sx={{
                 [`& .${gaugeClasses.valueArc}`]: {

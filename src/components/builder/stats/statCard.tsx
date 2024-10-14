@@ -1,13 +1,14 @@
 import { Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from '@mui/material'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { StatGauge } from './statGauge'
 import { CustomPaper } from '../../ui/customPaper'
-import { PlayerStats, StatMetric } from '../../../models'
+import { PlayerStats, PlayerWithStats, StatMetric } from '../../../models'
 import { useDataContext } from '../../../contexts/DataContext'
-import { getAbsoluteStat } from '../../../utils'
+import { getStatValue, transformValueToMetric } from '../../../utils'
 import { SelectStatMetric } from './selectStatMetric'
 import { ExpandMore } from '@mui/icons-material'
 import { AccordionCell } from './accordionCell'
+import { useTranslation } from 'react-i18next'
 
 interface StatCardProps {
     attribute: keyof PlayerStats
@@ -20,16 +21,28 @@ export const StatCard: FC<StatCardProps> = ({
     defaultType = 'game',
     typesToDisplay = ['total', 'game', '90min'],
 }) => {
+    const { t } = useTranslation()
     const { teamStateManager } = useDataContext()
     const { stats } = teamStateManager
     const [selectedStatMetric, setSelectedStatMetric] = useState<StatMetric>(defaultType)
-    const value = getAbsoluteStat(attribute, stats)
+    const [orderedByStat, setOrderedByStat] = useState<PlayerWithStats[]>([])
+    const value = getStatValue(attribute, stats, selectedStatMetric)
+
+    useEffect(() => {
+        setOrderedByStat(
+            stats.toSorted(
+                (a, b) =>
+                    transformValueToMetric(attribute, b.stats, selectedStatMetric) -
+                    transformValueToMetric(attribute, a.stats, selectedStatMetric)
+            )
+        )
+    }, [stats])
 
     return (
         <CustomPaper sx={{ p: 1 }}>
             <Stack width={'100%'}>
                 <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'}>
-                    <Typography ml={0.5}>{attribute}</Typography>
+                    <Typography ml={0.5}>{attribute.toUpperCase()}</Typography>
                     <SelectStatMetric
                         selectedStatMetric={selectedStatMetric}
                         setSelectedStatMetric={setSelectedStatMetric}
@@ -38,7 +51,9 @@ export const StatCard: FC<StatCardProps> = ({
                 </Stack>
                 <Stack alignItems={'center'} justifyContent={'center'}>
                     <StatGauge value={value} />
-                    <Typography>{`${attribute} per 90 min`}</Typography>
+                    <Typography>
+                        {`${attribute} ${t(`statMetric.${selectedStatMetric}`)}`.toUpperCase()}
+                    </Typography>
                     <Accordion
                         disableGutters
                         elevation={0}
@@ -56,48 +71,27 @@ export const StatCard: FC<StatCardProps> = ({
                         >
                             <AccordionCell
                                 isHeader
-                                player={teamStateManager.team.midfielders[0]}
-                                statUnit="goals"
-                                statValue={10}
+                                player={orderedByStat[0]?.player}
                                 width={'100%'}
+                                statValue={transformValueToMetric(
+                                    attribute,
+                                    orderedByStat[0]?.stats ?? {},
+                                    selectedStatMetric
+                                )}
                             />
                         </AccordionSummary>
                         <AccordionDetails>
-                            <AccordionCell
-                                player={teamStateManager.team.midfielders[0]}
-                                statUnit="goals"
-                                statValue={10}
-                            />
-                            <AccordionCell
-                                player={teamStateManager.team.midfielders[0]}
-                                statUnit="goals"
-                                statValue={10}
-                            />
-                            <AccordionCell
-                                player={teamStateManager.team.midfielders[0]}
-                                statUnit="goals"
-                                statValue={10}
-                            />
-                            <AccordionCell
-                                player={teamStateManager.team.midfielders[0]}
-                                statUnit="goals"
-                                statValue={10}
-                            />
-                            <AccordionCell
-                                player={teamStateManager.team.midfielders[0]}
-                                statUnit="goals"
-                                statValue={10}
-                            />
-                            <AccordionCell
-                                player={teamStateManager.team.midfielders[0]}
-                                statUnit="goals"
-                                statValue={10}
-                            />
-                            <AccordionCell
-                                player={teamStateManager.team.midfielders[0]}
-                                statUnit="goals"
-                                statValue={10}
-                            />
+                            {orderedByStat.slice(1).map((ps) => (
+                                <AccordionCell
+                                    key={ps.player.id}
+                                    player={ps.player}
+                                    statValue={transformValueToMetric(
+                                        attribute,
+                                        ps.stats,
+                                        selectedStatMetric
+                                    )}
+                                />
+                            ))}
                         </AccordionDetails>
                     </Accordion>
                 </Stack>

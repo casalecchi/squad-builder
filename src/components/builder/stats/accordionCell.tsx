@@ -33,7 +33,7 @@ export const AccordionCell: FC<AccordionCellProps> = ({
                 <Typography>{`${player?.name ?? 'Jogador'}`}</Typography>
             </Stack>
             <Stack alignItems={'center'} direction={'row'} spacing={3}>
-                <Typography>{`${statValue ?? '-'} ${statUnit}`}</Typography>
+                <Typography>{`${statValue ?? '-'} ${statUnit ?? ''}`}</Typography>
                 {isHeader && (
                     <Typography fontSize={'0.7rem'} sx={{ opacity: 0.4 }}>
                         {'See playes stats'}
