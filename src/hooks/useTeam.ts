@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Player, PlayerStats, Team } from '../models'
-import { getLocalTeam, getLocalStats, getTeamValue, setLocalTeam, setLocalStats } from '../utils'
+import { Player, PlayerWithStats, Team } from '../models'
+import { getLocalTeam, getTeamValue, setLocalTeam } from '../utils'
 import useGetPlayerData from './useGetPlayerData'
 
 interface TeamState {
     team: Team
     teamValue: number
-    stats: PlayerStats[]
+    stats: PlayerWithStats[]
     addPlayer: (keyPosition: keyof Team, player: Player) => void
     removePlayer: (keyPosition: keyof Team, player: Player) => void
 }
@@ -14,24 +14,20 @@ interface TeamState {
 export const useTeam = (): TeamState => {
     const [team, setTeam] = useState<Team>(getLocalTeam())
     const [teamValue, setTeamValue] = useState<number>(getTeamValue(team))
-    const [stats, setStats] = useState<PlayerStats[]>(getLocalStats())
-    const { fetchPlayerData } = useGetPlayerData()
+    const [stats, setStats] = useState<PlayerWithStats[]>([])
+    const { getPlayerData } = useGetPlayerData()
 
     const addPlayer = (keyPosition: keyof Team, player: Player) => {
         const newTeam = { ...team }
         newTeam[keyPosition].push(player)
-        fetchPlayerData(player.clubId, player.name).then((statistics) => {
-            if (!statistics) return
-            const playerStats = { ...statistics, cartolaId: player.id } as PlayerStats
-            setStats((prevStats) => [...prevStats, playerStats])
-        })
+        getPlayerData(player, setStats)
         setTeam(newTeam)
     }
 
     const removePlayer = (keyPosition: keyof Team, player: Player) => {
         const newTeam = { ...team }
         newTeam[keyPosition] = newTeam[keyPosition].filter((p) => p.id != player.id)
-        const filteredStats = stats.filter((stat) => player.id != stat.cartolaId)
+        const filteredStats = stats.filter((stat) => player.id != stat.player.id)
         setStats(filteredStats)
         setTeam(newTeam)
     }
@@ -42,8 +38,14 @@ export const useTeam = (): TeamState => {
     }, [team])
 
     useEffect(() => {
-        setLocalStats(stats)
-    }, [stats])
+        // On reload we update the stats from team
+        const team: Team = getLocalTeam()
+        Object.keys(team).forEach((positionKey) => {
+            for (const player of team[positionKey as keyof Team]) {
+                getPlayerData(player, setStats)
+            }
+        })
+    }, [])
 
     return { team, teamValue, stats, addPlayer, removePlayer }
 }

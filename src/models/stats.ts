@@ -1,3 +1,5 @@
+import { Player } from './player'
+
 export interface PlayerStats {
     cartolaId: number
     rating: number
@@ -112,3 +114,8 @@ export interface PlayerStats {
 }
 
 export type StatMetric = 'total' | '90min' | 'game'
+
+export interface PlayerWithStats {
+    player: Player
+    stats: PlayerStats
+}

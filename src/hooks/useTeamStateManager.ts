@@ -6,7 +6,7 @@ import {
     MarketInfo,
     Matches,
     Player,
-    PlayerStats,
+    PlayerWithStats,
     Team,
 } from '../models'
 import { getLocalFormation, setLocalFormation } from '../utils'
@@ -22,7 +22,7 @@ export interface TeamStateManager {
     marketInfo?: MarketInfo
     matches: Matches
     adjustment: Adjustment
-    stats: PlayerStats[]
+    stats: PlayerWithStats[]
     addPlayer: (keyPosition: keyof Team, player: Player) => void
     changeFormation: (newFormation: Formation) => void
     removePlayer: (keyPosition: keyof Team, player: Player) => void
