@@ -36,7 +36,7 @@ export const StatCard: FC<StatCardProps> = ({
                     transformValueToMetric(attribute, a.stats, selectedStatMetric)
             )
         )
-    }, [stats])
+    }, [stats, selectedStatMetric])
 
     return (
         <CustomPaper sx={{ p: 1 }}>

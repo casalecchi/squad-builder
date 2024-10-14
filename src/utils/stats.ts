@@ -25,7 +25,7 @@ export const transformValueToMetric = (
             multiplier = 1
             break
         case '90min':
-            multiplier = 1 / stats.minutesPlayed / 90
+            multiplier = 1 / (stats.minutesPlayed / 90)
             break
         case 'game':
             multiplier = 1 / stats.appearances
