@@ -7,6 +7,9 @@ import {
     ListItemIcon,
     ListItemButton,
     Stack,
+    Typography,
+    Avatar,
+    Button,
 } from '@mui/material'
 import { formatNumber } from '../../../utils'
 import StatusIcon from '../../ui/statusIcon'
@@ -66,34 +69,48 @@ export const MobileRow: FC<Row> = ({
     const { t } = useTranslation()
 
     return (
-        <ListItem divider>
-            <Stack direction={'row'}>
-                <MarketAvatar alt={player.name} src={player.photo} />
-                <Stack>
-                    <ListItemText primary={player.name} secondary={clubName} />
-                    <Stack direction={'row'}>
-                        <ListItemIcon>
-                            <StatusIcon status={player.status} />
-                        </ListItemIcon>
-                        <ListItemText primary={`C$${formatNumber(player.price)}`} />
-                        <ListItemText primary={formatNumber(player.lastPoint ?? 0)} />
-                        <ListItemText primary={formatNumber(player.average)} />
-                        <ListItemText primary={player.totalGames} />
-                        <ListItemAvatar>{match}</ListItemAvatar>
+        <Stack alignItems={'center'} direction={'row'} spacing={1}>
+            <Avatar
+                alt={player.name}
+                src={player.photo}
+                sx={{ height: 100, width: 100 }}
+                variant={'square'}
+            />
+            <Stack spacing={1} width={'100%'}>
+                <Stack alignItems={'center'} direction={'row'}>
+                    <StatusIcon status={player.status} />
+                    <Stack>
+                        <Typography>{player.name}</Typography>
+                        <Typography>{clubName}</Typography>
                     </Stack>
                 </Stack>
-                <ListItemButton
-                    onClick={() => (isOnTeam ? handleSell(player) : handleBuy(player))}
-                    sx={{
-                        backgroundColor: isOnTeam ? colors.playerRed : colors.playerGreen,
-                        borderRadius: 8,
-                        justifyContent: 'center',
-                        flex: 1,
-                    }}
-                >
-                    {t(isOnTeam ? 'builder.sell' : 'builder.buy').toUpperCase()}
-                </ListItemButton>
+                <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'}>
+                    {match}
+                    <Stack>
+                        <Typography>{'ULTIMA'}</Typography>
+                        <Typography>{player.lastPoint}</Typography>
+                    </Stack>
+                    <Stack>
+                        <Typography>{'MEDIA'}</Typography>
+                        <Typography>{player.average}</Typography>
+                    </Stack>
+                </Stack>
+                <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'}>
+                    <Typography>{`C$${player.price}`}</Typography>
+                    <Button
+                        onClick={() => (isOnTeam ? handleSell(player) : handleBuy(player))}
+                        sx={{
+                            color: 'white',
+                            backgroundColor: isOnTeam ? colors.playerRed : colors.playerGreen,
+                            borderRadius: 8,
+                            justifyContent: 'center',
+                            width: '45%',
+                        }}
+                    >
+                        {t(isOnTeam ? 'builder.sell' : 'builder.buy').toUpperCase()}
+                    </Button>
+                </Stack>
             </Stack>
-        </ListItem>
+        </Stack>
     )
 }

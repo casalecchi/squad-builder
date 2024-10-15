@@ -5,14 +5,22 @@ import { useTranslation } from 'react-i18next'
 import { useDataContext } from '../../contexts/DataContext'
 import { TranslationKey } from '../../@types/i18n'
 import StatusIndicator from './statusIndicator'
+import { useDeviceContext } from '../../contexts/DeviceContext'
 
 const MarketDialog: FC<PropsWithChildren> = ({ children }) => {
     const { t } = useTranslation()
+    const { mobile } = useDeviceContext()
     const { isMarketOpen, teamStateManager, closeMarket } = useDataContext()
     const { marketInfo } = teamStateManager
 
     return (
-        <Dialog fullWidth maxWidth={'lg'} onClose={closeMarket} open={isMarketOpen}>
+        <Dialog
+            fullWidth
+            fullScreen={mobile}
+            maxWidth={'lg'}
+            onClose={closeMarket}
+            open={isMarketOpen}
+        >
             <Stack alignItems={'center'} direction={'row'}>
                 <DialogTitle>{t('market.title').toUpperCase()}</DialogTitle>
                 <Stack

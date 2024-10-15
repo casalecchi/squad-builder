@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { List, ListItem, ListItemText, ListSubheader } from '@mui/material'
+import { Divider, List, ListItem, ListItemText, ListSubheader, Stack } from '@mui/material'
 import { Player } from '../../../models'
 import { teamPositionMap } from '../../../constants'
 import { useTranslation } from 'react-i18next'
@@ -33,54 +33,69 @@ const Market: FC = () => {
 
     return (
         <MarketDialog>
-            <List subheader={<li />} sx={{ overflowY: 'scroll' }}>
-                <ListSubheader sx={{ backgroundColor: '#393939' }}>
-                    <ListItem>
-                        <ListItemText sx={{ width: '4rem' }}></ListItemText>
-                        <ListItemText sx={{ flex: 1 }}>{t('market.columns.status')}</ListItemText>
-                        <ListItemText sx={{ flex: 1 }}>{t('market.columns.price')}</ListItemText>
-                        {!mobile && (
-                            <>
-                                <ListItemText sx={{ flex: 1 }}>
-                                    {t('market.columns.lastPoint')}
-                                </ListItemText>
-                                <ListItemText sx={{ flex: 1 }}>
-                                    {t('market.columns.average')}
-                                </ListItemText>
-                            </>
-                        )}
-                        <ListItemText sx={{ flex: 1 }}></ListItemText>
-                        <ListItemText sx={{ flex: 1 }}></ListItemText>
-                    </ListItem>
-                </ListSubheader>
-                {(players ?? [])
-                    .filter((p) => p.position == teamPositionMap[positionToShow])
-                    .map((player) => {
-                        const isOnTeam = !!team[positionToShow].find((p) => p.id == player.id)
+            {mobile ? (
+                <Stack divider={<Divider />} overflow={'auto'} px={2} spacing={2}>
+                    {(players ?? [])
+                        .filter((p) => p.position == teamPositionMap[positionToShow])
+                        .map((player) => {
+                            const isOnTeam = !!team[positionToShow].find((p) => p.id == player.id)
+                            return (
+                                <MobileRow
+                                    clubName={clubs[player.clubId]?.name}
+                                    handleBuy={handleBuy}
+                                    handleSell={handleSell}
+                                    isOnTeam={isOnTeam}
+                                    key={player.id}
+                                    match={matches[player.clubId]}
+                                    player={player}
+                                />
+                            )
+                        })}
+                </Stack>
+            ) : (
+                <List subheader={<li />} sx={{ overflowY: 'scroll' }}>
+                    <ListSubheader sx={{ backgroundColor: '#393939' }}>
+                        <ListItem>
+                            <ListItemText sx={{ width: '4rem' }}></ListItemText>
+                            <ListItemText sx={{ flex: 1 }}>
+                                {t('market.columns.status')}
+                            </ListItemText>
+                            <ListItemText sx={{ flex: 1 }}>
+                                {t('market.columns.price')}
+                            </ListItemText>
+                            {!mobile && (
+                                <>
+                                    <ListItemText sx={{ flex: 1 }}>
+                                        {t('market.columns.lastPoint')}
+                                    </ListItemText>
+                                    <ListItemText sx={{ flex: 1 }}>
+                                        {t('market.columns.average')}
+                                    </ListItemText>
+                                </>
+                            )}
+                            <ListItemText sx={{ flex: 1 }}></ListItemText>
+                            <ListItemText sx={{ flex: 1 }}></ListItemText>
+                        </ListItem>
+                    </ListSubheader>
+                    {(players ?? [])
+                        .filter((p) => p.position == teamPositionMap[positionToShow])
+                        .map((player) => {
+                            const isOnTeam = !!team[positionToShow].find((p) => p.id == player.id)
 
-                        return mobile ? (
-                            <MobileRow
-                                clubName={clubs[player.clubId]?.name}
-                                handleBuy={handleBuy}
-                                handleSell={handleSell}
-                                isOnTeam={isOnTeam}
-                                key={player.id}
-                                match={matches[player.clubId]}
-                                player={player}
-                            />
-                        ) : (
-                            <SiteRow
-                                clubName={clubs[player.clubId]?.name}
-                                handleBuy={handleBuy}
-                                handleSell={handleSell}
-                                isOnTeam={isOnTeam}
-                                key={player.id}
-                                match={matches[player.clubId]}
-                                player={player}
-                            />
-                        )
-                    })}
-            </List>
+                            return (
+                                <SiteRow
+                                    clubName={clubs[player.clubId]?.name}
+                                    handleBuy={handleBuy}
+                                    handleSell={handleSell}
+                                    isOnTeam={isOnTeam}
+                                    key={player.id}
+                                    match={matches[player.clubId]}
+                                    player={player}
+                                />
+                            )
+                        })}
+                </List>
+            )}
         </MarketDialog>
     )
 }
