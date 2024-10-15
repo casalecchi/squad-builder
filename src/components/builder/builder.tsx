@@ -1,5 +1,5 @@
 import { Box, Stack } from '@mui/material'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import pitch from '../../assets/campinho.svg'
 import FormationSelector from './formationSelector'
 import Team from './team/team'
@@ -9,6 +9,7 @@ import { StatCard } from './stats/statCard'
 import { CustomPaper } from '../ui/customPaper'
 import { useDeviceContext } from '../../contexts/DeviceContext'
 import { statsCards } from '../../constants/card'
+import { useTranslation } from 'react-i18next'
 
 const BoxTeam: FC = () => {
     const { mobile } = useDeviceContext()
@@ -37,6 +38,12 @@ const BoxTeam: FC = () => {
 
 const Builder: FC = () => {
     const { mobile } = useDeviceContext()
+    const { i18n } = useTranslation()
+    const { language, changeLanguage } = i18n
+
+    useEffect(() => {
+        changeLanguage(localStorage.getItem('lang') ?? language)
+    }, [])
 
     return (
         <Stack
