@@ -59,6 +59,11 @@
     },
     "market": {
         "title": "Mercado",
+        "row": {
+            "last": "Última",
+            "average": "Média",
+            "games": "Jogos"
+        },
         "columns": {
             "status": "Status",
             "price": "Preço",

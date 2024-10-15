@@ -59,6 +59,11 @@
     },
     "market": {
         "title": "Market",
+        "row": {
+            "last": "Last",
+            "average": "Average",
+            "games": "Games"
+        },
         "columns": {
             "status": "Status",
             "price": "Price",

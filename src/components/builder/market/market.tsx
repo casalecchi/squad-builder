@@ -34,7 +34,7 @@ const Market: FC = () => {
     return (
         <MarketDialog>
             {mobile ? (
-                <Stack divider={<Divider />} overflow={'auto'} px={2} spacing={2}>
+                <Stack divider={<Divider />} overflow={'auto'} pb={2} px={2} spacing={2}>
                     {(players ?? [])
                         .filter((p) => p.position == teamPositionMap[positionToShow])
                         .map((player) => {

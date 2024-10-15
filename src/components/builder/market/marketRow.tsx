@@ -77,26 +77,55 @@ export const MobileRow: FC<Row> = ({
                 variant={'square'}
             />
             <Stack spacing={1} width={'100%'}>
-                <Stack alignItems={'center'} direction={'row'}>
+                <Stack alignItems={'center'} direction={'row'} spacing={2}>
                     <StatusIcon status={player.status} />
-                    <Stack>
-                        <Typography>{player.name}</Typography>
-                        <Typography>{clubName}</Typography>
+                    <Stack
+                        alignItems={'center'}
+                        direction={'row'}
+                        justifyContent={'space-between'}
+                        width={'100%'}
+                    >
+                        <Typography fontSize={'1.2rem'}>{player.name}</Typography>
+                        <Typography fontSize={'0.75rem'} sx={{ opacity: 0.4 }}>
+                            {clubName}
+                        </Typography>
                     </Stack>
                 </Stack>
-                <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'}>
+                <Stack
+                    alignItems={'center'}
+                    direction={'row'}
+                    justifyContent={'space-between'}
+                    pl={1}
+                >
                     {match}
-                    <Stack>
-                        <Typography>{'ULTIMA'}</Typography>
+                    <Stack alignItems={'center'}>
+                        <Typography fontSize={'0.8rem'} sx={{ opacity: 0.4 }}>
+                            {t('market.row.last').toUpperCase()}
+                        </Typography>
                         <Typography>{player.lastPoint}</Typography>
                     </Stack>
-                    <Stack>
-                        <Typography>{'MEDIA'}</Typography>
+                    <Stack alignItems={'center'}>
+                        <Typography fontSize={'0.8rem'} sx={{ opacity: 0.4 }}>
+                            {t('market.row.average').toUpperCase()}
+                        </Typography>
                         <Typography>{player.average}</Typography>
                     </Stack>
+                    <Stack alignItems={'center'}>
+                        <Typography fontSize={'0.8rem'} sx={{ opacity: 0.4 }}>
+                            {t('market.row.games').toUpperCase()}
+                        </Typography>
+                        <Typography>{player.totalGames}</Typography>
+                    </Stack>
                 </Stack>
-                <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'}>
-                    <Typography>{`C$${player.price}`}</Typography>
+                <Stack
+                    alignItems={'center'}
+                    direction={'row'}
+                    justifyContent={'space-between'}
+                    pl={1}
+                >
+                    <Typography
+                        fontSize={'1.3rem'}
+                    >{`${t('common.money')}${player.price}`}</Typography>
                     <Button
                         onClick={() => (isOnTeam ? handleSell(player) : handleBuy(player))}
                         sx={{
