@@ -105,6 +105,11 @@
         "game": "Por Jogo",
         "90min": "Por 90 min"
     },
+    "tabs": {
+        "cartola": "Cartola",
+        "others": "Outros",
+        "percentage": "Percentuais"
+    },
     "unit": {
         "goals": "Gols",
         "assists": "Assistências",

@@ -7,7 +7,7 @@ import { CustomPaper } from './customPaper'
 
 export const OptionsCard: FC = () => {
     return (
-        <CustomPaper sx={{ p: 0 }}>
+        <CustomPaper sx={{ p: 0, flex: 0 }}>
             <Stack
                 alignItems={'center'}
                 direction={'row'}
