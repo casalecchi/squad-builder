@@ -2,7 +2,7 @@ import { Stack, Typography } from '@mui/material'
 import { FC, useEffect, useState } from 'react'
 import { StatGauge } from './statGauge'
 import { CustomPaper } from '../../ui/customPaper'
-import { CardDetail, PlayerStatValue, StatMetric } from '../../../models'
+import { CardDetail, CardTabColumn, PlayerStatValue, StatMetric } from '../../../models'
 import { useDataContext } from '../../../contexts/DataContext'
 import { getAttributeFromStats, getConvertedPlayerStatValue } from '../../../utils'
 import { SelectStatMetric } from './selectStatMetric'
@@ -54,7 +54,7 @@ export const StatCard: FC<StatCardProps> = ({
                 <Stack alignItems={'center'} justifyContent={'center'}>
                     <StatGauge
                         maxValue={detail.interval.max}
-                        negative={detail.negative}
+                        negative={detail.column == CardTabColumn.negative}
                         value={total ?? -1}
                     />
                     <Typography>
