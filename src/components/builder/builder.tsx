@@ -20,7 +20,7 @@ const Builder: FC = () => {
             direction={mobile ? 'column' : 'row'}
             height={mobile ? undefined : '100vh'}
             p={2}
-            spacing={2}
+            spacing={mobile ? 1 : 2}
         >
             {mobile && <OptionsCard />}
             <SquadCard />
