@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import { FC, useState } from 'react'
 import { IconButton, Popover, Stack, Typography } from '@mui/material'
-import SettingsIcon from '@mui/icons-material/Settings'
 import LanguageSwitch from './languageSwitch'
 import colors from '../styles/colors.module.scss'
+import { Translate } from '@mui/icons-material'
 
-const SettingsMenu = () => {
+interface SettingsMenuProps {
+    noBackground?: boolean
+    fixed?: boolean
+}
+
+const SettingsMenu: FC<SettingsMenuProps> = ({ noBackground, fixed }) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
     const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -23,17 +28,17 @@ const SettingsMenu = () => {
                 color="primary"
                 onClick={handleOpen}
                 sx={{
-                    backgroundColor: colors.pureBlack,
+                    backgroundColor: noBackground ? undefined : colors.pureBlack,
                     '&:hover': {
-                        backgroundColor: '#1e1e1e',
+                        backgroundColor: noBackground ? undefined : '#1e1e1e',
                     },
-                    position: 'fixed',
-                    top: 16,
-                    right: 16,
+                    position: fixed ? 'fixed' : undefined,
+                    top: fixed ? 16 : undefined,
+                    right: fixed ? 16 : undefined,
                     zIndex: 1000,
                 }}
             >
-                <SettingsIcon />
+                <Translate />
             </IconButton>
             <Popover
                 disableScrollLock

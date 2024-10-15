@@ -10,6 +10,7 @@ import { CustomPaper } from '../ui/customPaper'
 import { useDeviceContext } from '../../contexts/DeviceContext'
 import { statsCards } from '../../constants/card'
 import { useTranslation } from 'react-i18next'
+import { OptionsCard } from '../ui/optionsCard'
 
 const BoxTeam: FC = () => {
     const { mobile } = useDeviceContext()
@@ -52,6 +53,7 @@ const Builder: FC = () => {
             p={2}
             spacing={2}
         >
+            {mobile && <OptionsCard />}
             <Stack flex={mobile ? undefined : 6}>
                 <CustomPaper sx={{ height: mobile ? undefined : '100%', px: 0, flex: 0 }}>
                     <Stack
@@ -67,28 +69,26 @@ const Builder: FC = () => {
                     </Stack>
                 </CustomPaper>
             </Stack>
-            <Stack
-                direction={mobile ? 'column' : 'row'}
-                flex={mobile ? undefined : 6}
-                spacing={2}
-                sx={{ overflowY: 'auto', scrollPadding: '100px' }}
-            >
-                <Stack flex={mobile ? undefined : 1}>
-                    <Stack spacing={2}>
-                        {statsCards
-                            .filter((card) => !card.negative)
-                            .map((card) => (
-                                <StatCard detail={card} key={card.title} />
-                            ))}
+            <Stack flex={mobile ? undefined : 6} spacing={1}>
+                {!mobile && <OptionsCard />}
+                <Stack direction={mobile ? 'column' : 'row'} spacing={2} sx={{ overflowY: 'auto' }}>
+                    <Stack flex={mobile ? undefined : 1}>
+                        <Stack spacing={2}>
+                            {statsCards
+                                .filter((card) => !card.negative)
+                                .map((card) => (
+                                    <StatCard detail={card} key={card.title} />
+                                ))}
+                        </Stack>
                     </Stack>
-                </Stack>
-                <Stack flex={mobile ? undefined : 1}>
-                    <Stack spacing={2}>
-                        {statsCards
-                            .filter((card) => card.negative)
-                            .map((card) => (
-                                <StatCard detail={card} key={card.title} />
-                            ))}
+                    <Stack flex={mobile ? undefined : 1}>
+                        <Stack spacing={2}>
+                            {statsCards
+                                .filter((card) => card.negative)
+                                .map((card) => (
+                                    <StatCard detail={card} key={card.title} />
+                                ))}
+                        </Stack>
                     </Stack>
                 </Stack>
             </Stack>

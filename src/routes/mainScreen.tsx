@@ -17,7 +17,7 @@ export const MainScreen: FC = () => {
         <Stack display={'flex'}>
             <Cover />
             <HowItWorks />
-            <SettingsMenu />
+            <SettingsMenu fixed />
         </Stack>
     )
 }
