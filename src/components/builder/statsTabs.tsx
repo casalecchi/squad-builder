@@ -1,7 +1,7 @@
 import { DonutLarge, Insights, Leaderboard } from '@mui/icons-material'
 import { Tabs, Tab, SxProps, Typography, Stack } from '@mui/material'
 import { FC, ReactNode, SyntheticEvent, useState } from 'react'
-import { CardTabEnum } from '../../models'
+import { CardTabColumn, CardTabEnum } from '../../models'
 import { statsCards } from '../../constants/card'
 import { StackedStatCards } from './stats/stackedStatCards'
 import { useDeviceContext } from '../../contexts/DeviceContext'
@@ -9,11 +9,27 @@ import { useTranslation } from 'react-i18next'
 
 const CartolaTabs: FC = () => {
     const { mobile } = useDeviceContext()
+    const filteredCards = statsCards.filter((card) => card.tab == CardTabEnum.cartola)
 
     return (
         <Stack direction={mobile ? 'column' : 'row'} spacing={1} sx={{ overflowY: 'auto' }}>
-            <StackedStatCards cards={statsCards.filter((card) => !card.negative)} />
-            <StackedStatCards cards={statsCards.filter((card) => card.negative)} />
+            <StackedStatCards
+                cards={filteredCards.filter((card) => card.column == CardTabColumn.positive)}
+            />
+            <StackedStatCards
+                cards={filteredCards.filter((card) => card.column == CardTabColumn.negative)}
+            />
+        </Stack>
+    )
+}
+
+const OthersTabs: FC = () => {
+    const { mobile } = useDeviceContext()
+    const filteredCards = statsCards.filter((card) => card.tab == CardTabEnum.others)
+
+    return (
+        <Stack direction={mobile ? 'column' : 'row'} spacing={1} sx={{ overflowY: 'auto' }}>
+            <StackedStatCards cards={filteredCards} />
         </Stack>
     )
 }
@@ -30,7 +46,7 @@ export const StatsTabs: FC = () => {
 
     const content: Record<CardTabEnum, ReactNode> = {
         cartola: <CartolaTabs />,
-        others: <Typography>1</Typography>,
+        others: <OthersTabs />,
         percentage: <Typography>2</Typography>,
     }
 

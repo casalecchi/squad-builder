@@ -35,7 +35,9 @@
         "yellowCards": "Yellow Cards",
         "goalsConceded": "Suffered Goals",
         "fouls": "Fouls",
-        "penaltiesConceded": "Penalties Conceded"
+        "penaltiesConceded": "Penalties Conceded",
+        "expectedGoals": "Expected Goals (xG)",
+        "expectedAssists": "Expected Assists (xA)"
     },
     "common": {
         "money": "C$",
@@ -120,6 +122,8 @@
         "tackleWon": "Tackles Won",
         "penalties": "Penalties",
         "offsides": "Offsides",
-        "cards": "Cards"
+        "cards": "Cards",
+        "expectedGoals": "Expected Goals",
+        "expectedAssists": "Expected Assists"
     }
 }

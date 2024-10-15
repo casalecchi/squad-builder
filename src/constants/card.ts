@@ -1,4 +1,4 @@
-import { CardDetail } from '../models'
+import { CardDetail, CardTabColumn, CardTabEnum } from '../models'
 
 export const statsCards: CardDetail[] = [
     {
@@ -7,6 +7,8 @@ export const statsCards: CardDetail[] = [
         unit: 'goals',
         interval: { max: 3 },
         positionsNotAllowed: ['gk'],
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.positive,
     },
     {
         title: 'assists',
@@ -14,6 +16,8 @@ export const statsCards: CardDetail[] = [
         unit: 'assists',
         interval: { max: 3 },
         positionsNotAllowed: ['gk'],
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.positive,
     },
     {
         title: 'savedShots',
@@ -21,6 +25,8 @@ export const statsCards: CardDetail[] = [
         unit: 'shots',
         interval: { max: 5 },
         positionsNotAllowed: ['gk'],
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.positive,
     },
     {
         title: 'shotsOffTarget',
@@ -28,6 +34,8 @@ export const statsCards: CardDetail[] = [
         unit: 'shots',
         interval: { max: 10 },
         positionsNotAllowed: ['gk'],
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.positive,
     },
     {
         title: 'sufferedFouls',
@@ -35,6 +43,8 @@ export const statsCards: CardDetail[] = [
         unit: 'fouls',
         interval: { max: 15 },
         positionsNotAllowed: [],
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.positive,
     },
     {
         title: 'sufferedPenalties',
@@ -42,6 +52,8 @@ export const statsCards: CardDetail[] = [
         unit: 'penalties',
         interval: { max: 0.5 },
         positionsNotAllowed: ['gk'],
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.positive,
     },
     // ------------- Defense -------------
     {
@@ -50,6 +62,8 @@ export const statsCards: CardDetail[] = [
         unit: 'penalties',
         interval: { max: 0.5 },
         positionsNotAllowed: ['st', 'mid', 'wb', 'cb'],
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.positive,
     },
     {
         title: 'cleanSheets',
@@ -57,6 +71,8 @@ export const statsCards: CardDetail[] = [
         unit: 'cleanSheet',
         interval: { max: 5 },
         positionsNotAllowed: ['st', 'mid'],
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.positive,
     },
     {
         title: 'saves',
@@ -64,6 +80,8 @@ export const statsCards: CardDetail[] = [
         unit: 'saves',
         interval: { max: 8 },
         positionsNotAllowed: ['st', 'mid', 'wb', 'cb'],
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.positive,
     },
     {
         title: 'tackleWon',
@@ -71,6 +89,8 @@ export const statsCards: CardDetail[] = [
         unit: 'tackleWon',
         interval: { max: 12 },
         positionsNotAllowed: ['gk'],
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.positive,
     },
     // -----------------------------------
     {
@@ -79,7 +99,8 @@ export const statsCards: CardDetail[] = [
         unit: 'penalties',
         interval: { max: 0.1 },
         positionsNotAllowed: ['gk'],
-        negative: true,
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.negative,
     },
     {
         title: 'offsides',
@@ -87,7 +108,8 @@ export const statsCards: CardDetail[] = [
         unit: 'offsides',
         interval: { max: 6 },
         positionsNotAllowed: ['gk'],
-        negative: true,
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.negative,
     },
     {
         title: 'ownGoals',
@@ -95,7 +117,8 @@ export const statsCards: CardDetail[] = [
         unit: 'goals',
         interval: { max: 0.2 },
         positionsNotAllowed: [],
-        negative: true,
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.negative,
     },
     {
         title: 'redCard',
@@ -103,7 +126,8 @@ export const statsCards: CardDetail[] = [
         unit: 'cards',
         interval: { max: 1 },
         positionsNotAllowed: [],
-        negative: true,
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.negative,
     },
     {
         title: 'yellowCards',
@@ -111,7 +135,8 @@ export const statsCards: CardDetail[] = [
         unit: 'cards',
         interval: { max: 3 },
         positionsNotAllowed: [],
-        negative: true,
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.negative,
     },
     {
         title: 'goalsConceded',
@@ -119,7 +144,8 @@ export const statsCards: CardDetail[] = [
         unit: 'goals',
         interval: { max: 1.5 },
         positionsNotAllowed: ['st', 'mid', 'wb', 'cb'],
-        negative: true,
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.negative,
     },
     {
         title: 'fouls',
@@ -127,7 +153,8 @@ export const statsCards: CardDetail[] = [
         unit: 'fouls',
         interval: { max: 8 },
         positionsNotAllowed: [],
-        negative: true,
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.negative,
     },
     {
         title: 'penaltiesConceded',
@@ -135,6 +162,23 @@ export const statsCards: CardDetail[] = [
         unit: 'penalties',
         interval: { max: 0.2 },
         positionsNotAllowed: [],
-        negative: true,
+        tab: CardTabEnum.cartola,
+        column: CardTabColumn.negative,
+    },
+    {
+        title: 'expectedGoals',
+        attributes: ['expectedGoals'],
+        unit: 'expectedGoals',
+        interval: { max: 2 },
+        positionsNotAllowed: ['gk'],
+        tab: CardTabEnum.others,
+    },
+    {
+        title: 'expectedAssists',
+        attributes: ['expectedAssists'],
+        unit: 'expectedAssists',
+        interval: { max: 1 },
+        positionsNotAllowed: ['gk'],
+        tab: CardTabEnum.others,
     },
 ]

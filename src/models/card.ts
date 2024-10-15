@@ -1,5 +1,6 @@
 import { Position } from './position'
 import { PlayerStats } from './stats'
+import { CardTabColumn, CardTabEnum } from './tab'
 
 export interface CardDetail {
     title: string
@@ -7,7 +8,8 @@ export interface CardDetail {
     unit: Unit
     interval: { max: number }
     positionsNotAllowed: Position[]
-    negative?: boolean
+    tab: CardTabEnum
+    column?: CardTabColumn
 }
 
 export type Unit =
@@ -21,3 +23,5 @@ export type Unit =
     | 'penalties'
     | 'offsides'
     | 'cards'
+    | 'expectedGoals'
+    | 'expectedAssists'

@@ -35,7 +35,9 @@
         "yellowCards": "Cartões Amarelo",
         "goalsConceded": "Gols Sofridos",
         "fouls": "Faltas Cometidas",
-        "penaltiesConceded": "Penâltis Cometidos"
+        "penaltiesConceded": "Penâltis Cometidos",
+        "expectedGoals": "Gols Esperados (xG)",
+        "expectedAssists": "Assistências Esperadas (xA)"
     },
     "common": {
         "money": "C$",
@@ -120,6 +122,8 @@
         "tackleWon": "Desarmes",
         "penalties": "Penâltis",
         "offsides": "Impedimentos",
-        "cards": "Cartões"
+        "cards": "Cartões",
+        "expectedGoals": "Gols Esperados",
+        "expectedAssists": "Assistências Esperadas"
     }
 }

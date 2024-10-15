@@ -3,3 +3,8 @@ export enum CardTabEnum {
     others = 'others',
     percentage = 'percentage',
 }
+
+export enum CardTabColumn {
+    positive = 'positive',
+    negative = 'negative',
+}
