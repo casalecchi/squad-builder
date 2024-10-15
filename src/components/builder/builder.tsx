@@ -70,7 +70,7 @@ const Builder: FC = () => {
             <Stack flex={mobile ? undefined : 3}>
                 <Stack spacing={2}>
                     {statsCards
-                        .filter((card) => card.attributes.length == 1 && !card.negative)
+                        .filter((card) => !card.negative)
                         .map((card) => (
                             <StatCard detail={card} key={card.title} />
                         ))}
@@ -79,7 +79,7 @@ const Builder: FC = () => {
             <Stack flex={mobile ? undefined : 3}>
                 <Stack spacing={2}>
                     {statsCards
-                        .filter((card) => card.attributes.length == 1 && card.negative)
+                        .filter((card) => card.negative)
                         .map((card) => (
                             <StatCard detail={card} key={card.title} />
                         ))}

@@ -38,7 +38,8 @@
         "penaltiesConceded": "Penalties Conceded"
     },
     "common": {
-        "money": "C$"
+        "money": "C$",
+        "seeDetails": "See Details"
     },
     "footer": {
         "rights": "All rights reserved."

@@ -1,12 +1,14 @@
 import { Avatar, Stack, StackProps, Typography } from '@mui/material'
 import { FC } from 'react'
 import { Player } from '../../../models'
+import { useTranslation } from 'react-i18next'
 
 interface AccordionCellProps extends StackProps {
     player?: Player
     statValue?: number | string
     statUnit?: string
     isHeader?: boolean
+    showMore?: boolean
 }
 
 export const AccordionCell: FC<AccordionCellProps> = ({
@@ -14,8 +16,11 @@ export const AccordionCell: FC<AccordionCellProps> = ({
     statValue,
     statUnit,
     isHeader,
+    showMore,
     ...props
 }) => {
+    const { t } = useTranslation()
+
     return (
         <Stack
             alignItems={'center'}
@@ -34,9 +39,9 @@ export const AccordionCell: FC<AccordionCellProps> = ({
             </Stack>
             <Stack alignItems={'center'} direction={'row'} spacing={3}>
                 <Typography>{`${statValue ?? '-'} ${statUnit ?? ''}`}</Typography>
-                {isHeader && (
+                {isHeader && showMore && (
                     <Typography fontSize={'0.7rem'} sx={{ opacity: 0.4 }}>
-                        {'See playes stats'}
+                        {t('common.seeDetails')}
                     </Typography>
                 )}
             </Stack>

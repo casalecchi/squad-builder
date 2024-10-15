@@ -1,15 +1,14 @@
-import { Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { FC, useEffect, useState } from 'react'
 import { StatGauge } from './statGauge'
 import { CustomPaper } from '../../ui/customPaper'
-import { CardDetail, PlayerWithStats, StatMetric } from '../../../models'
+import { CardDetail, PlayerStatValue, StatMetric } from '../../../models'
 import { useDataContext } from '../../../contexts/DataContext'
-import { getStatValue, transformValueToMetric } from '../../../utils'
+import { getAttributeFromStats, getConvertedPlayerStatValue } from '../../../utils'
 import { SelectStatMetric } from './selectStatMetric'
-import { ExpandMore } from '@mui/icons-material'
-import { AccordionCell } from './accordionCell'
 import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../../../@types/i18n'
+import { PlayersDetail } from './playersDetail'
 
 interface StatCardProps {
     detail: CardDetail
@@ -26,27 +25,24 @@ export const StatCard: FC<StatCardProps> = ({
     const { teamStateManager } = useDataContext()
     const { stats } = teamStateManager
     const [selectedStatMetric, setSelectedStatMetric] = useState<StatMetric>(defaultType)
-    const [orderedByStat, setOrderedByStat] = useState<PlayerWithStats[]>([])
-    const { attributes } = detail
-    // TODO - custom attribute
-    const attribute = attributes[0]
-    const value = getStatValue(
-        attribute,
-        stats.filter((ps) => !detail.positionsNotAllowed.includes(ps.player.position)),
-        selectedStatMetric
-    )
+    const [orderedByStat, setOrderedByStat] = useState<PlayerStatValue[]>([])
+    const [total, setTotal] = useState<number>()
 
     useEffect(() => {
-        setOrderedByStat(
-            stats
-                .filter((ps) => !detail.positionsNotAllowed.includes(ps.player.position))
-                .toSorted(
-                    (a, b) =>
-                        transformValueToMetric(attribute, b.stats, selectedStatMetric) -
-                        transformValueToMetric(attribute, a.stats, selectedStatMetric)
-                )
+        const filteredStats = stats.filter(
+            (ps) => !detail.positionsNotAllowed.includes(ps.player.position)
         )
+        const statValues = getAttributeFromStats(filteredStats, detail.attributes)
+        const valuesWithMetric = statValues.map((ps) =>
+            getConvertedPlayerStatValue(ps, stats, selectedStatMetric)
+        )
+        setOrderedByStat(valuesWithMetric.toSorted((a, b) => b.statValue - a.statValue))
+        setTotal(valuesWithMetric.reduce((acc, curr) => acc + curr.statValue, 0))
     }, [stats, selectedStatMetric])
+
+    useEffect(() => {
+        if (detail.title == 'penaltyLost') console.log(orderedByStat)
+    }, [orderedByStat])
 
     return (
         <CustomPaper sx={{ p: 1 }}>
@@ -63,51 +59,12 @@ export const StatCard: FC<StatCardProps> = ({
                     <StatGauge
                         maxValue={detail.interval.max}
                         negative={detail.negative}
-                        value={value}
+                        value={total ?? -1}
                     />
                     <Typography>
                         {`${t(`unit.${detail.unit}`)} ${t(`statMetric.${selectedStatMetric}`)}`.toUpperCase()}
                     </Typography>
-                    <Accordion
-                        disableGutters
-                        elevation={0}
-                        sx={{
-                            width: '100%',
-                            background: 'transparent',
-                            '&:before': {
-                                display: 'none',
-                            },
-                        }}
-                    >
-                        <AccordionSummary
-                            disableTouchRipple
-                            expandIcon={<ExpandMore sx={{ opacity: 0.4 }} />}
-                        >
-                            <AccordionCell
-                                isHeader
-                                player={orderedByStat[0]?.player}
-                                width={'100%'}
-                                statValue={transformValueToMetric(
-                                    attribute,
-                                    orderedByStat[0]?.stats ?? {},
-                                    selectedStatMetric
-                                )}
-                            />
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            {orderedByStat.slice(1).map((ps) => (
-                                <AccordionCell
-                                    key={ps.player.id}
-                                    player={ps.player}
-                                    statValue={transformValueToMetric(
-                                        attribute,
-                                        ps.stats,
-                                        selectedStatMetric
-                                    )}
-                                />
-                            ))}
-                        </AccordionDetails>
-                    </Accordion>
+                    <PlayersDetail playerStatValues={orderedByStat} />
                 </Stack>
             </Stack>
         </CustomPaper>

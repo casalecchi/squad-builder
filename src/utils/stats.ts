@@ -1,4 +1,4 @@
-import { PlayerStats, PlayerWithStats, StatMetric } from '../models'
+import { PlayerStatValue, PlayerStats, PlayerWithStats, StatMetric } from '../models'
 import colors from '../styles/colors.module.scss'
 import { formatNumber } from './formatters'
 
@@ -26,11 +26,20 @@ export const getNegativeColor = (value: number, max: number) => {
     }
 }
 
-export const transformValueToMetric = (
-    attribute: keyof PlayerStats,
-    stats: PlayerStats,
-    metric: StatMetric
-) => {
+export const getAttributeFromStats = (
+    stats: PlayerWithStats[],
+    attrs: (keyof PlayerStats)[]
+): PlayerStatValue[] => {
+    if (attrs.length == 2) {
+        return stats.map((ps) => ({
+            player: ps.player,
+            statValue: (ps.stats[attrs[0]] ?? 0) - (ps.stats[attrs[1]] ?? 0),
+        }))
+    }
+    return stats.map((ps) => ({ player: ps.player, statValue: ps.stats[attrs[0]] ?? 0 }))
+}
+
+export const convertToMetric = (statValue: number, stats: PlayerStats, metric: StatMetric) => {
     let multiplier: number
     switch (metric) {
         case 'total':
@@ -45,16 +54,24 @@ export const transformValueToMetric = (
         default:
             multiplier = 0
     }
-    const value = (stats[attribute] ?? 0) * multiplier
-    return formatNumber(value)
+    return formatNumber(statValue * multiplier)
 }
 
-export const getStatValue = (
-    attribute: keyof PlayerStats,
+export const getConvertedPlayerStatValue = (
+    playerStatValue: PlayerStatValue,
     playerStats: PlayerWithStats[],
     metric: StatMetric
 ) => {
-    const rawValues = playerStats.map((ps) => transformValueToMetric(attribute, ps.stats, metric))
-    const total = rawValues.reduce((acc, currentValue) => acc + currentValue, 0)
-    return formatNumber(total)
+    const playerWithStats = playerStats.filter((ps) => playerStatValue.player.id == ps.player.id)
+    if (playerWithStats.length > 1) {
+        console.error('Convert To Metric Error - duplicate id')
+        return {} as PlayerStatValue
+    }
+    const playerWithStat = playerWithStats[0]
+    const convertedPlayerStatValue = convertToMetric(
+        playerStatValue.statValue,
+        playerWithStat.stats,
+        metric
+    )
+    return { player: playerStatValue.player, statValue: convertedPlayerStatValue }
 }

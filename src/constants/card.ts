@@ -17,7 +17,7 @@ export const statsCards: CardDetail[] = [
     },
     {
         title: 'savedShots',
-        attributes: ['shotsOffTarget', 'goals'], // calculo
+        attributes: ['shotsOnTarget', 'goals'], // calculo
         unit: 'shots',
         interval: { max: 5 },
         positionsNotAllowed: ['gk'],

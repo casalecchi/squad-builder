@@ -38,7 +38,8 @@
         "penaltiesConceded": "Penâltis Cometidos"
     },
     "common": {
-        "money": "C$"
+        "money": "C$",
+        "seeDetails": "Explorar"
     },
     "footer": {
         "rights": "Todos os direitos reservados."
