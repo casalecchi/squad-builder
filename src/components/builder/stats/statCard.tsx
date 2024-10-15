@@ -40,10 +40,6 @@ export const StatCard: FC<StatCardProps> = ({
         setTotal(valuesWithMetric.reduce((acc, curr) => acc + curr.statValue, 0))
     }, [stats, selectedStatMetric])
 
-    useEffect(() => {
-        if (detail.title == 'penaltyLost') console.log(orderedByStat)
-    }, [orderedByStat])
-
     return (
         <CustomPaper sx={{ p: 1 }}>
             <Stack width={'100%'}>

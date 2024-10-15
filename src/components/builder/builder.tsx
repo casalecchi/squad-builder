@@ -67,22 +67,29 @@ const Builder: FC = () => {
                     </Stack>
                 </CustomPaper>
             </Stack>
-            <Stack flex={mobile ? undefined : 3}>
-                <Stack spacing={2}>
-                    {statsCards
-                        .filter((card) => !card.negative)
-                        .map((card) => (
-                            <StatCard detail={card} key={card.title} />
-                        ))}
+            <Stack
+                direction={mobile ? 'column' : 'row'}
+                flex={mobile ? undefined : 6}
+                spacing={2}
+                sx={{ overflowY: 'auto', scrollPadding: '100px' }}
+            >
+                <Stack flex={mobile ? undefined : 1}>
+                    <Stack spacing={2}>
+                        {statsCards
+                            .filter((card) => !card.negative)
+                            .map((card) => (
+                                <StatCard detail={card} key={card.title} />
+                            ))}
+                    </Stack>
                 </Stack>
-            </Stack>
-            <Stack flex={mobile ? undefined : 3}>
-                <Stack spacing={2}>
-                    {statsCards
-                        .filter((card) => card.negative)
-                        .map((card) => (
-                            <StatCard detail={card} key={card.title} />
-                        ))}
+                <Stack flex={mobile ? undefined : 1}>
+                    <Stack spacing={2}>
+                        {statsCards
+                            .filter((card) => card.negative)
+                            .map((card) => (
+                                <StatCard detail={card} key={card.title} />
+                            ))}
+                    </Stack>
                 </Stack>
             </Stack>
         </Stack>
