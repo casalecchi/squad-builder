@@ -5,9 +5,11 @@ const FORMATION_VERSION = '1.0.0'
 const STATS_VERSION = '1.0.0'
 const TEAM_VERSION = '1.0.0'
 
-const getLocalValueByVersion = (version_key: string, version: string, defaultValue: string) => {
+const getLocalValueByVersion = (key: string, version: string, defaultValue: string) => {
+    const version_key = `${key}_version`
     const correctVersion = localStorage.getItem(version_key) == version
-    const localValue = localStorage.getItem(version_key) ?? defaultValue
+    const localValue = localStorage.getItem(key) ?? defaultValue
+    localStorage.setItem(version_key, version)
     if (correctVersion) {
         return JSON.parse(localValue)
     } else {
@@ -17,7 +19,7 @@ const getLocalValueByVersion = (version_key: string, version: string, defaultVal
 
 export const getLocalFormation = () => {
     const defaultValue = JSON.stringify(fourThreeThree)
-    return getLocalValueByVersion('formation_version', FORMATION_VERSION, defaultValue)
+    return getLocalValueByVersion('formation', FORMATION_VERSION, defaultValue)
 }
 
 export const setLocalFormation = (formation: Formation) => {
@@ -26,8 +28,7 @@ export const setLocalFormation = (formation: Formation) => {
 
 export const getLocalStats = () => {
     const defaultValue = JSON.stringify({ stats: [] })
-    return getLocalValueByVersion('stats_version', STATS_VERSION, defaultValue)
-        .stats as PlayerStats[]
+    return getLocalValueByVersion('stats', STATS_VERSION, defaultValue).stats as PlayerStats[]
 }
 
 export const setLocalStats = (stats: PlayerStats[]) => {
@@ -43,7 +44,7 @@ export const getLocalTeam = () => {
         strikers: [],
         manager: [],
     })
-    return getLocalValueByVersion('team_version', TEAM_VERSION, defaultValue)
+    return getLocalValueByVersion('team', TEAM_VERSION, defaultValue)
 }
 
 export const setLocalTeam = (team: Team) => {
