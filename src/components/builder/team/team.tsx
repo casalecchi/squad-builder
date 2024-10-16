@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import PlayerButton from './playerButton'
 import { useDataContext } from '../../../contexts/DataContext'
+import PlayerButton from './playerButton'
 
 const Team: FC = () => {
     const { teamStateManager } = useDataContext()
@@ -46,6 +46,14 @@ const Team: FC = () => {
                     player={team.strikers[index]}
                     playerArea={pos}
                     positionKey={'strikers'}
+                />
+            ))}
+            {formation.manager.map((pos, index) => (
+                <PlayerButton
+                    key={index}
+                    player={team.manager[index]}
+                    playerArea={pos}
+                    positionKey={'manager'}
                 />
             ))}
         </>

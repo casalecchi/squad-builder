@@ -74,3 +74,6 @@ export const threeRightStriker: PlayerArea = { code: 'st', bottom: '70%', left: 
 export const threeCenterStriker: PlayerArea = { code: 'st', bottom: '73%', left: '50%' }
 export const threeLeftStriker: PlayerArea = { code: 'st', bottom: '70%', left: '25%' }
 export const threeStrikers = [threeLeftStriker, threeCenterStriker, threeRightStriker]
+
+// --------------------------------- MANAGER -----------------------------------------
+export const managerPosition: PlayerArea = { code: 'man', bottom: '6%', left: '15%' }

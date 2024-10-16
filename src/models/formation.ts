@@ -7,4 +7,5 @@ export interface Formation {
     defenders: PlayerArea[]
     midfielders: PlayerArea[]
     strikers: PlayerArea[]
+    manager: PlayerArea[]
 }

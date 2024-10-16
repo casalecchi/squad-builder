@@ -1,16 +1,17 @@
-import { Formation } from '../models'
 import {
     fiveDefenders,
     fiveMidfielders,
     fourDefenders,
     fourMidfielders,
     goalkeeperPosition,
+    managerPosition,
     oneStriker,
     threeDefenders,
     threeMidfielders,
     threeStrikers,
     twoStrikers,
 } from '.'
+import { Formation } from '../models'
 
 export const threeFourThree: Formation = {
     id: '343',
@@ -19,6 +20,7 @@ export const threeFourThree: Formation = {
     defenders: threeDefenders,
     midfielders: fourMidfielders,
     strikers: threeStrikers,
+    manager: [managerPosition]
 }
 
 export const threeFiveTwo: Formation = {
@@ -28,6 +30,7 @@ export const threeFiveTwo: Formation = {
     defenders: threeDefenders,
     midfielders: fiveMidfielders,
     strikers: twoStrikers,
+    manager: [managerPosition]
 }
 
 export const fourThreeThree: Formation = {
@@ -37,6 +40,7 @@ export const fourThreeThree: Formation = {
     defenders: fourDefenders.slice(2),
     midfielders: threeMidfielders,
     strikers: threeStrikers,
+    manager: [managerPosition]
 }
 
 export const fourFourTwo: Formation = {
@@ -46,6 +50,7 @@ export const fourFourTwo: Formation = {
     defenders: fourDefenders.slice(2),
     midfielders: fourMidfielders,
     strikers: twoStrikers,
+    manager: [managerPosition]
 }
 export const fourFiveOne: Formation = {
     id: '451',
@@ -54,6 +59,7 @@ export const fourFiveOne: Formation = {
     defenders: fourDefenders.slice(2),
     midfielders: fiveMidfielders,
     strikers: [oneStriker],
+    manager: [managerPosition]
 }
 
 export const fiveThreeTwo: Formation = {
@@ -63,6 +69,7 @@ export const fiveThreeTwo: Formation = {
     defenders: fiveDefenders.slice(2),
     midfielders: threeMidfielders,
     strikers: twoStrikers,
+    manager: [managerPosition]
 }
 
 export const fiveFourOne: Formation = {
@@ -72,6 +79,7 @@ export const fiveFourOne: Formation = {
     defenders: fiveDefenders.slice(2),
     midfielders: fourMidfielders,
     strikers: [oneStriker],
+    manager: [managerPosition]
 }
 
 export const ALL_FORMATIONS = [

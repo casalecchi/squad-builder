@@ -6,4 +6,5 @@ export interface Team {
     defenders: Player[]
     midfielders: Player[]
     strikers: Player[]
+    manager: Player[]
 }

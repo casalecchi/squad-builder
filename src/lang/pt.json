@@ -84,14 +84,16 @@
             "wb": "LAT",
             "cb": "ZAG",
             "mid": "MEI",
-            "st": "ATA"
+            "st": "ATA",
+            "man": "TÉC"
         },
         "fullName": {
             "gk": "Goleiro",
             "wb": "Lateral",
             "cb": "Zagueiro",
             "mid": "Meio Campo",
-            "st": "Atacante"
+            "st": "Atacante",
+            "man": "Técnico"
         }
     },
     "status": {

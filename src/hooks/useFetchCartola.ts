@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { Player, Clubs, Matchup, MarketInfo } from '../models'
 import axios from 'axios'
+import { useState } from 'react'
+import { Clubs, MarketInfo, Matchup, Player } from '../models'
 
 const useFetchCartola = () => {
     const [players, setPlayers] = useState<Player[]>([])
@@ -15,7 +15,7 @@ const useFetchCartola = () => {
             )
             setMarketInfo(marketResponse.data.info)
             const players = marketResponse.data.players
-            setPlayers(players.filter((player) => player.position != 'man'))
+            setPlayers(players)
 
             const clubsResponse = await axios.get<Clubs>('/api/clubs')
             const clubs = clubsResponse.data

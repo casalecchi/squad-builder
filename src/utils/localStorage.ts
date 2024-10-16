@@ -27,6 +27,7 @@ export const getLocalTeam = () => {
                 defenders: [],
                 midfielders: [],
                 strikers: [],
+                manager: [],
             })
     )
 }

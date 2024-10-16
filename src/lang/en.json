@@ -84,14 +84,16 @@
             "wb": "WB",
             "cb": "CB",
             "mid": "MID",
-            "st": "ST"
+            "st": "ST",
+            "man": "MAN"
         },
         "fullName": {
             "gk": "Goalkeeper",
             "wb": "Wingback",
             "cb": "Centerback",
             "mid": "Midfielder",
-            "st": "Striker"
+            "st": "Striker",
+            "man": "Manager"
         }
     },
     "status": {

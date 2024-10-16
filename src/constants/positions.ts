@@ -6,4 +6,5 @@ export const teamPositionMap: { [key in keyof Team]: Position } = {
     defenders: 'cb',
     midfielders: 'mid',
     strikers: 'st',
+    manager: 'man'
 }

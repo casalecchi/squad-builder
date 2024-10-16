@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { Player, PlayerStats, PlayerWithStats } from '../models'
 import { Dispatch, SetStateAction } from 'react'
+import { Player, PlayerStats, PlayerWithStats } from '../models'
 
 const reloadStats = (
     prevStats: PlayerWithStats[],
@@ -32,6 +32,7 @@ const useGetPlayerData = () => {
         player: Player,
         setStats: Dispatch<SetStateAction<PlayerWithStats[]>>
     ) => {
+        if (player.position == 'man') return
         fetchPlayerData(player.clubId, player.name).then((statistics) => {
             if (!statistics) return
             const playerStats = { player: player, stats: statistics } as PlayerWithStats
