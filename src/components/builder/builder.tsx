@@ -1,10 +1,11 @@
 import { Stack } from '@mui/material'
 import { FC, useEffect } from 'react'
-import { useDeviceContext } from '../../contexts/DeviceContext'
 import { useTranslation } from 'react-i18next'
+import { useDeviceContext } from '../../contexts/DeviceContext'
 import { OptionsCard } from '../ui/optionsCard'
-import { SquadCard } from './team/squadCard'
 import { StatsTabs } from './statsTabs'
+import { SquadCard } from './team/squadCard'
+import { TeamDetails } from './team/teamDetails'
 
 const Builder: FC = () => {
     const { mobile } = useDeviceContext()
@@ -26,6 +27,7 @@ const Builder: FC = () => {
             <SquadCard />
             <Stack flex={mobile ? undefined : 6} spacing={1}>
                 {!mobile && <OptionsCard />}
+                <TeamDetails />
                 <StatsTabs />
             </Stack>
         </Stack>

@@ -1,11 +1,11 @@
 import { DonutLarge, Insights, Leaderboard } from '@mui/icons-material'
-import { Tabs, Tab, SxProps, Typography, Stack } from '@mui/material'
+import { Stack, SxProps, Tab, Tabs, Typography } from '@mui/material'
 import { FC, ReactNode, SyntheticEvent, useState } from 'react'
-import { CardTabColumn, CardTabEnum } from '../../models'
-import { statsCards } from '../../constants/card'
-import { StackedStatCards } from './stats/stackedStatCards'
-import { useDeviceContext } from '../../contexts/DeviceContext'
 import { useTranslation } from 'react-i18next'
+import { statsCards } from '../../constants/card'
+import { useDeviceContext } from '../../contexts/DeviceContext'
+import { CardTabColumn, CardTabEnum } from '../../models'
+import { StackedStatCards } from './stats/stackedStatCards'
 
 const CartolaTabs: FC = () => {
     const { mobile } = useDeviceContext()
@@ -47,7 +47,11 @@ export const StatsTabs: FC = () => {
     const content: Record<CardTabEnum, ReactNode> = {
         cartola: <CartolaTabs />,
         others: <OthersTabs />,
-        percentage: <Typography>2</Typography>,
+        percentage: (
+            <Stack alignItems={'center'} width={'100%'}>
+                <Typography>Coming Soon...</Typography>
+            </Stack>
+        ),
     }
 
     return (
