@@ -29,7 +29,12 @@ const OthersTabs: FC = () => {
 
     return (
         <Stack direction={mobile ? 'column' : 'row'} spacing={1} sx={{ overflowY: 'auto' }}>
-            <StackedStatCards cards={filteredCards} />
+            <StackedStatCards
+                cards={filteredCards.filter((card) => card.column == CardTabColumn.first)}
+            />
+            <StackedStatCards
+                cards={filteredCards.filter((card) => card.column == CardTabColumn.second)}
+            />
         </Stack>
     )
 }

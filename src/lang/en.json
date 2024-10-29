@@ -37,7 +37,13 @@
         "fouls": "Fouls",
         "penaltiesConceded": "Penalties Conceded",
         "expectedGoals": "Expected Goals (xG)",
-        "expectedAssists": "Expected Assists (xA)"
+        "expectedAssists": "Expected Assists (xA)",
+        "bigChancesCreated": "Big Chances Created",
+        "successfulDribbles": "Successful Dribbles",
+        "keyPasses": "Key Passes",
+        "accuratePasses": "Accurate Passes",
+        "accurateCrosses": "Accurate Crosses",
+        "interceptions": "Interceptions"
     },
     "common": {
         "money": "C$",
@@ -126,6 +132,11 @@
         "offsides": "Offsides",
         "cards": "Cards",
         "expectedGoals": "Expected Goals",
-        "expectedAssists": "Expected Assists"
+        "expectedAssists": "Expected Assists",
+        "chances": "Chances",
+        "passes": "Passes",
+        "dribbles": "Dribbles",
+        "interceptions": "Interceptions",
+        "crosses": "Crosses"
     }
 }

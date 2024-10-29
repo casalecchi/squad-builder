@@ -5,6 +5,8 @@ export enum CardTabEnum {
 }
 
 export enum CardTabColumn {
+    first = 'first',
+    second = 'second',
     positive = 'positive',
     negative = 'negative',
 }

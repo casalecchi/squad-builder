@@ -37,7 +37,13 @@
         "fouls": "Faltas Cometidas",
         "penaltiesConceded": "Penâltis Cometidos",
         "expectedGoals": "Gols Esperados (xG)",
-        "expectedAssists": "Assistências Esperadas (xA)"
+        "expectedAssists": "Assistências Esperadas (xA)",
+        "bigChancesCreated": "Chances Criadas",
+        "successfulDribbles": "Dribles Bem Sucedidos",
+        "keyPasses": "Passes Chave",
+        "accuratePasses": "Passes Certos",
+        "accurateCrosses": "Cruzamentos Certos",
+        "interceptions": "Interceptações"
     },
     "common": {
         "money": "C$",
@@ -126,6 +132,11 @@
         "offsides": "Impedimentos",
         "cards": "Cartões",
         "expectedGoals": "Gols Esperados",
-        "expectedAssists": "Assistências Esperadas"
+        "expectedAssists": "Assistências Esperadas",
+        "chances": "Chances",
+        "passes": "Passes",
+        "dribbles": "Dribles",
+        "interceptions": "Interceptações",
+        "crosses": "Cruzamentos"
     }
 }

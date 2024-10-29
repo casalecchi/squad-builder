@@ -25,3 +25,8 @@ export type Unit =
     | 'cards'
     | 'expectedGoals'
     | 'expectedAssists'
+    | 'chances'
+    | 'passes'
+    | 'dribbles'
+    | 'interceptions'
+    | 'crosses'
