@@ -2,10 +2,10 @@ import { Close } from '@mui/icons-material'
 import { Dialog, DialogTitle, IconButton, Stack, Typography } from '@mui/material'
 import { FC, PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDataContext } from '../../contexts/DataContext'
 import { TranslationKey } from '../../@types/i18n'
-import StatusIndicator from './statusIndicator'
+import { useDataContext } from '../../contexts/DataContext'
 import { useDeviceContext } from '../../contexts/DeviceContext'
+import StatusIndicator from './statusIndicator'
 
 const MarketDialog: FC<PropsWithChildren> = ({ children }) => {
     const { t } = useTranslation()

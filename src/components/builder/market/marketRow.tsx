@@ -1,21 +1,9 @@
+import { Avatar, Button, Stack, Typography } from '@mui/material'
 import { FC, ReactNode } from 'react'
-import { Player } from '../../../models'
-import {
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-    ListItemIcon,
-    ListItemButton,
-    Stack,
-    Typography,
-    Avatar,
-    Button,
-} from '@mui/material'
-import { formatNumber } from '../../../utils'
-import StatusIcon from '../../ui/statusIcon'
-import colors from '../../../styles/colors.module.scss'
 import { useTranslation } from 'react-i18next'
-import { MarketAvatar } from './marketItems'
+import { Player } from '../../../models'
+import colors from '../../../styles/colors.module.scss'
+import StatusIcon from '../../ui/statusIcon'
 
 interface Row {
     player: Player
@@ -30,31 +18,67 @@ export const SiteRow: FC<Row> = ({ player, isOnTeam, clubName, match, handleBuy,
     const { t } = useTranslation()
 
     return (
-        <ListItem divider sx={{ display: 'flex' }}>
-            <MarketAvatar alt={player.name} src={player.photo} />
-            <ListItemText primary={player.name} secondary={clubName} sx={{ flex: 2 }} />
-            <ListItemIcon sx={{ flex: 1 }}>
+        <Stack alignItems={'center'} direction={'row'} spacing={1}>
+            <Avatar
+                alt={player.name}
+                src={player.photo}
+                sx={{ height: 85, width: 85 }}
+                variant={'square'}
+            />
+            <Stack flex={2} pl={1} spacing={-0.5}>
+                <Typography fontSize={'1.4rem'}>{player.name}</Typography>
+                <Typography fontSize={'0.95rem'} sx={{ opacity: 0.4 }}>
+                    {clubName}
+                </Typography>
+            </Stack>
+            <Stack flex={1}>{match}</Stack>
+            <Stack alignItems={'center'} flex={1}>
                 <StatusIcon status={player.status} />
-            </ListItemIcon>
-            <ListItemText primary={`C$${formatNumber(player.price)}`} sx={{ flex: 1 }} />
-            <ListItemText primary={formatNumber(player.lastPoint ?? 0)} sx={{ flex: 1 }} />
-            <ListItemText primary={formatNumber(player.average)} sx={{ flex: 1 }} />
-            <ListItemText primary={player.totalGames} sx={{ flex: 1 }} />
-            <ListItemAvatar sx={{ flex: 2, minWidth: '1rem', marginRight: 1 }}>
-                {match}
-            </ListItemAvatar>
-            <ListItemButton
+            </Stack>
+            <Stack
+                alignItems={'center'}
+                direction={'row'}
+                flex={5}
+                justifyContent={'space-between'}
+            >
+                <Stack alignItems={'center'}>
+                    <Typography fontSize={'1rem'} sx={{ opacity: 0.4 }}>
+                        {t('market.row.last').toUpperCase()}
+                    </Typography>
+                    <Typography fontSize={'1.2rem'}>{player.lastPoint}</Typography>
+                </Stack>
+                <Stack alignItems={'center'}>
+                    <Typography fontSize={'1rem'} sx={{ opacity: 0.4 }}>
+                        {t('market.row.average').toUpperCase()}
+                    </Typography>
+                    <Typography fontSize={'1.2rem'}>{player.average}</Typography>
+                </Stack>
+                <Stack alignItems={'center'}>
+                    <Typography fontSize={'1rem'} sx={{ opacity: 0.4 }}>
+                        {t('market.row.games').toUpperCase()}
+                    </Typography>
+                    <Typography fontSize={'1.2rem'}>{player.totalGames}</Typography>
+                </Stack>
+            </Stack>
+            <Typography
+                flex={1.5}
+                fontSize={'1.5rem'}
+                textAlign={'center'}
+            >{`${t('common.money')}${player.price}`}</Typography>
+            <Button
                 onClick={() => (isOnTeam ? handleSell(player) : handleBuy(player))}
                 sx={{
+                    color: 'white',
                     backgroundColor: isOnTeam ? colors.playerRed : colors.playerGreen,
                     borderRadius: 8,
                     justifyContent: 'center',
                     flex: 1,
+                    fontSize: '1.2rem',
                 }}
             >
                 {t(isOnTeam ? 'builder.sell' : 'builder.buy').toUpperCase()}
-            </ListItemButton>
-        </ListItem>
+            </Button>
+        </Stack>
     )
 }
 
