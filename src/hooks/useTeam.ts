@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Player, PlayerWithStats, Team } from '../models'
-import { getLocalTeam, getTeamValue, setLocalTeam } from '../utils'
+import { getLocalTeam, getTeamAverage, getTeamValue, setLocalTeam } from '../utils'
 import useGetPlayerData from './useGetPlayerData'
 
 interface TeamState {
     team: Team
     teamValue: number
+    teamAverage: number
     stats: PlayerWithStats[]
     addPlayer: (keyPosition: keyof Team, player: Player) => void
     removePlayer: (keyPosition: keyof Team, player: Player) => void
@@ -14,6 +15,7 @@ interface TeamState {
 export const useTeam = (): TeamState => {
     const [team, setTeam] = useState<Team>(getLocalTeam())
     const [teamValue, setTeamValue] = useState<number>(getTeamValue(team))
+    const [teamAverage, setTeamAverage] = useState<number>(getTeamAverage(team))
     const [stats, setStats] = useState<PlayerWithStats[]>([])
     const { getPlayerData } = useGetPlayerData()
 
@@ -35,6 +37,7 @@ export const useTeam = (): TeamState => {
     useEffect(() => {
         setLocalTeam(team)
         setTeamValue(getTeamValue(team))
+        setTeamAverage(getTeamAverage(team))
     }, [team])
 
     useEffect(() => {
@@ -47,5 +50,5 @@ export const useTeam = (): TeamState => {
         })
     }, [])
 
-    return { team, teamValue, stats, addPlayer, removePlayer }
+    return { team, teamValue, teamAverage, stats, addPlayer, removePlayer }
 }

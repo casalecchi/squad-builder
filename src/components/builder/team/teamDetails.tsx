@@ -12,9 +12,10 @@ export const TeamDetails: FC = () => {
     const { teamStateManager } = useDataContext()
 
     const value = formatNumber(teamStateManager.teamValue)
+    const average = formatNumber(teamStateManager.teamAverage)
 
     return (
-        <CustomPaper sx={{ flex: 0 }}>
+        <CustomPaper sx={{ flex: 0, px: 3 }}>
             <Stack direction={'row'} justifyContent={'space-between'} width={'100%'}>
                 <Stack alignItems={'center'}>
                     <Typography>{t('builder.teamValue').toUpperCase()}</Typography>
@@ -24,6 +25,17 @@ export const TeamDetails: FC = () => {
                             textShadow: '0px 2px 2px black',
                         }}
                     >{`${t('common.money')}${value}`}</Typography>
+                </Stack>
+                <Stack alignItems={'center'}>
+                    <Typography>{t('builder.teamAverage').toUpperCase()}</Typography>
+                    <Typography
+                        sx={{
+                            color: average > 60 ? colors.gold : 'white',
+                            textShadow: '0px 2px 2px black',
+                        }}
+                    >
+                        {average}
+                    </Typography>
                 </Stack>
                 <Button variant="outlined">
                     <Typography mr={0.5}>{t('common.optimize').toUpperCase()}</Typography>

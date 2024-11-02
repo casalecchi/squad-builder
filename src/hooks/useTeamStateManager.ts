@@ -10,12 +10,13 @@ import {
     Team,
 } from '../models'
 import { getLocalFormation, setLocalFormation } from '../utils'
-import { useTeam } from './useTeam'
 import { useMarketOptions } from './useMarketOptions'
+import { useTeam } from './useTeam'
 
 export interface TeamStateManager {
     team: Team
     teamValue: number
+    teamAverage: number
     formation: Formation
     players: Player[]
     clubs: Clubs
@@ -30,7 +31,7 @@ export interface TeamStateManager {
 }
 
 export const useTeamStateManager = (): TeamStateManager => {
-    const { team, teamValue, stats, addPlayer, removePlayer } = useTeam()
+    const { team, teamValue, teamAverage, stats, addPlayer, removePlayer } = useTeam()
     const { players, matches, marketInfo, clubs } = useMarketOptions()
 
     // Formation will be separated in future hook
@@ -55,6 +56,7 @@ export const useTeamStateManager = (): TeamStateManager => {
     return {
         team,
         teamValue,
+        teamAverage,
         clubs,
         players,
         matches,
