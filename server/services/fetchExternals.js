@@ -1,5 +1,19 @@
 import axios from 'axios'
+import fs from 'fs'
+import path from 'path'
 import { prepareQueryString } from '../utils/string.js'
+
+const readCacheFile = (fileName) => {
+    try {
+        // eslint-disable-next-line no-undef
+        const cachePath = path.join(process.cwd(), 'cache', fileName)
+        const data = fs.readFileSync(cachePath, 'utf8')
+        return JSON.parse(data)
+    } catch (err) {
+        console.error('Erro ao ler o arquivo JSON:', err)
+        return null
+    }
+}
 
 const fetchFromURL = async (url) => {
     try {
@@ -20,9 +34,10 @@ export const fetchCartolaMarketInfo = async () => {
     return await fetchFromURL(URL)
 }
 
-export const fetchCartolaClubs = async () => {
+export const fetchCartolaClubs = async (useCache = true) => {
+    const cachePath = 'clubs.json'
     const URL = 'https://api.cartola.globo.com/clubes'
-    return await fetchFromURL(URL)
+    return useCache ? readCacheFile(cachePath) : await fetchFromURL(URL)
 }
 
 export const fetchCartolaMatchups = async () => {
@@ -36,13 +51,13 @@ export const fetchCartolaLastPoints = async () => {
 }
 
 export const queryPlayerId = async (playerName, teamName, index = -1) => {
-    const name = index > -1 ? playerName.split(' ')[index] : playerName
-    const nameString = prepareQueryString(name)
-    const teamString = prepareQueryString(teamName)
-    const searchString = prepareQueryString(`${nameString} ${teamString}`)
-
-    const URL = `https://www.sofascore.com/api/v1/search/player-team-persons?q=${searchString}&page=0`
     try {
+        const name = index > -1 ? playerName.split(' ')[index] : playerName
+        const nameString = prepareQueryString(name)
+        const teamString = prepareQueryString(teamName)
+        const searchString = prepareQueryString(`${nameString} ${teamString}`)
+
+        const URL = `https://www.sofascore.com/api/v1/search/player-team-persons?q=${searchString}&page=0`
         const data = await fetchFromURL(URL)
         if (data.results.length == 0) {
             if (playerName.split(' ').length < 2) throw Error
@@ -50,7 +65,7 @@ export const queryPlayerId = async (playerName, teamName, index = -1) => {
         }
         return data.results[0].entity.id
     } catch {
-        console.error(`Error on query: params ${searchString}`)
+        console.error(`Error on query: params ${playerName} ${teamName}`)
     }
 }
 
