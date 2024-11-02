@@ -47,7 +47,8 @@
     },
     "common": {
         "money": "C$",
-        "seeDetails": "Explorar"
+        "seeDetails": "Explorar",
+        "optimize": "Otimizar"
     },
     "footer": {
         "rights": "Todos os direitos reservados."
@@ -83,6 +84,9 @@
             "open": "Aberto",
             "closed": "Fechado"
         }
+    },
+    "model": {
+        "description": "Descrição para o modelo."
     },
     "position": {
         "abbreviations": {
