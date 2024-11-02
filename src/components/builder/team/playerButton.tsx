@@ -17,7 +17,7 @@ interface PlayerProps extends IconButtonProps {
 
 const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...props }) => {
     const { t } = useTranslation()
-    const { bigScreen } = useDeviceContext()
+    const { mobile, bigScreen } = useDeviceContext()
     const [isHovered, setIsHovered] = useState(false)
     const { teamStateManager, openMarket } = useDataContext()
     const { removePlayer } = teamStateManager
@@ -61,8 +61,8 @@ const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...pro
                 <IconButton
                     disableRipple
                     onClick={() => (player?.name ? handleRemove(player) : openMarket(positionKey))}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
+                    onMouseEnter={mobile ? undefined : () => setIsHovered(true)}
+                    onMouseLeave={mobile ? undefined : () => setIsHovered(false)}
                     sx={{
                         backgroundColor: colors.playerGreen,
                         boxShadow: '3px 3px 3px green',
