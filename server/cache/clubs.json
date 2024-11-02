@@ -1,0 +1,404 @@
+{
+    "1": {
+        "id": 1,
+        "name": "Outros",
+        "abbreviation": "OUT",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "262": {
+        "id": 262,
+        "name": "Flamengo",
+        "abbreviation": "FLA",
+        "photo": "https://s.sde.globo.com/media/organizations/2018/04/09/Flamengo-65.png"
+    },
+    "263": {
+        "id": 263,
+        "name": "Botafogo",
+        "abbreviation": "BOT",
+        "photo": "https://s.sde.globo.com/media/organizations/2019/02/04/botafogo-65.png"
+    },
+    "264": {
+        "id": 264,
+        "name": "Corinthians",
+        "abbreviation": "COR",
+        "photo": "https://s.sde.globo.com/media/organizations/2024/10/09/Corinthians-2024-65_IYhgZ1u.png"
+    },
+    "265": {
+        "id": 265,
+        "name": "Bahia",
+        "abbreviation": "BAH",
+        "photo": "https://s.sde.globo.com/media/organizations/2014/04/14/bahia_60x60.png"
+    },
+    "266": {
+        "id": 266,
+        "name": "Fluminense",
+        "abbreviation": "FLU",
+        "photo": "https://s.sde.globo.com/media/organizations/2014/04/14/fluminense_60x60.png"
+    },
+    "267": {
+        "id": 267,
+        "name": "Vasco",
+        "abbreviation": "VAS",
+        "photo": "https://s.sde.globo.com/media/organizations/2021/09/04/ESCUDO-VASCO-RGB_65px.png"
+    },
+    "275": {
+        "id": 275,
+        "name": "Palmeiras",
+        "abbreviation": "PAL",
+        "photo": "https://s.sde.globo.com/media/organizations/2014/04/14/palmeiras_60x60.png"
+    },
+    "276": {
+        "id": 276,
+        "name": "São Paulo",
+        "abbreviation": "SAO",
+        "photo": "https://s.sde.globo.com/media/organizations/2014/04/14/sao_paulo_60x60.png"
+    },
+    "277": {
+        "id": 277,
+        "name": "Santos",
+        "abbreviation": "SAN",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "278": {
+        "id": 278,
+        "name": "Portuguesa",
+        "abbreviation": "POR",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "279": {
+        "id": 279,
+        "name": "Guarani",
+        "abbreviation": "GUA",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "280": {
+        "id": 280,
+        "name": "Bragantino",
+        "abbreviation": "BGT",
+        "photo": "https://s.sde.globo.com/media/organizations/2020/01/01/65.png"
+    },
+    "282": {
+        "id": 282,
+        "name": "Atlético-MG",
+        "abbreviation": "CAM",
+        "photo": "https://s.sde.globo.com/media/organizations/2017/11/23/Atletico-Mineiro-escudo65px.png"
+    },
+    "283": {
+        "id": 283,
+        "name": "Cruzeiro",
+        "abbreviation": "CRU",
+        "photo": "https://s.sde.globo.com/media/organizations/2021/02/13/65_cruzeiro-2021.png"
+    },
+    "284": {
+        "id": 284,
+        "name": "Grêmio",
+        "abbreviation": "GRE",
+        "photo": "https://s.sde.globo.com/media/organizations/2014/04/14/gremio_60x60.png"
+    },
+    "285": {
+        "id": 285,
+        "name": "Internacional",
+        "abbreviation": "INT",
+        "photo": "https://s.sde.globo.com/media/organizations/2016/05/03/inter65.png"
+    },
+    "286": {
+        "id": 286,
+        "name": "Juventude",
+        "abbreviation": "JUV",
+        "photo": "https://s.sde.globo.com/media/organizations/2021/04/29/juventude65.png"
+    },
+    "287": {
+        "id": 287,
+        "name": "Vitória",
+        "abbreviation": "VIT",
+        "photo": "https://s.sde.globo.com/media/organizations/2024/04/09/escudo-vitoria-65x65-69284.png"
+    },
+    "288": {
+        "id": 288,
+        "name": "Criciúma",
+        "abbreviation": "CRI",
+        "photo": "https://s.sde.globo.com/media/organizations/2024/03/28/criciuma-65.png"
+    },
+    "289": {
+        "id": 289,
+        "name": "Paraná",
+        "abbreviation": "PAR",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "290": {
+        "id": 290,
+        "name": "Goiás",
+        "abbreviation": "GOI",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "291": {
+        "id": 291,
+        "name": "Paysandu",
+        "abbreviation": "PAY",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "292": {
+        "id": 292,
+        "name": "Sport",
+        "abbreviation": "SPT",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "293": {
+        "id": 293,
+        "name": "Athlético-PR",
+        "abbreviation": "CAP",
+        "photo": "https://s.sde.globo.com/media/organizations/2019/09/09/Athletico-PR-65x65.png"
+    },
+    "294": {
+        "id": 294,
+        "name": "Coritiba",
+        "abbreviation": "CFC",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "296": {
+        "id": 296,
+        "name": "Botafogo-SP",
+        "abbreviation": "BOT",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "303": {
+        "id": 303,
+        "name": "Ponte Preta",
+        "abbreviation": "PON",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "306": {
+        "id": 306,
+        "name": "Santo André",
+        "abbreviation": "SAN",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "307": {
+        "id": 307,
+        "name": "São Bento",
+        "abbreviation": "SBE",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "309": {
+        "id": 309,
+        "name": "Brasil de Pelotas",
+        "abbreviation": "BRA",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "314": {
+        "id": 314,
+        "name": "Avaí",
+        "abbreviation": "AVA",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "315": {
+        "id": 315,
+        "name": "Chapecoense",
+        "abbreviation": "CHA",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "316": {
+        "id": 316,
+        "name": "Figueirense",
+        "abbreviation": "FIG",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "317": {
+        "id": 317,
+        "name": "Joinville",
+        "abbreviation": "JEC",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "319": {
+        "id": 319,
+        "name": "Londrina",
+        "abbreviation": "LON",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "321": {
+        "id": 321,
+        "name": "Operário-PR",
+        "abbreviation": "OPE",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "327": {
+        "id": 327,
+        "name": "América-MG",
+        "abbreviation": "AME",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "337": {
+        "id": 337,
+        "name": "Confiança",
+        "abbreviation": "CON",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "340": {
+        "id": 340,
+        "name": "CRB",
+        "abbreviation": "CRB",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "341": {
+        "id": 341,
+        "name": "CSA",
+        "abbreviation": "CSA",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "342": {
+        "id": 342,
+        "name": "ASA Arapiraca",
+        "abbreviation": "ASA",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "343": {
+        "id": 343,
+        "name": "Náutico",
+        "abbreviation": "NAU",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "344": {
+        "id": 344,
+        "name": "Santa Cruz",
+        "abbreviation": "STC",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "346": {
+        "id": 346,
+        "name": "Treze",
+        "abbreviation": "TRZ",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "347": {
+        "id": 347,
+        "name": "Botafogo-PB",
+        "abbreviation": "BOT",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "349": {
+        "id": 349,
+        "name": "Campinense",
+        "abbreviation": "CAM",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "350": {
+        "id": 350,
+        "name": "ABC",
+        "abbreviation": "ABC",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "351": {
+        "id": 351,
+        "name": "América-RN",
+        "abbreviation": "AME",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "354": {
+        "id": 354,
+        "name": "Ceará",
+        "abbreviation": "CEA",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "356": {
+        "id": 356,
+        "name": "Fortaleza",
+        "abbreviation": "FOR",
+        "photo": "https://s.sde.globo.com/media/organizations/2021/09/19/65_0000_Fortaleza-2021.png"
+    },
+    "362": {
+        "id": 362,
+        "name": "Moto Club",
+        "abbreviation": "MOT",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "363": {
+        "id": 363,
+        "name": "Sampaio Corrêa",
+        "abbreviation": "SAM",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "364": {
+        "id": 364,
+        "name": "Remo",
+        "abbreviation": "REM",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "373": {
+        "id": 373,
+        "name": "Atlético-GO",
+        "abbreviation": "ACG",
+        "photo": "https://s.sde.globo.com/media/organizations/2020/07/02/atletico-go-2020-65.png"
+    },
+    "375": {
+        "id": 375,
+        "name": "Vila Nova",
+        "abbreviation": "VIL",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "386": {
+        "id": 386,
+        "name": "São Caetano",
+        "abbreviation": "SAO",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "388": {
+        "id": 388,
+        "name": "Brasiliense",
+        "abbreviation": "BRA",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "1349": {
+        "id": 1349,
+        "name": "Ipatinga",
+        "abbreviation": "IPA",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "1371": {
+        "id": 1371,
+        "name": "Cuiabá",
+        "abbreviation": "CUI",
+        "photo": "https://s.sde.globo.com/media/organizations/2014/04/16/cuiaba65.png"
+    },
+    "1390": {
+        "id": 1390,
+        "name": "Icasa",
+        "abbreviation": "ICA",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "2190": {
+        "id": 2190,
+        "name": "Oeste",
+        "abbreviation": "OES",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "2193": {
+        "id": 2193,
+        "name": "Duque de Caxias",
+        "abbreviation": "DUQ",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "2197": {
+        "id": 2197,
+        "name": "Americana",
+        "abbreviation": "AME",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "2554": {
+        "id": 2554,
+        "name": "Grêmio Prudente",
+        "abbreviation": "PRU",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "2565": {
+        "id": 2565,
+        "name": "Luverdense",
+        "abbreviation": "LUV",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    },
+    "3057": {
+        "id": 3057,
+        "name": "Boa Esporte",
+        "abbreviation": "BEC",
+        "photo": "https://s.glbimg.com/es/sde/f/organizacoes/escudo_default_65x65.png"
+    }
+}
