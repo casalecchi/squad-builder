@@ -50,7 +50,7 @@ export const fetchCartolaLastPoints = async () => {
     return await fetchFromURL(URL)
 }
 
-export const queryPlayerId = async (playerName, teamName, index = -1) => {
+const queryPlayerId = async (playerName, teamName, index = -1) => {
     try {
         const name = index > -1 ? playerName.split(' ')[index] : playerName
         const nameString = prepareQueryString(name)
@@ -66,6 +66,32 @@ export const queryPlayerId = async (playerName, teamName, index = -1) => {
         return data.results[0].entity.id
     } catch {
         console.error(`Error on query: params ${playerName} ${teamName}`)
+        return undefined
+    }
+}
+
+export const getSofascoreId = async (playerName, teamName) => {
+    try {
+        const fileName = 'sofascoreIds.json'
+        const jsonData = readCacheFile(fileName)
+        const key = `${playerName.replace(' ', '')}${teamName.replace(' ', '')}`
+        // verify if its mapped
+        if (jsonData[key]) {
+            return jsonData[key]
+        }
+
+        // add new ID
+        const newId = await queryPlayerId(playerName, teamName)
+        if (newId == undefined) throw Error
+        jsonData[key] = newId
+
+        // save cache JSON
+        // eslint-disable-next-line no-undef
+        const filePath = path.join(process.cwd(), 'cache', fileName)
+        fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 4), 'utf8')
+        console.log('Novos IDs salvos.')
+    } catch {
+        console.error('Erro pegar ID do jogador', playerName)
     }
 }
 
