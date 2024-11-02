@@ -6,6 +6,7 @@ import { useDataContext } from '../../../contexts/DataContext'
 import colors from '../../../styles/colors.module.scss'
 import { formatNumber } from '../../../utils'
 import { CustomPaper } from '../../ui/customPaper'
+import { SelectDefaultMetric } from '../stats/defaultSelect'
 
 export const TeamDetails: FC = () => {
     const { t } = useTranslation()
@@ -17,6 +18,7 @@ export const TeamDetails: FC = () => {
     return (
         <CustomPaper sx={{ flex: 0, px: 3 }}>
             <Stack direction={'row'} justifyContent={'space-between'} width={'100%'}>
+                <SelectDefaultMetric />
                 <Stack alignItems={'center'}>
                     <Typography>{t('builder.teamValue').toUpperCase()}</Typography>
                     <Typography

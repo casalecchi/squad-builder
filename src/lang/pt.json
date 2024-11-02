@@ -118,7 +118,8 @@
         "choose": "Escolha a medida",
         "total": "Total",
         "game": "Por Jogo",
-        "90min": "Por 90 min"
+        "90min": "Por 90 min",
+        "default": "Métrica Padrão"
     },
     "tabs": {
         "cartola": "Cartola",

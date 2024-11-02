@@ -118,7 +118,8 @@
         "choose": "Choose your metric",
         "total": "Total",
         "game": "Per Game",
-        "90min": "Per 90 min"
+        "90min": "Per 90 min",
+        "default": "Default Metric"
     },
     "tabs": {
         "cartola": "Cartola",
