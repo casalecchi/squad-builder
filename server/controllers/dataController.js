@@ -1,3 +1,4 @@
+import { marketStatusMap, positionIdMap, statusIdMap } from '../mappings/cartola.js'
 import {
     fetchCartolaClubs,
     // fetchCartolaLastPoints,
@@ -5,9 +6,8 @@ import {
     fetchCartolaMarketInfo,
     fetchCartolaMatchups,
     fetchPlayerStats,
-    queryPlayerId,
+    getSofascoreId,
 } from '../services/fetchExternals.js'
-import { marketStatusMap, positionIdMap, statusIdMap } from '../mappings/cartola.js'
 
 export const getCartolaMarket = async (req, res) => {
     const data = await fetchCartolaMarket()
@@ -70,7 +70,7 @@ export const getPlayerData = async (req, res) => {
     const team = teamMap[teamCartolaId]
     if (!team) return res.status(400).json({ error: 'Invalid team ID' })
 
-    const playerId = await queryPlayerId(playerName, team.nome)
+    const playerId = await getSofascoreId(playerName, team.nome)
     if (!playerId) return res.status(404).json({ error: 'Player not found' })
 
     const data = await fetchPlayerStats(playerId)
