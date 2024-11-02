@@ -1,13 +1,13 @@
 import { Add, Close } from '@mui/icons-material'
-import { Stack, IconButton, Typography, Avatar, Box, IconButtonProps } from '@mui/material'
-import { FC, useState } from 'react'
-import colors from '../../../styles/colors.module.scss'
-import { Player, PlayerArea, Team } from '../../../models'
+import { Avatar, Box, IconButton, IconButtonProps, Stack, Typography } from '@mui/material'
+import { FC, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { TranslationKey } from '../../../@types/i18n'
-import { formatPlayerName } from '../../../utils/formatters'
 import { useDataContext } from '../../../contexts/DataContext'
 import { useDeviceContext } from '../../../contexts/DeviceContext'
+import { Player, PlayerArea, Team } from '../../../models'
+import colors from '../../../styles/colors.module.scss'
+import { formatPlayerName } from '../../../utils/formatters'
 
 interface PlayerProps extends IconButtonProps {
     player?: Player
@@ -21,10 +21,28 @@ const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...pro
     const [isHovered, setIsHovered] = useState(false)
     const { teamStateManager, openMarket } = useDataContext()
     const { removePlayer } = teamStateManager
+    const buttonRef = useRef<HTMLButtonElement>(null)
 
     const handleRemove = (player: Player) => {
-        removePlayer(positionKey, player)
+        if (isHovered) {
+            removePlayer(positionKey, player)
+        } else {
+            setIsHovered(true)
+        }
     }
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
+            setIsHovered(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
 
     const buttonSize = { xs: '2rem', md: '3.5rem' }
 
