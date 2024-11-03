@@ -1,13 +1,12 @@
 import axios from 'axios'
 import fs from 'fs'
 import path from 'path'
+import cacheClubs from '../cache/clubs.json' assert { type: 'json' }
+import cacheIds from '../cache/sofascoreIds.json' assert { type: 'json' }
 import { prepareQueryString } from '../utils/string.js'
 
-const readCacheFile = (fileName) => {
+const readCacheFile = (data) => {
     try {
-        // eslint-disable-next-line no-undef
-        const cachePath = path.join(process.cwd(), 'cache', fileName)
-        const data = fs.readFileSync(cachePath, 'utf8')
         return JSON.parse(data)
     } catch (err) {
         console.error('Erro ao ler o arquivo JSON:', err)
@@ -35,10 +34,9 @@ export const fetchCartolaMarketInfo = async () => {
 }
 
 export const fetchCartolaClubs = async (useCache = true) => {
-    const cachePath = 'clubs.json'
     const URL = 'https://api.cartola.globo.com/clubes'
     try {
-        return useCache ? readCacheFile(cachePath) : await fetchFromURL(URL)
+        return useCache ? readCacheFile(cacheClubs) : await fetchFromURL(URL)
     } catch {
         throw Error
     }
@@ -77,24 +75,31 @@ const queryPlayerId = async (playerName, teamName, index = -1) => {
 
 export const getSofascoreId = async (playerName, teamName) => {
     try {
-        const fileName = 'sofascoreIds.json'
-        const jsonData = readCacheFile(fileName)
+        const jsonData = cacheIds
         const key = `${playerName.replace(' ', '')}${teamName.replace(' ', '')}`
         // verify if its mapped
         if (jsonData[key]) {
             return jsonData[key]
         }
 
-        // add new ID
+        // get new ID
         const newId = await queryPlayerId(playerName, teamName)
         if (newId == undefined) throw Error
-        jsonData[key] = newId
 
+        // only add to cache if its runing locally
+        // eslint-disable-next-line no-undef
+        const vercelRun = process.env.VERCEL === '1'
+        if (vercelRun) {
+            return newId
+        }
+        jsonData[key] = newId
         // save cache JSON
+        const fileName = 'sofascoreIds.json'
         // eslint-disable-next-line no-undef
         const filePath = path.join(process.cwd(), 'cache', fileName)
         fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 4), 'utf8')
         console.log('Novos IDs salvos.')
+        return newId
     } catch {
         console.error('Erro pegar ID do jogador', playerName)
     }
