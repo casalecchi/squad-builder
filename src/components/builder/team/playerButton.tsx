@@ -26,6 +26,7 @@ const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...pro
     const handleRemove = (player: Player) => {
         if (isHovered) {
             removePlayer(positionKey, player)
+            setIsHovered(false)
         } else {
             setIsHovered(true)
         }
@@ -63,6 +64,7 @@ const PlayerButton: FC<PlayerProps> = ({ player, playerArea, positionKey, ...pro
                     onClick={() => (player?.name ? handleRemove(player) : openMarket(positionKey))}
                     onMouseEnter={mobile ? undefined : () => setIsHovered(true)}
                     onMouseLeave={mobile ? undefined : () => setIsHovered(false)}
+                    ref={buttonRef}
                     sx={{
                         backgroundColor: colors.playerGreen,
                         boxShadow: '3px 3px 3px green',
