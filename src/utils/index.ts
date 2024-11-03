@@ -1,5 +1,6 @@
 export * from './formations'
 export * from './formatters'
 export * from './localStorage'
+export * from './performance'
 export * from './stats'
 export * from './team'

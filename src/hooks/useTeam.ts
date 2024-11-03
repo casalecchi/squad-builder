@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Player, PlayerWithStats, Team } from '../models'
-import { getLocalTeam, getTeamAverage, getTeamValue, setLocalTeam } from '../utils'
+import { getLocalTeam, getTeamAverage, getTeamValue, setLocalTeam, sleep } from '../utils'
 import useGetPlayerData from './useGetPlayerData'
 
 interface TeamState {
@@ -43,8 +43,9 @@ export const useTeam = (): TeamState => {
     useEffect(() => {
         // On reload we update the stats from team
         const team: Team = getLocalTeam()
-        Object.keys(team).forEach((positionKey) => {
+        Object.keys(team).forEach(async (positionKey) => {
             for (const player of team[positionKey as keyof Team]) {
+                await sleep()
                 getPlayerData(player, setStats)
             }
         })
