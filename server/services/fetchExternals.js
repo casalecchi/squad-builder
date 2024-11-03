@@ -57,7 +57,8 @@ const queryPlayerId = async (playerName, teamName, index = -1) => {
         const teamString = prepareQueryString(teamName)
         const searchString = prepareQueryString(`${nameString} ${teamString}`)
 
-        const URL = `https://www.sofascore.com/api/v1/search/player-team-persons?q=${searchString}&page=0`
+        const URL = `https://www.google.com/${searchString}`
+        // const URL = `https://www.sofascore.com/api/v1/search/player-team-persons?q=${searchString}&page=0`
         const data = await fetchFromURL(URL)
         if (data.results.length == 0) {
             if (playerName.split(' ').length < 2) throw Error
@@ -96,6 +97,7 @@ export const getSofascoreId = async (playerName, teamName) => {
 }
 
 export const fetchPlayerStats = async (playerId) => {
-    const URL = `https://www.sofascore.com/api/v1/player/${playerId}/unique-tournament/325/season/58766/statistics/overall`
+    const URL = `https://www.google.com/${playerId}`
+    // const URL = `https://www.sofascore.com/api/v1/player/${playerId}/unique-tournament/325/season/58766/statistics/overall`
     return await fetchFromURL(URL)
 }
