@@ -5,15 +5,6 @@ import cacheClubs from '../cache/clubs.json' assert { type: 'json' }
 import cacheIds from '../cache/sofascoreIds.json' assert { type: 'json' }
 import { prepareQueryString } from '../utils/string.js'
 
-const readCacheFile = (data) => {
-    try {
-        return JSON.parse(data)
-    } catch (err) {
-        console.error('Erro ao ler o arquivo JSON:', err)
-        return null
-    }
-}
-
 const fetchFromURL = async (url) => {
     try {
         const response = await axios.get(url)
@@ -36,7 +27,7 @@ export const fetchCartolaMarketInfo = async () => {
 export const fetchCartolaClubs = async (useCache = true) => {
     const URL = 'https://api.cartola.globo.com/clubes'
     try {
-        return useCache ? readCacheFile(cacheClubs) : await fetchFromURL(URL)
+        return useCache ? cacheClubs : await fetchFromURL(URL)
     } catch {
         throw Error
     }
