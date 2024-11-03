@@ -37,7 +37,11 @@ export const fetchCartolaMarketInfo = async () => {
 export const fetchCartolaClubs = async (useCache = true) => {
     const cachePath = 'clubs.json'
     const URL = 'https://api.cartola.globo.com/clubes'
-    return useCache ? readCacheFile(cachePath) : await fetchFromURL(URL)
+    try {
+        return useCache ? readCacheFile(cachePath) : await fetchFromURL(URL)
+    } catch {
+        throw Error
+    }
 }
 
 export const fetchCartolaMatchups = async () => {

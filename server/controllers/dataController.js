@@ -39,19 +39,23 @@ export const getCartolaMarket = async (req, res) => {
 }
 
 export const getClubs = async (req, res) => {
-    const data = await fetchCartolaClubs()
-    const clubs = {}
-    Object.keys(data).forEach((clubId) => {
-        const club = data[clubId]
-        clubs[clubId] = {
-            id: club.id,
-            name: club.nome,
-            abbreviation: club.abreviacao,
-            photo: club.escudos['60x60'],
-        }
-    })
-    if (!clubs) return res.status(404).json({ error: 'Cannot GET Cartola Clubs' })
-    return res.json(clubs)
+    try {
+        const data = await fetchCartolaClubs()
+        const clubs = {}
+        Object.keys(data).forEach((clubId) => {
+            const club = data[clubId]
+            clubs[clubId] = {
+                id: club.id,
+                name: club.nome,
+                abbreviation: club.abreviacao,
+                photo: club.escudos['60x60'],
+            }
+        })
+        if (!clubs) return res.status(404).json({ error: 'Cannot GET Cartola Clubs' })
+        return res.json(clubs)
+    } catch (err) {
+        res.status(500).json({ error: `Error on getClubs: ${err}` })
+    }
 }
 
 export const getMatches = async (req, res) => {
