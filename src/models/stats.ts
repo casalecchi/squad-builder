@@ -118,7 +118,7 @@ export interface PlayerStatValue {
     statValue: number
 }
 
-export type StatMetric = 'total' | '90min' | 'game'
+export type StatMetric = 'total' | '90min' | 'game' | 'mean'
 
 export interface PlayerWithStats {
     player: Player

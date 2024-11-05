@@ -44,7 +44,8 @@
         "keyPasses": "Key Passes",
         "accuratePasses": "Accurate Passes",
         "accurateCrosses": "Accurate Crosses",
-        "interceptions": "Interceptions"
+        "interceptions": "Interceptions",
+        "accuratePassesPercentage": "Accurate Passes (%)"
     },
     "common": {
         "money": "C$",
@@ -119,6 +120,7 @@
         "total": "Total",
         "game": "Per Game",
         "90min": "Per 90 min",
+        "mean": "Mean",
         "default": "Default Metric"
     },
     "tabs": {

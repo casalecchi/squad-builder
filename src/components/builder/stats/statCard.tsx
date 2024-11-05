@@ -35,7 +35,8 @@ export const StatCard: FC<StatCardProps> = ({
             getConvertedPlayerStatValue(ps, stats, selectedStatMetric)
         )
         setOrderedByStat(valuesWithMetric.toSorted((a, b) => b.statValue - a.statValue))
-        setTotal(valuesWithMetric.reduce((acc, curr) => acc + curr.statValue, 0))
+        const sum = valuesWithMetric.reduce((acc, curr) => acc + curr.statValue, 0)
+        setTotal(selectedStatMetric == 'mean' ? sum / valuesWithMetric.length : sum)
     }, [stats, selectedStatMetric])
 
     useEffect(() => {

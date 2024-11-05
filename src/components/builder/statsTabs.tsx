@@ -1,8 +1,9 @@
 import { DonutLarge, Insights, Leaderboard } from '@mui/icons-material'
-import { Stack, SxProps, Tab, Tabs, Typography } from '@mui/material'
-import { FC, ReactNode, SyntheticEvent, useState } from 'react'
+import { Stack, SxProps, Tab, Tabs } from '@mui/material'
+import { FC, ReactNode, SyntheticEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { statsCards } from '../../constants/card'
+import { useDataContext } from '../../contexts/DataContext'
 import { useDeviceContext } from '../../contexts/DeviceContext'
 import { CardTabColumn, CardTabEnum } from '../../models'
 import { StackedStatCards } from './stats/stackedStatCards'
@@ -39,6 +40,30 @@ const OthersTabs: FC = () => {
     )
 }
 
+const PercentageTabs: FC = () => {
+    const { mobile } = useDeviceContext()
+    const { setDefaultMetric, setMetricTypes } = useDataContext()
+    const filteredCards = statsCards.filter((card) => card.tab == CardTabEnum.percentage)
+
+    useEffect(() => {
+        setMetricTypes(['mean'])
+        setDefaultMetric('mean')
+    }, [])
+
+    return (
+        <Stack direction={mobile ? 'column' : 'row'} spacing={1} sx={{ overflowY: 'auto' }}>
+            <StackedStatCards
+                percentage
+                cards={filteredCards.filter((card) => card.column == CardTabColumn.first)}
+            />
+            <StackedStatCards
+                percentage
+                cards={filteredCards.filter((card) => card.column == CardTabColumn.second)}
+            />
+        </Stack>
+    )
+}
+
 export const StatsTabs: FC = () => {
     const { t } = useTranslation()
     const [value, setValue] = useState<CardTabEnum>(CardTabEnum.cartola)
@@ -52,11 +77,7 @@ export const StatsTabs: FC = () => {
     const content: Record<CardTabEnum, ReactNode> = {
         cartola: <CartolaTabs />,
         others: <OthersTabs />,
-        percentage: (
-            <Stack alignItems={'center'} width={'100%'}>
-                <Typography>Coming Soon...</Typography>
-            </Stack>
-        ),
+        percentage: <PercentageTabs />,
     }
 
     return (

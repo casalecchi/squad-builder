@@ -6,8 +6,7 @@ import { StatMetric } from '../../../models'
 
 export const SelectDefaultMetric: FC = () => {
     const { t } = useTranslation()
-    const { defaultMetric, setDefaultMetric } = useDataContext()
-    const types: StatMetric[] = ['total', 'game', '90min']
+    const { defaultMetric, metricTypes, setDefaultMetric } = useDataContext()
 
     return (
         <Select
@@ -17,7 +16,7 @@ export const SelectDefaultMetric: FC = () => {
             <MenuItem disabled value="">
                 {t(`statMetric.default`).toUpperCase()}
             </MenuItem>
-            {types.map((type) => (
+            {metricTypes.map((type) => (
                 <MenuItem key={type} value={type}>
                     {t(`statMetric.${type}`).toUpperCase()}
                 </MenuItem>

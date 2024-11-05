@@ -45,6 +45,9 @@ export const convertToMetric = (statValue: number, stats: PlayerStats, metric: S
         case 'total':
             multiplier = 1
             break
+        case 'mean':
+            multiplier = 1
+            break
         case '90min':
             multiplier = 1 / (stats.minutesPlayed / 90)
             break
