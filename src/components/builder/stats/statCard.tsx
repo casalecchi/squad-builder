@@ -12,17 +12,16 @@ import { StatGauge } from './statGauge'
 
 interface StatCardProps {
     detail: CardDetail
-    typesToDisplay?: StatMetric[]
 }
 
-export const StatCard: FC<StatCardProps> = ({
-    detail,
-    typesToDisplay = ['total', 'game', '90min'],
-}) => {
+export const StatCard: FC<StatCardProps> = ({ detail }) => {
     const { t } = useTranslation()
-    const { teamStateManager, defaultMetric } = useDataContext()
+    const { teamStateManager, defaultMetric, isPercentageTab } = useDataContext()
     const { stats } = teamStateManager
     const [selectedStatMetric, setSelectedStatMetric] = useState<StatMetric>(defaultMetric)
+    const [typesToDisplay, setTypesToDisplay] = useState<StatMetric[]>(
+        isPercentageTab ? ['mean'] : ['game', '90min', 'total']
+    )
     const [orderedByStat, setOrderedByStat] = useState<PlayerStatValue[]>([])
     const [total, setTotal] = useState<number>()
 
@@ -42,6 +41,10 @@ export const StatCard: FC<StatCardProps> = ({
     useEffect(() => {
         setSelectedStatMetric(defaultMetric)
     }, [defaultMetric])
+
+    useEffect(() => {
+        setTypesToDisplay(isPercentageTab ? ['mean'] : ['game', '90min', 'total'])
+    }, [isPercentageTab])
 
     return (
         <CustomPaper sx={{ p: 1 }}>

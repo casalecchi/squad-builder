@@ -10,7 +10,13 @@ import { StackedStatCards } from './stats/stackedStatCards'
 
 const CartolaTabs: FC = () => {
     const { mobile } = useDeviceContext()
+    const { oldMetric, setDefaultMetric, setIsPercentageTab } = useDataContext()
     const filteredCards = statsCards.filter((card) => card.tab == CardTabEnum.cartola)
+
+    useEffect(() => {
+        setIsPercentageTab(false)
+        setDefaultMetric(oldMetric)
+    }, [])
 
     return (
         <Stack direction={mobile ? 'column' : 'row'} spacing={1} sx={{ overflowY: 'auto' }}>
@@ -26,7 +32,13 @@ const CartolaTabs: FC = () => {
 
 const OthersTabs: FC = () => {
     const { mobile } = useDeviceContext()
+    const { oldMetric, setDefaultMetric, setIsPercentageTab } = useDataContext()
     const filteredCards = statsCards.filter((card) => card.tab == CardTabEnum.others)
+
+    useEffect(() => {
+        setIsPercentageTab(false)
+        setDefaultMetric(oldMetric)
+    }, [])
 
     return (
         <Stack direction={mobile ? 'column' : 'row'} spacing={1} sx={{ overflowY: 'auto' }}>
@@ -42,22 +54,20 @@ const OthersTabs: FC = () => {
 
 const PercentageTabs: FC = () => {
     const { mobile } = useDeviceContext()
-    const { setDefaultMetric, setMetricTypes } = useDataContext()
+    const { setDefaultMetric, setIsPercentageTab } = useDataContext()
     const filteredCards = statsCards.filter((card) => card.tab == CardTabEnum.percentage)
 
     useEffect(() => {
-        setMetricTypes(['mean'])
+        setIsPercentageTab(true)
         setDefaultMetric('mean')
     }, [])
 
     return (
         <Stack direction={mobile ? 'column' : 'row'} spacing={1} sx={{ overflowY: 'auto' }}>
             <StackedStatCards
-                percentage
                 cards={filteredCards.filter((card) => card.column == CardTabColumn.first)}
             />
             <StackedStatCards
-                percentage
                 cards={filteredCards.filter((card) => card.column == CardTabColumn.second)}
             />
         </Stack>

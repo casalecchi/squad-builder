@@ -6,20 +6,15 @@ import { StatCard } from './statCard'
 
 interface StackedStatCardsProps {
     cards: CardDetail[]
-    percentage?: boolean
 }
 
-export const StackedStatCards: FC<StackedStatCardsProps> = ({ cards, percentage }) => {
+export const StackedStatCards: FC<StackedStatCardsProps> = ({ cards }) => {
     const { mobile } = useDeviceContext()
     return (
         <Stack flex={mobile ? undefined : 1}>
             <Stack spacing={1}>
                 {cards.map((card) => (
-                    <StatCard
-                        detail={card}
-                        key={card.title}
-                        typesToDisplay={percentage ? ['mean'] : undefined}
-                    />
+                    <StatCard detail={card} key={card.title} />
                 ))}
             </Stack>
         </Stack>

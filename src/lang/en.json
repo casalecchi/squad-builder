@@ -45,7 +45,12 @@
         "accuratePasses": "Accurate Passes",
         "accurateCrosses": "Accurate Crosses",
         "interceptions": "Interceptions",
-        "accuratePassesPercentage": "Accurate Passes (%)"
+        "accuratePassesPercentage": "Accurate Passes (%)",
+        "successfulDribblesPercentage": "Successfuk Dribbles (%)",
+        "accurateCrossesPercentage": "Accurate Crosses (%)",
+        "groundDuelsWonPercentage": "Ground Duels Won (%)",
+        "aerialDuelsWonPercentage": "Aerial Duels Won (%)",
+        "tacklesWonPercentage": "Tackles Won (%)"
     },
     "common": {
         "money": "C$",
@@ -145,6 +150,7 @@
         "passes": "Passes",
         "dribbles": "Dribbles",
         "interceptions": "Interceptions",
-        "crosses": "Crosses"
+        "crosses": "Crosses",
+        "duels": "Duels"
     }
 }

@@ -30,3 +30,4 @@ export type Unit =
     | 'dribbles'
     | 'interceptions'
     | 'crosses'
+    | 'duels'

@@ -16,11 +16,13 @@ interface DataStateContext {
     isMarketOpen: boolean
     positionToShow: keyof Team
     defaultMetric: StatMetric
-    metricTypes: StatMetric[]
+    isPercentageTab: boolean
+    oldMetric: StatMetric
     openMarket: (positionKey: keyof Team) => void
     closeMarket: () => void
     setDefaultMetric: Dispatch<SetStateAction<StatMetric>>
-    setMetricTypes: Dispatch<SetStateAction<StatMetric[]>>
+    setIsPercentageTab: Dispatch<SetStateAction<boolean>>
+    setOldMetric: Dispatch<SetStateAction<StatMetric>>
 }
 
 export const DataContext = createContext<DataStateContext>({} as DataStateContext)
@@ -30,7 +32,8 @@ export const DataProvider: FC<PropsWithChildren> = (props) => {
 
     // TODO - separate on own hook
     const [defaultMetric, setDefaultMetric] = useState<StatMetric>('game')
-    const [metricTypes, setMetricTypes] = useState<StatMetric[]>(['game', '90min', 'total'])
+    const [oldMetric, setOldMetric] = useState<StatMetric>('game')
+    const [isPercentageTab, setIsPercentageTab] = useState<boolean>(false)
 
     // TODO - separate on own hook
     const [isMarketOpen, setIsMarketOpen] = useState<boolean>(false)
@@ -48,11 +51,13 @@ export const DataProvider: FC<PropsWithChildren> = (props) => {
             isMarketOpen,
             positionToShow,
             defaultMetric,
-            metricTypes,
+            isPercentageTab,
+            oldMetric,
             openMarket,
             closeMarket,
             setDefaultMetric,
-            setMetricTypes,
+            setIsPercentageTab,
+            setOldMetric,
         }),
         [teamStateManager]
     )

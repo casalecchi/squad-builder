@@ -45,7 +45,12 @@
         "accuratePasses": "Passes Certos",
         "accurateCrosses": "Cruzamentos Certos",
         "interceptions": "Interceptações",
-        "accuratePassesPercentage": "Passes Certos (%)"
+        "accuratePassesPercentage": "Passes Certos (%)",
+        "successfulDribblesPercentage": "Dribles Certos (%)",
+        "accurateCrossesPercentage": "Cruzamentos Certos (%)",
+        "groundDuelsWonPercentage": "Duelos Pelo Chão Ganhos (%)",
+        "aerialDuelsWonPercentage": "Duelos Aéreos Ganhos (%)",
+        "tacklesWonPercentage": "Desarmes Ganhos (%)"
     },
     "common": {
         "money": "C$",
@@ -145,6 +150,7 @@
         "passes": "Passes",
         "dribbles": "Dribles",
         "interceptions": "Interceptações",
-        "crosses": "Cruzamentos"
+        "crosses": "Cruzamentos",
+        "duels": "Duelos Ganhos"
     }
 }
