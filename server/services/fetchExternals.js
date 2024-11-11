@@ -75,7 +75,7 @@ export const getSofascoreId = async (playerName, teamName) => {
 
         // get new ID
         const newId = await queryPlayerId(playerName, teamName)
-        if (newId == undefined) throw Error
+        // if (newId == undefined) throw Error
         return newId
 
         // only add to cache if its runing locally
