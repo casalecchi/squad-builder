@@ -66,31 +66,32 @@ const queryPlayerId = async (playerName, teamName, index = -1) => {
 
 export const getSofascoreId = async (playerName, teamName) => {
     try {
-        const jsonData = cacheIds
-        const key = `${playerName.replace(' ', '')}${teamName.replace(' ', '')}`
+        // const jsonData = cacheIds
+        // const key = `${playerName.replace(' ', '')}${teamName.replace(' ', '')}`
         // verify if its mapped
-        if (jsonData[key]) {
-            return jsonData[key]
-        }
+        // if (jsonData[key]) {
+            // return jsonData[key]
+        // }
 
         // get new ID
         const newId = await queryPlayerId(playerName, teamName)
         if (newId == undefined) throw Error
+        return newId
 
         // only add to cache if its runing locally
         // eslint-disable-next-line no-undef
-        const vercelRun = process.env.VERCEL === '1'
-        if (vercelRun) {
-            return newId
-        }
-        jsonData[key] = newId
+        // const vercelRun = process.env.VERCEL === '1'
+        // if (vercelRun) {
+            // return newId
+        // }
+        // jsonData[key] = newId
         // save cache JSON
-        const fileName = 'sofascoreIds.json'
+        // const fileName = 'sofascoreIds.json'
         // eslint-disable-next-line no-undef
-        const filePath = path.join(process.cwd(), 'cache', fileName)
-        fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 4), 'utf8')
-        console.log('Novos IDs salvos.')
-        return newId
+        // const filePath = path.join(process.cwd(), 'cache', fileName)
+        // fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 4), 'utf8')
+        // console.log('Novos IDs salvos.')
+        // return newId
     } catch {
         console.error('Erro pegar ID do jogador', playerName)
     }
