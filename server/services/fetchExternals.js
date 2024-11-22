@@ -51,7 +51,7 @@ const queryPlayerId = async (playerName, teamName, index = -1) => {
         const searchString = prepareQueryString(`${nameString} ${teamString}`)
 
         // const URL = `https://www.google.com/${searchString}`
-        const URL = `https://api.crawlbase.com/?token=iFBKVpfXjUJSgmu15Ao5DA&url=https://www.sofascore.com/api/v1/search/player-team-persons?q=${searchString}&page=0`
+        const URL = `https://www.sofascore.com/api/v1/search/player-team-persons?q=${searchString}&page=0`
         const data = await fetchFromURL(URL)
         if (data.results.length == 0) {
             if (playerName.split(' ').length < 2) throw Error
@@ -66,32 +66,31 @@ const queryPlayerId = async (playerName, teamName, index = -1) => {
 
 export const getSofascoreId = async (playerName, teamName) => {
     try {
-        // const jsonData = cacheIds
-        // const key = `${playerName.replace(' ', '')}${teamName.replace(' ', '')}`
+        const jsonData = cacheIds
+        const key = `${playerName.replace(' ', '')}${teamName.replace(' ', '')}`
         // verify if its mapped
-        // if (jsonData[key]) {
-            // return jsonData[key]
-        // }
+        if (jsonData[key]) {
+            return jsonData[key]
+        }
 
         // get new ID
         const newId = await queryPlayerId(playerName, teamName)
-        // if (newId == undefined) throw Error
-        return newId
+        if (newId == undefined) throw Error
 
         // only add to cache if its runing locally
         // eslint-disable-next-line no-undef
-        // const vercelRun = process.env.VERCEL === '1'
-        // if (vercelRun) {
-            // return newId
-        // }
-        // jsonData[key] = newId
+        const vercelRun = process.env.VERCEL === '1'
+        if (vercelRun) {
+            return newId
+        }
+        jsonData[key] = newId
         // save cache JSON
-        // const fileName = 'sofascoreIds.json'
+        const fileName = 'sofascoreIds.json'
         // eslint-disable-next-line no-undef
-        // const filePath = path.join(process.cwd(), 'cache', fileName)
-        // fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 4), 'utf8')
-        // console.log('Novos IDs salvos.')
-        // return newId
+        const filePath = path.join(process.cwd(), 'cache', fileName)
+        fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 4), 'utf8')
+        console.log('Novos IDs salvos.')
+        return newId
     } catch {
         console.error('Erro pegar ID do jogador', playerName)
     }
@@ -99,6 +98,6 @@ export const getSofascoreId = async (playerName, teamName) => {
 
 export const fetchPlayerStats = async (playerId) => {
     // const URL = `https://www.google.com/${playerId}`
-    const URL = `https://api.crawlbase.com/?token=iFBKVpfXjUJSgmu15Ao5DA&url=https://www.sofascore.com/api/v1/player/${playerId}/unique-tournament/325/season/58766/statistics/overall`
+    const URL = `https://www.sofascore.com/api/v1/player/${playerId}/unique-tournament/325/season/58766/statistics/overall`
     return await fetchFromURL(URL)
 }
