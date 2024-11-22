@@ -9,8 +9,10 @@ const fetchFromURL = async (url) => {
     try {
         const response = await axios.get(url)
         return response.data
-    } catch {
+    } catch (error) {
         console.error(`Error on GET URL - ${url}`)
+        console.error(`Status: ${error.response?.status}`)
+        console.error(`Data: ${JSON.stringify(error.response?.data)}`)
     }
 }
 
